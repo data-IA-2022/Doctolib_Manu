@@ -1,0 +1,197 @@
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prise de medoc et alimentation</title>
+    <style>
+        /* Style for the form elements to match the image */
+        form {
+            max-width: 800px;  /* Adjust as needed */
+            margin: 20px auto;
+        }
+        
+        label {
+        display: inline-block;
+        width: 300px; /* Ajustez cette valeur en fonction de votre mise en page */
+        vertical-align: middle;
+        height: auto;
+        margin: 5px auto;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 2px solid #000;
+            font-family: Arial, sans-serif;  /* Adjust as needed */
+        } 
+
+        input[type="radio"] {
+            vertical-align: middle;
+            width: 50px;
+            margin: 10px auto;
+        }
+
+        textarea {
+            min-height: 100px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <form action="#" method="post">
+
+        <h2>Prise de médicaments</h2>
+       
+        <table>
+                <tr>
+                    <td>Nombre de médicaments pris dans la journée :</td>
+                    <td><input type="number" name="medicaments_jour" min="0" step="1" value="0" required></td>
+                </tr>
+            
+            </tbody>
+        </table>
+
+        <label> Cochez si vous êtes concerné :</label>
+
+        <!-- <table>
+            <tbody>
+        
+                <tr>  
+                    <td><input type="checkbox" id="oubli-matin" name="oubli_matin"></td>
+                    <td><label for="oubli-matin">Oublie de prendre le(s) médicament(s) le matin :</label></td> 
+                    <td>Oui | Non</td>
+                </tr>
+
+                <tr>  
+                    <td><input type="checkbox" id="oubli-soir" name="oubli_soir"></td>
+                    <td><label for="oubli-matin">Oublie de prendre le(s) médicament(s) le soir :</label></td> 
+                    <td>Oui | Non</td>
+                </tr>
+
+                <tr>  
+                    <td><input type="checkbox" id="effets-secondaires" name="effets_secondaires"></td>
+                    <td><label for="effets-secondaires">Effet(s) secondaire(s) remarqué(s) :</label></td> 
+                    <td>Oui | Non</td>
+                </tr>
+
+                <tr>  
+                    <td><input type="checkbox" id="symptomes" name="symptomes"></td>
+                    <td><label for="symptomes">Symptôme(s) particulier(s) remarqué(s) :</label></td> 
+                    <td>Oui | Non</td>
+                </tr>
+
+            </tbody>
+        </table> -->
+
+        <table>
+            <tbody>
+
+                <tr><label for="choice_">
+                    <td>Oublie de prendre le(s) médicament(s) le matin : </td>
+                    <td><input type="radio" id="choice_" name="choice_" value="oui"></td>
+                    <td>Oui</td>
+                    <td><input type="radio" id="choice_" name="choice_" value="non" checked></td>
+                    <td>Non</td>
+                </label></tr>
+
+                <tr><label for="choice_1">
+                    <td>Oublie de prendre le(s) médicament(s) le matin : </td>
+                    <td><input type="radio" id="choice_1" name="choice_1" value="oui"></td>
+                    <td>Oui</td>
+                    <td><input type="radio" id="choice_1" name="choice_1" value="non" checked></td>
+                    <td>Non</td>
+                </label></tr>
+                
+
+                <tr><label for="choice_2">
+                    <td>Oublie de prendre le(s) médicament(s) le matin : </td>
+                    <td><input type="radio" id="choice_2" name="choice_2" value="oui"></td>
+                    <td>Oui</td>
+                    <td><input type="radio" id="choice_2" name="choice_2" value="non" checked></td>
+                    <td>Non</td>
+                </label></tr>
+
+                <tr><label for="choice_3">
+                    <td>Oublie de prendre le(s) médicament(s) le matin : </td>
+                    <td><input type="radio" id="choice_3" name="choice_3" value="oui"></td>
+                    <td>Oui</td>
+                    <td><input type="radio" id="choice_3" name="choice_3" value="non" checked></td>
+                    <td>Non</td>
+                </label></tr>
+            </tbody>
+        </table>
+
+        <table>
+            <tbody>
+
+                Décrivez vos effets secondaires et/ou symptomes particuliers remarqués en quelques mots :
+
+                <textarea id="description" name="description" rows="4" cols="50"></textarea>
+
+            </tbody>
+        </table>
+
+        <h2>Alimentation</h2>
+
+        <table>
+            <tbody>
+                <tr><label for="choice1">
+                    <td>Oublie de prendre le(s) médicament(s) le matin : </td>
+                    <td><input type="radio" id="choice1" name="choice" value="oui"></td>
+                    <td>Oui</td>
+                    <td><input type="radio" id="choice1" name="choice" value="non" checked></td>
+                    <td>Non</td>
+                </label></tr>
+                
+
+                <tr><label for="choice2">
+                    <td>Oublie de prendre le(s) médicament(s) le matin : </td>
+                    <td><input type="radio" id="choice2" name="choice2" value="oui"></td>
+                    <td>Oui</td>
+                    <td><input type="radio" id="choice2" name="choice2" value="non" checked></td>
+                    <td>Non</td>
+                </label></tr>
+
+                <tr><label for="choice3">
+                    <td>Oublie de prendre le(s) médicament(s) le matin : </td>
+                    <td><input type="radio" id="choice3" name="choice3" value="oui"></td>
+                    <td>Oui</td>
+                    <td><input type="radio" id="choice3" name="choice3" value="non" checked></td>
+                    <td>Non</td>
+                </label></tr>
+            </tbody>
+        </table>
+
+        <table>
+            <tbody>
+                <tr>
+                    <td>Nombre de médicaments pris dans la journée :</td>
+                    <td><input type="number" name="medicaments_jour" min="0" step="1" value="0" required></td>
+                </tr>
+            
+                <tr>
+                    <td>Nombre de médicaments pris dans la journée :</td>
+                    <td><input type="number" name="medicaments_jour" min="0" step="1" value="0" required></td>
+                </tr>
+            
+                <tr>
+                    <td>Nombre de médicaments pris dans la journée :</td>
+                    <td><input type="number" name="medicaments_jour" min="0" step="1" value="0" required></td>
+                </tr>
+            
+            </tbody>
+        </table>
+
+        <table>
+            <tbody>
+                <!-- Submit button -->
+                <tr>
+                    <td colspan="2" style="text-align:center;"><input type="submit" value="Soumettre"></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </form>
+
+</body>    
