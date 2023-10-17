@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from authentification.models import Utilisateur, medecinPatient
+from application.models import Symptome
 
 @login_required
 def accueil(request):
@@ -73,34 +74,36 @@ def associationMedecinPatient(request):
 
 @login_required
 def evaluation_symptomes(request):
-    choices_evaluation = [
-        (0, 'Ce symptôme n’est pas apparu au cours des deux dernières semaines'),
-        (1, 'Ce symptôme est apparu une ou deux fois seulement au cours des deux dernières semaines'),
-        (5, 'Ce symptôme est apparu plusieurs fois au cours des deux dernières semaines'),
-        (10, 'Ce symptôme est apparu presque continuellement au cours des deux dernières semaines')
-    ]
+    # Symptome.choices_evaluation = [
+    #     (0, 'Ce symptôme n’est pas apparu au cours des deux dernières semaines'),
+    #     (1, 'Ce symptôme est apparu une ou deux fois seulement au cours des deux dernières semaines'),
+    #     (5, 'Ce symptôme est apparu plusieurs fois au cours des deux dernières semaines'),
+    #     (10, 'Ce symptôme est apparu presque continuellement au cours des deux dernières semaines')
+    # ]
 
     # Liste des noms des champs
     noms_des_champs = [
-        'irratibilite',
-        'sentiment_depressif',
-        'bouche_gorge_seche',
-        'actions_gestes_impulsif',
-        'grincement_dents',
-        'difficulte_a_rester_assis',
-        'cauchemars',
-        'diarrhee',
-        'attaques_verbales_envers_qq1',
-        'haut_bas_emotifs',
-        'grande_envie_pleurer'
+        "Irritabilité",
+        "Sentiments dépressifs",
+        "Bouche sèche ou gorge sèche",
+        "Actions ou gestes impulsifs",
+        "Grincement des dents",
+        "Difficulté à rester assis",
+        "Cauchemars",
+        "Diarrhée",
+        "Attaques verbales envers quelqu’un",
+        "Hauts et bas émotifs",
+        "Grande envie de pleurer"
     ]
 
     if request.method == 'POST':
-        # Traitez la soumission du formulaire ici
-        pass
+        for champ in noms_des_champs:
+            valeur = request.POST.get(champ)  # utiliser la méthode get() pour éviter les erreurs
+            # Traitez la valeur ici...
+            pass
 
     context = {
-        'choix_evaluation': choices_evaluation,
+        'choix_evaluation': Symptome.choises_evaluation,
         'noms_des_champs': noms_des_champs
     }
     return render(request, 'evaluation_symptomes.html', context)
