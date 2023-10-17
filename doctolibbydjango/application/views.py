@@ -122,7 +122,7 @@ def evaluation_symptomes(request):
 
 def form_general_view(request):
     if request.method == "POST":
-        instance = Form_General()
+        # instance = Form_General()
 
 
         print(request.POST)
@@ -131,7 +131,31 @@ def form_general_view(request):
         #     form.save()
         #     # Add some action here if needed (e.g., redirect to a success page)
 
-        instance.save()
+        # instance.save()
+
+    # else:
+    #     form = FormGeneralForm()
+        return redirect('/prise_medoc_alimentation/')
+
+    context = {
+        'choix_evaluation': Symptome.choises_evaluation,
+    }
+
+    return render(request, 'form_general.html', context)
+
+
+def prise_medoc_alimentation_view(request):
+    if request.method == "POST":
+        # instance = Form_General()
+
+
+        print(request.POST)
+        # form = FormGeneralForm(request.POST)
+        # if form.is_valid():
+        #     form.save()
+        #     # Add some action here if needed (e.g., redirect to a success page)
+
+        # instance.save()
 
     # else:
     #     form = FormGeneralForm()
@@ -141,8 +165,5 @@ def form_general_view(request):
         'choix_evaluation': Symptome.choises_evaluation,
     }
 
-    return render(request, 'form_general.html', context)
-
-
-
+    return render(request, 'prise_medoc_alimentation.html', context)
 
