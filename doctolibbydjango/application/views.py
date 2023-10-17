@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
+from django.shortcuts import redirect
 from authentification.models import Utilisateur, medecinPatient
-from application.models import Symptome
+from application.models import Symptome, Form_General
 
 @login_required
 def accueil(request):
@@ -74,13 +75,7 @@ def associationMedecinPatient(request):
 
 @login_required
 def evaluation_symptomes(request):
-    # Symptome.choices_evaluation = [
-    #     (0, 'Ce symptôme n’est pas apparu au cours des deux dernières semaines'),
-    #     (1, 'Ce symptôme est apparu une ou deux fois seulement au cours des deux dernières semaines'),
-    #     (5, 'Ce symptôme est apparu plusieurs fois au cours des deux dernières semaines'),
-    #     (10, 'Ce symptôme est apparu presque continuellement au cours des deux dernières semaines')
-    # ]
-
+  
     # Liste des noms des champs
     noms_des_champs = [
         "Irritabilité",
@@ -96,11 +91,27 @@ def evaluation_symptomes(request):
         "Grande envie de pleurer"
     ]
 
+    print("------------------------------------------------------ ")
+
     if request.method == 'POST':
-        for champ in noms_des_champs:
-            valeur = request.POST.get(champ)  # utiliser la méthode get() pour éviter les erreurs
-            # Traitez la valeur ici...
-            pass
+     
+        symptome_instance = Symptome()
+
+        symptome_instance.irratibilite = request.POST.get("Irritabilité")
+        symptome_instance.sentiment_depressif = request.POST.get("Sentiments dépressifs")
+        symptome_instance.bouche_gorge_seche = request.POST.get("Bouche sèche ou gorge sèche")
+        symptome_instance.actions_gestes_impulsif = request.POST.get("Actions ou gestes impulsifs")
+        symptome_instance.grincement_dents = request.POST.get("Grincement des dents")
+        symptome_instance.difficulte_a_rester_assis = request.POST.get("Difficulté à rester assis")
+        symptome_instance.cauchemars = request.POST.get("Cauchemars")
+        symptome_instance.diarrhee = request.POST.get("Diarrhée")
+        symptome_instance.attaques_verbales_envers_qq1 = request.POST.get("Attaques verbales envers quelqu’un")
+        symptome_instance.haut_bas_emotifs = request.POST.get("Hauts et bas émotifs")
+        symptome_instance.grande_envie_pleurer = request.POST.get("Grande envie de pleurer")
+
+        symptome_instance.save()
+
+        return redirect('/form-general/')
 
     context = {
         'choix_evaluation': Symptome.choises_evaluation,
@@ -109,7 +120,28 @@ def evaluation_symptomes(request):
     return render(request, 'evaluation_symptomes.html', context)
 
 
+def form_general_view(request):
+    if request.method == "POST":
+        instance = Form_General()
 
+
+        print(request.POST)
+        # form = FormGeneralForm(request.POST)
+        # if form.is_valid():
+        #     form.save()
+        #     # Add some action here if needed (e.g., redirect to a success page)
+
+        instance.save()
+
+    # else:
+    #     form = FormGeneralForm()
+        pass
+
+    context = {
+        'choix_evaluation': Symptome.choises_evaluation,
+    }
+
+    return render(request, 'form_general.html', context)
 
 
 

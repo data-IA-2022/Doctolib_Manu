@@ -1,0 +1,28 @@
+<h2>Formulaire d'information général</h2>
+
+<form action="/form-general/" method="post"> <!-- You can change the action to your desired endpoint -->
+    {% csrf_token %} <!-- CSRF token for Django forms -->
+
+    <table>
+        <tbody>
+            <tr>
+                <!-- Poids Label -->
+                <td><label for="poids">Poids:</label></td>
+                <!-- Poids Input -->
+                <td><input type="number" id="poids" name="poids" min="20.0" max="300.0" step="0.1" value="70.0" required></td>
+            </tr>
+            <tr>
+                <!-- Tour de taille Label -->
+                <td><label for="tour_2_taille">Tour de Taille:</label></td>
+                <!-- Tour de taille Input -->
+                <td><input type="number" id="tour_2_taille" name="tour_2_taille" min="40.0" max="300.0" step="0.1" value="80.0" required></td>
+            </tr>
+            <tr>
+                <!-- Submit button -->
+                <td colspan="2" style="text-align:center;">
+                    <input type="submit" value="Soumettre"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+</form>

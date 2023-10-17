@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from application.views import accueil, comptes, edaia, associationMedecinPatient, evaluation_symptomes
+from application.views import accueil, comptes, edaia, associationMedecinPatient, evaluation_symptomes, form_general_view
 from authentification.views import connexion, deconnexion, inscription 
 
 urlpatterns = [
@@ -28,4 +28,5 @@ urlpatterns = [
     path("deconnexion", deconnexion, name="deconnexion"),
     path("inscription", inscription, name="inscription"),
     path("evaluation/", evaluation_symptomes, name="evaluation_symptomes"),
+    path('form-general/', form_general_view, name='form_general'),
 ]
