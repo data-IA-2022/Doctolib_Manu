@@ -1,0 +1,35 @@
+<!-- {% extends 'base.html' %}
+
+{% block content %} -->
+
+<h2>Formulaire d'évaluation des symptômes</h2>
+
+<form action="/evaluation/" method="post">
+    {% csrf_token %}
+    <table>
+        <thead>
+            <tr>
+                <th>Symptôme</th>
+                <th>Évaluation</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for champ in noms_des_champs %}
+            <tr>
+                <td>{{ champ|capfirst }}</td>
+                <td>
+                    <select name="{{ champ }}">
+                        {% for valeur, description in choix_evaluation %}
+                            <option value="{{ valeur }}">{{ description }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <input type="submit" value="Soumettre">
+</form>
+
+<!-- {% endblock %} -->

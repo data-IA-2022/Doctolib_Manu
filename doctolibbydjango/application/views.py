@@ -71,6 +71,40 @@ def associationMedecinPatient(request):
                    "medecins" : medecins,
                    "tableAssociationMedecinPatient" : tableAssociationMedecinPatient})
 
+@login_required
+def evaluation_symptomes(request):
+    choices_evaluation = [
+        (0, 'Ce symptôme n’est pas apparu au cours des deux dernières semaines'),
+        (1, 'Ce symptôme est apparu une ou deux fois seulement au cours des deux dernières semaines'),
+        (5, 'Ce symptôme est apparu plusieurs fois au cours des deux dernières semaines'),
+        (10, 'Ce symptôme est apparu presque continuellement au cours des deux dernières semaines')
+    ]
+
+    # Liste des noms des champs
+    noms_des_champs = [
+        'irratibilite',
+        'sentiment_depressif',
+        'bouche_gorge_seche',
+        'actions_gestes_impulsif',
+        'grincement_dents',
+        'difficulte_a_rester_assis',
+        'cauchemars',
+        'diarrhee',
+        'attaques_verbales_envers_qq1',
+        'haut_bas_emotifs',
+        'grande_envie_pleurer'
+    ]
+
+    if request.method == 'POST':
+        # Traitez la soumission du formulaire ici
+        pass
+
+    context = {
+        'choix_evaluation': choices_evaluation,
+        'noms_des_champs': noms_des_champs
+    }
+    return render(request, 'evaluation_symptomes.html', context)
+
 
 
 
