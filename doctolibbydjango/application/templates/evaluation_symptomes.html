@@ -1,35 +1,75 @@
-<!-- {% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informations cardiaques et tension artérielle</title>
+    <style>
+        /* Style for the form elements to match the image */
+        form {
+            max-width: 800px;  /* Adjust as needed */
+            margin: 20px auto;
+        }
+        label {
+            display: block;
+            margin: 20px 0 10px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 2px solid #000;
+            font-family: Arial, sans-serif;  /* Adjust as needed */
+        }
+        textarea {
+            min-height: 100px;
+        }
+    </style>
+</head>
 
-{% block content %} -->
+<body>
 
-<h2>Formulaire d'évaluation des symptômes</h2>
+    <form action="/evaluation/" method="post">
 
-<form action="/evaluation/" method="post">
-    {% csrf_token %}
-    <table>
-        <thead>
-            <tr>
-                <th>Symptôme</th>
-                <th>Évaluation</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for champ in noms_des_champs %}
-            <tr>
-                <td>{{ champ|capfirst }}</td>
-                <td>
-                    <select name="{{ champ }}">
-                        {% for valeur, description in choix_evaluation %}
-                            <option value="{{ valeur }}">{{ description }}</option>
-                        {% endfor %}
-                    </select>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <br>
-    <input type="submit" value="Soumettre">
-</form>
+        <h2>Formulaire d'évaluation des symptômes</h2>
+        
+        {% csrf_token %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Symptôme</th>
+                    <th>Évaluation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for champ in noms_des_champs %}
+                <tr>
+                    <td>{{ champ|capfirst }}</td>
+                    <td>
+                        <select name="{{ champ }}">
+                            {% for valeur, description in choix_evaluation %}
+                                <option value="{{ valeur }}">{{ description }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+       
+        <table>
+            <tbody>
 
-<!-- {% endblock %} -->
+                <!-- Submit button -->
+                <tr>
+                    <td colspan="2" style="text-align:center;"><input type="submit" value="Soumettre"></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </form>
+
+    </form>
+
+</body>
