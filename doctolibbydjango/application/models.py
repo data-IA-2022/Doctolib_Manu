@@ -140,6 +140,7 @@ class Formulaire(models.Model):
 class Rapport(models.Model):
     symptome = models.ForeignKey(Symptome, on_delete=models.CASCADE)
     formulaire = models.ForeignKey(Formulaire, on_delete=models.CASCADE)
+    date_saisie = models.DateTimeField(null=True)
 
 # La classe Patient représente un patient avec une référence à un utilisateur,
 # un rapport par défaut, et une liste de médecins associés.

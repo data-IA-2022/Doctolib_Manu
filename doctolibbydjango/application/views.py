@@ -95,6 +95,8 @@ def evaluation_symptomes(request):
 
     if request.method == 'POST':
      
+        print(request.POST)
+
         symptome_instance = Symptome()
 
         symptome_instance.irratibilite = request.POST.get("Irritabilité")
@@ -114,6 +116,7 @@ def evaluation_symptomes(request):
         return redirect('/form-general/')
 
     context = {
+        'text': request.POST,
         'choix_evaluation': Symptome.choises_evaluation,
         'noms_des_champs': noms_des_champs
     }
@@ -159,7 +162,7 @@ def prise_medoc_alimentation_view(request):
 
     # else:
     #     form = FormGeneralForm()
-        pass
+        return redirect('/prise_medoc_alimentation/')
 
     context = {
         'choix_evaluation': Symptome.choises_evaluation,
