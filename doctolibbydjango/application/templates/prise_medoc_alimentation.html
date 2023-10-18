@@ -41,6 +41,8 @@
     <form action="#" method="post">
 
         <h2>Prise de médicaments</h2>
+
+        {% csrf_token %}
        
         <table>
                 <tr>
@@ -52,36 +54,6 @@
         </table>
 
         <label> Cochez si vous êtes concerné :</label>
-
-        <!-- <table>
-            <tbody>
-        
-                <tr>  
-                    <td><input type="checkbox" id="oubli-matin" name="oubli_matin"></td>
-                    <td><label for="oubli-matin">Oublie de prendre le(s) médicament(s) le matin :</label></td> 
-                    <td>Oui | Non</td>
-                </tr>
-
-                <tr>  
-                    <td><input type="checkbox" id="oubli-soir" name="oubli_soir"></td>
-                    <td><label for="oubli-matin">Oublie de prendre le(s) médicament(s) le soir :</label></td> 
-                    <td>Oui | Non</td>
-                </tr>
-
-                <tr>  
-                    <td><input type="checkbox" id="effets-secondaires" name="effets_secondaires"></td>
-                    <td><label for="effets-secondaires">Effet(s) secondaire(s) remarqué(s) :</label></td> 
-                    <td>Oui | Non</td>
-                </tr>
-
-                <tr>  
-                    <td><input type="checkbox" id="symptomes" name="symptomes"></td>
-                    <td><label for="symptomes">Symptôme(s) particulier(s) remarqué(s) :</label></td> 
-                    <td>Oui | Non</td>
-                </tr>
-
-            </tbody>
-        </table> -->
 
         <table>
             <tbody>
@@ -95,7 +67,7 @@
                 </label></tr>
 
                 <tr><label for="choice_1">
-                    <td>Oublie de prendre le(s) médicament(s) le matin : </td>
+                    <td>Oublie de prendre le(s) médicament(s) le soir : </td>
                     <td><input type="radio" id="choice_1" name="choice_1" value="oui"></td>
                     <td>Oui</td>
                     <td><input type="radio" id="choice_1" name="choice_1" value="non" checked></td>
@@ -104,7 +76,7 @@
                 
 
                 <tr><label for="choice_2">
-                    <td>Oublie de prendre le(s) médicament(s) le matin : </td>
+                    <td>Effet(s) secondaire(s) remarqué(s) :</td>
                     <td><input type="radio" id="choice_2" name="choice_2" value="oui"></td>
                     <td>Oui</td>
                     <td><input type="radio" id="choice_2" name="choice_2" value="non" checked></td>
@@ -112,7 +84,7 @@
                 </label></tr>
 
                 <tr><label for="choice_3">
-                    <td>Oublie de prendre le(s) médicament(s) le matin : </td>
+                    <td>Symptôme(s) particulier(s) remarqué(s) :</td>
                     <td><input type="radio" id="choice_3" name="choice_3" value="oui"></td>
                     <td>Oui</td>
                     <td><input type="radio" id="choice_3" name="choice_3" value="non" checked></td>
@@ -133,10 +105,12 @@
 
         <h2>Alimentation</h2>
 
+        <label> Cochez si vous êtes concerné :</label>
+
         <table>
             <tbody>
                 <tr><label for="choice1">
-                    <td>Oublie de prendre le(s) médicament(s) le matin : </td>
+                    <td>Consommation d'alcool :</td>
                     <td><input type="radio" id="choice1" name="choice" value="oui"></td>
                     <td>Oui</td>
                     <td><input type="radio" id="choice1" name="choice" value="non" checked></td>
@@ -145,7 +119,7 @@
                 
 
                 <tr><label for="choice2">
-                    <td>Oublie de prendre le(s) médicament(s) le matin : </td>
+                    <td>Grignotage sucré :</td>
                     <td><input type="radio" id="choice2" name="choice2" value="oui"></td>
                     <td>Oui</td>
                     <td><input type="radio" id="choice2" name="choice2" value="non" checked></td>
@@ -153,7 +127,7 @@
                 </label></tr>
 
                 <tr><label for="choice3">
-                    <td>Oublie de prendre le(s) médicament(s) le matin : </td>
+                    <td>Grignotage salé :</td>
                     <td><input type="radio" id="choice3" name="choice3" value="oui"></td>
                     <td>Oui</td>
                     <td><input type="radio" id="choice3" name="choice3" value="non" checked></td>
@@ -165,18 +139,18 @@
         <table>
             <tbody>
                 <tr>
-                    <td>Nombre de médicaments pris dans la journée :</td>
+                    <td>Nombre de repas pris durant la journée :</td>
                     <td><input type="number" name="medicaments_jour" min="0" step="1" value="0" required></td>
                 </tr>
             
                 <tr>
-                    <td>Nombre de médicaments pris dans la journée :</td>
-                    <td><input type="number" name="medicaments_jour" min="0" step="1" value="0" required></td>
+                    <td>Quantité d'eau en litre :</td>
+                    <td><input type="number" name="medicaments_jour" min="0.0" step="0.1" value="1.0" required></td>
                 </tr>
             
                 <tr>
-                    <td>Nombre de médicaments pris dans la journée :</td>
-                    <td><input type="number" name="medicaments_jour" min="0" step="1" value="0" required></td>
+                    <td>Quantité d'alcool consommé en litre :</td>
+                    <td><input type="number" name="medicaments_jour" min="0.0" step="0.1" value="1.0" required></td>
                 </tr>
             
             </tbody>
