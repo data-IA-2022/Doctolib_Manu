@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate
 from django.shortcuts import redirect
 from authentification.models import Utilisateur, medecinPatient
 from application.models import Symptome, Form_General
-from .forms import evaluation_symptomes_form, general_form_form, cardio_form, prise_Medoc_form, Form_Alimentation_form, Form_Activite_Phisique_form
+from .forms import evaluation_symptomes_form, general_form_form, cardio_form, prise_Medoc_form, Form_Alimentation_form, Form_Activite_Phisique_form, Form_Autres_Symptomes_form, Form_Infos_Medicales_form
 
 @login_required
 def accueil(request):
@@ -102,6 +102,7 @@ def form_general_view(request):
             # Sauvegarder les données dans la base de données
             # form.save()
             return redirect('/cardio_')  # changez 'success_url' par votre URL de réussite.
+        
     else:
         form = general_form_form(initial=personne_data)
     return render(request, 'form_general.html', {'form': form})
@@ -183,10 +184,51 @@ def activite_physique_view(request):
             
             # Sauvegarder les données dans la base de données
             # form.save()
-            return redirect('accueil')  # changez 'success_url' par votre URL de réussite.
+            return redirect('autres_symptomes')  # changez 'success_url' par votre URL de réussite.
     else:
         form = Form_Activite_Phisique_form(initial=personne_data)
     return render(request, 'activite_physique.html', {'form': form})
 
+def autres_symptomes_view(request):
+    personne_data = request.session.get('personne_data', {})
+    if request.method == 'POST':
+        form = Form_Autres_Symptomes_form(request.POST, initial=personne_data)
+        if form.is_valid():
 
+             # Fusionnez les deux dictionnaires
+            merged_data = {**personne_data, **{'autre_sym': form.cleaned_data}}
+
+             # Si vous souhaitez mettre à jour les données de la session avec les nouvelles données
+            request.session['personne_data'] = merged_data
+
+            print("reponce ", merged_data)
+            
+            # Sauvegarder les données dans la base de données
+            # form.save()
+            return redirect('info_medicales')  # changez 'success_url' par votre URL de réussite.
+    else:
+        form = Form_Autres_Symptomes_form(initial=personne_data)
+    return render(request, 'autres_symptomes.html', {'form': form})
+
+
+def info_medicales_view(request):
+    personne_data = request.session.get('personne_data', {})
+    if request.method == 'POST':
+        form = Form_Infos_Medicales_form(request.POST, initial=personne_data)
+        if form.is_valid():
+
+             # Fusionnez les deux dictionnaires
+            merged_data = {**personne_data, **{'info_med': form.cleaned_data}}
+
+             # Si vous souhaitez mettre à jour les données de la session avec les nouvelles données
+            request.session['personne_data'] = merged_data
+
+            print("reponce ", merged_data)
+            
+            # Sauvegarder les données dans la base de données
+            # form.save()
+            return redirect('accueil')  # changez 'success_url' par votre URL de réussite.
+    else:
+        form = Form_Infos_Medicales_form(initial=personne_data)
+    return render(request, 'info_medicales.html', {'form': form})
 

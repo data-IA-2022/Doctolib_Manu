@@ -1,0 +1,12 @@
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prise de medoc et alimentation</title>
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css" />
+</head>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Continuer">
+</form>

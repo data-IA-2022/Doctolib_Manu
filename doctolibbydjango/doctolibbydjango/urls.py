@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from application.views import accueil, comptes, edaia, associationMedecinPatient, evaluation_symptomes, form_general_view ,caldio_view, prise_Medoc_view, alimentation_view, activite_physique_view
+from application.views import accueil, comptes, edaia, associationMedecinPatient, evaluation_symptomes, form_general_view ,info_medicales_view,caldio_view, prise_Medoc_view, alimentation_view, activite_physique_view, autres_symptomes_view
 from authentification.views import connexion, deconnexion, inscription 
 
 urlpatterns = [
@@ -33,4 +33,6 @@ urlpatterns = [
     path('cardio_', caldio_view, name='cardio'),
     path('alimentation', alimentation_view, name='alimentation'),
     path('activite_physique', activite_physique_view, name='activite_physique'),
+    path('autres_symptomes', autres_symptomes_view, name='autres_symptomes'),
+    path('info_medicales', info_medicales_view, name='info_medicales'),
 ] 
