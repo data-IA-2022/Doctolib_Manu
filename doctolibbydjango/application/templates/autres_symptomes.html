@@ -8,5 +8,18 @@
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
+
+   <!-- ... Previous content ... -->
+
+    <label for="heure_debut_palpitations">Start Time of Palpitations:</label>
+    <input type="time" name="heure_debut_palpitations" id="heure_debut_palpitations" value="00:00"><br><br>
+
+    <label for="heure_debut_douleurs_thoracique">Start Time of Thoracic Pain:</label>
+    <input type="time" name="heure_debut_douleurs_thoracique" id="heure_debut_douleurs_thoracique" value="00:00"><br><br>
+
+    <label for="heure_debut_malaises">Start Time of Malaises:</label>
+    <input type="time" name="heure_debut_malaises" id="heure_debut_malaises" value="00:00"><br><br>
+
     <input type="submit" value="Continuer">
+
 </form>

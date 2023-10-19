@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import time
 from django.core.validators import MaxValueValidator, MinValueValidator
 from authentification.models import Utilisateur
 # import datetime
@@ -73,7 +74,7 @@ class Form_Prise_Medoc(models.Model):
     oublie_prise_medoc_soir = models.BooleanField( default="False")
     effet_secondaires_remarques = models.BooleanField( default="False")
     symptomes_particuliers_remarques = models.BooleanField( default="False")
-    description = models.CharField(default = None, max_length=500)
+    description = models.CharField(blank=True, null=True, default = '', max_length=500)
 
 # Cette classe représente le modèle pour les données concernant l'alimentation du formulaire.
 class Form_Alimentation(models.Model):
@@ -88,27 +89,26 @@ class Form_Alimentation(models.Model):
 class Form_Activite_Phisique(models.Model):
     a_eu_activite_physique =  models.BooleanField( default="False")
     duree_activite_physique = models.IntegerField(default=0, validators=[MinValueValidator(0.0)])
-    description = models.CharField(default = None, max_length=500)
+    description = models.CharField(blank=True, null=True, default = '', max_length=500)
 
 # Cette classe représente le modèle pour les données concernant d'autres symptômes du formulaire.
 class Form_Autres_Symptomes(models.Model):
-    # presence_dyspnee =  models.BooleanField( default="False")
-    # presence_oedeme = models.BooleanField( default="False")
-    # presence_episode_intectieux = models.BooleanField( default="False")
-    # presence_fievre =  models.BooleanField( default="False")
-    # presence_palpitation = models.BooleanField( default="False")
-    # presence_douleur_thoracique = models.BooleanField( default="False")
-    # presence_malaise =  models.BooleanField( default="False")
+    presence_dyspnee =  models.BooleanField( default="False")
+    presence_oedeme = models.BooleanField( default="False")
+    presence_episode_intectieux = models.BooleanField( default="False")
+    presence_fievre =  models.BooleanField( default="False")
+    presence_palpitation = models.BooleanField( default="False")
+    presence_douleur_thoracique = models.BooleanField( default="False")
+    presence_malaise =  models.BooleanField( default="False")
    
-    # heure_debut_palpitations = models.TimeField( default=None)
-    # duree_total_palpitations = models.DurationField( default=None)
+    heure_debut_palpitations = models.TimeField(default=time(0, 0).strftime("%H:%M"))
+    duree_total_palpitations = models.DurationField( default=0)
 
-    # heure_debut_douleurs_thoracique = models.TimeField( default=None)
-    # duree_total_douleurs_thoracique = models.DurationField(default=None)
+    heure_debut_douleurs_thoracique = models.TimeField( default=time(0, 0).strftime("%H:%M"))
+    duree_total_douleurs_thoracique = models.DurationField(default=0)
 
-    # heure_debut_malaises = models.TimeField( default=None)
-    # duree_total_malaises = models.DurationField(default=None)
-    pass
+    heure_debut_malaises = models.TimeField(default=time(0, 0).strftime("%H:%M"))
+    duree_total_malaises = models.DurationField(default=0)
 
 # Cette classe représente le modèle pour les informations médicales du formulaire.
 class Form_Infos_Medicales(models.Model):

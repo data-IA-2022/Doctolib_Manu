@@ -178,8 +178,11 @@ def autres_symptomes_view(request):
         form = Form_Autres_Symptomes_form(request.POST, initial=personne_data)
         if form.is_valid():
 
+            converted_dict = {key: value for key, value in request.POST.items()}
+            converted_dict = dict(list(converted_dict.items())[1:])
+
              # Fusionnez les deux dictionnaires
-            merged_data = {**personne_data, **{'autre_sym': form.cleaned_data}}
+            merged_data = {**personne_data, **{'autre_sym': converted_dict}}
 
              # Si vous souhaitez mettre à jour les données de la session avec les nouvelles données
             request.session['personne_data'] = merged_data

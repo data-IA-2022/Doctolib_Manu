@@ -1,8 +1,6 @@
 from django import forms
 from .models import Symptome, Form_General, Form_Info_Cardiaque_Tension_Arterielle, Form_Prise_Medoc, Form_Alimentation, Form_Activite_Phisique, Form_Autres_Symptomes, Form_Infos_Medicales
 
-from django import forms
-
 # Cette classe crée un formulaire basé sur le modèle Symptome
 # Il utilise tous les champs de ce modèle pour le formulaire.
 class evaluation_symptomes_form(forms.ModelForm):
@@ -50,8 +48,18 @@ class Form_Activite_Phisique_form(forms.ModelForm):
 class Form_Autres_Symptomes_form(forms.ModelForm):
     class Meta:
         model = Form_Autres_Symptomes
-        fields = '__all__'  # Utilise tous les champs du modèle Form_Autres_Symptomes.
-
+        fields = {'presence_dyspnee' ,
+                    'presence_oedeme' ,
+                    'presence_episode_intectieux' ,
+                    'presence_fievre' ,
+                    'presence_palpitation' ,
+                    'presence_douleur_thoracique' ,
+                    'presence_malaise',
+                    'duree_total_palpitations' ,
+                    'duree_total_douleurs_thoracique',
+                    'duree_total_malaises' ,
+                    }
+        
 # Cette classe crée un formulaire basé sur le modèle Form_Infos_Medicales.
 # Il utilise tous les champs de ce modèle pour le formulaire.
 class Form_Infos_Medicales_form(forms.ModelForm):
