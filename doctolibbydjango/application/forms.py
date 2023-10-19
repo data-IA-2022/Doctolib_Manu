@@ -26,7 +26,7 @@ class cardio_form(forms.ModelForm):
 
 # Cette classe crée un formulaire basé sur le modèle Form_Prise_Medoc.
 # Il utilise tous les champs de ce modèle pour le formulaire.
-class Form_Prise_Medoc_form(forms.ModelForm):
+class prise_Medoc_form(forms.ModelForm):
     class Meta:
         model = Form_Prise_Medoc
         fields = '__all__'  # Utilise tous les champs du modèle Form_Prise_Medoc.

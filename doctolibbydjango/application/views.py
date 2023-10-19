@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate
 from django.shortcuts import redirect
 from authentification.models import Utilisateur, medecinPatient
 from application.models import Symptome, Form_General
-from .forms import evaluation_symptomes_form, general_form_form, cardio_form
+from .forms import evaluation_symptomes_form, general_form_form, cardio_form, prise_Medoc_form
 
 @login_required
 def accueil(request):
@@ -99,11 +99,9 @@ def form_general_view(request):
              # Si vous souhaitez mettre à jour les données de la session avec les nouvelles données
             request.session['personne_data'] = merged_data
 
-            print("reponce ", merged_data)
-            
             # Sauvegarder les données dans la base de données
             # form.save()
-            return redirect('cardio')  # changez 'success_url' par votre URL de réussite.
+            return redirect('/cardio')  # changez 'success_url' par votre URL de réussite.
     else:
         form = general_form_form(initial=personne_data)
     return render(request, 'form_general.html', {'form': form})
@@ -119,6 +117,25 @@ def caldio_view(request):
 
              # Si vous souhaitez mettre à jour les données de la session avec les nouvelles données
             request.session['personne_data'] = merged_data
+            
+            # Sauvegarder les données dans la base de données
+            # form.save()
+            return redirect('accueil')  # changez 'success_url' par votre URL de réussite.
+    else:
+        form = cardio_form(initial=personne_data)
+    return render(request, 'prise_medoc.html', {'form': form})
+
+def prise_Medoc_view(request):
+    personne_data = request.session.get('personne_data', {})
+    if request.method == 'POST':
+        form = prise_Medoc_form(request.POST, initial=personne_data)
+        if form.is_valid():
+
+             # Fusionnez les deux dictionnaires
+            merged_data = {**personne_data, **{'prise_medoc': form.cleaned_data}}
+
+             # Si vous souhaitez mettre à jour les données de la session avec les nouvelles données
+            request.session['personne_data'] = merged_data
 
             print("reponce ", merged_data)
             
@@ -126,5 +143,5 @@ def caldio_view(request):
             # form.save()
             return redirect('accueil')  # changez 'success_url' par votre URL de réussite.
     else:
-        form = cardio_form(initial=personne_data)
-    return render(request, 'cardio.html', {'form': form})
+        form = prise_Medoc_form(initial=personne_data)
+    return render(request, 'prise_medoc.html', {'form': form})
