@@ -2,7 +2,7 @@ from django import forms
 from .models import Symptome
 
 
-class PremierFormulaire(forms.ModelForm):
+class evaluation_symptomes_form(forms.ModelForm):
     class Meta:
         model = Symptome
         fields = ['irratibilite',

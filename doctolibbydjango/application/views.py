@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate
 from django.shortcuts import redirect
 from authentification.models import Utilisateur, medecinPatient
 from application.models import Symptome, Form_General
+from .forms import evaluation_symptomes_form
 
 @login_required
 def accueil(request):
@@ -77,14 +78,14 @@ def associationMedecinPatient(request):
 def evaluation_symptomes(request):
 
     if request.method == 'POST':
-        form = PremierFormulaire(request.POST)
+        form = evaluation_symptomes_form(request.POST)
         if form.is_valid():
             # Ici, plutôt que de sauvegarder directement, nous pourrions stocker les données dans la session.
             request.session['personne_data'] = form.cleaned_data
-            return redirect('deuxieme_formulaire')
+            return redirect('Form_General')
     else:
-        form = PremierFormulaire()
-    return render(request, 'premier_formulaire.html', {'form': form})
+        form = evaluation_symptomes_form()
+    return render(request, 'evaluation_symptomes.html', {'form': form})
   
     # # Liste des noms des champs
     # noms_des_champs = [

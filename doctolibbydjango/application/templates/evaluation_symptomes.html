@@ -27,49 +27,8 @@
     </style>
 </head>
 
-<body>
-
-    <form action="/evaluation/" method="post">
-
-        <h2>Formulaire d'évaluation des symptômes</h2>
-        
-        {% csrf_token %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Symptôme</th>
-                    <th>Évaluation</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for champ in noms_des_champs %}
-                <tr>
-                    <td>{{ champ|capfirst }}</td>
-                    <td>
-                        <select name="{{ champ }}">
-                            {% for valeur, description in choix_evaluation %}
-                                <option value="{{ valeur }}">{{ description }}</option>
-                            {% endfor %}
-                        </select>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <br>
-       
-        <table>
-            <tbody>
-
-                <!-- Submit button -->
-                <tr>
-                    <td colspan="2" style="text-align:center;"><input type="submit" value="Soumettre"></td>
-                </tr>
-
-            </tbody>
-        </table>
-    </form>
-
-    </form>
-
-</body>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Continuer">
+</form>
