@@ -108,7 +108,7 @@ def form_general_view(request):
         form = general_form_form(initial=personne_data)
     return render(request, 'form_general.html', {'form': form})
 
-def prise_medoc_alimentation_view(request):
+def caldio_view(request):
     personne_data = request.session.get('personne_data', {})
     if request.method == 'POST':
         form = cardio_form(request.POST, initial=personne_data)
@@ -127,4 +127,4 @@ def prise_medoc_alimentation_view(request):
             return redirect('accueil')  # changez 'success_url' par votre URL de réussite.
     else:
         form = cardio_form(initial=personne_data)
-    return render(request, 'prise_medoc_alimentation.html', {'form': form})
+    return render(request, 'caldio.html', {'form': form})

@@ -1,34 +1,14 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informations cardiaques et tension artérielle</title>
-    <style>
-        /* Style for the form elements to match the image */
-        form {
-            max-width: 800px;  /* Adjust as needed */
-            margin: 20px auto;
-        }
-        label {
-            display: block;
-            margin: 20px 0 10px;
-        }
-        input, textarea, select {
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-            border: 2px solid #000;
-            font-family: Arial, sans-serif;  /* Adjust as needed */
-        }
-        textarea {
-            min-height: 100px;
-        }
-    </style>
+    <title>Prise de medoc et alimentation</title>
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css" />
 </head>
+
 
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Continuer">
+    <input type="submit" value="Soumettre">
 </form>
+
