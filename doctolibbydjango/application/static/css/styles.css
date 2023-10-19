@@ -1,0 +1,19 @@
+form {
+    max-width: 800px;  /* Adjust as needed */
+    margin: 20px auto;
+}
+label {
+    display: block;
+    margin: 20px 0 10px;
+}
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid #000;
+    font-family: Arial, sans-serif;  /* Adjust as needed */
+}
+textarea {
+    min-height: 100px;
+}
+

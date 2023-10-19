@@ -1,5 +1,5 @@
 from django import forms
-from .models import Symptome
+from .models import Symptome, Form_General
 
 
 class evaluation_symptomes_form(forms.ModelForm):
@@ -17,3 +17,14 @@ class evaluation_symptomes_form(forms.ModelForm):
                     'haut_bas_emotifs', 
                     'grande_envie_pleurer',
                     ]
+
+class general_form_form(forms.ModelForm):
+    class Meta:
+        model = Form_General
+        fields = ['poids' ,
+                    'tour_2_taille',
+                    ]
+        
+
+
+

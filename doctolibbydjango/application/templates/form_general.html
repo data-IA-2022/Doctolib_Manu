@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informations cardiaques et tension artérielle</title>
-    <style>
+    <!-- <style>
         /* Style for the form elements to match the image */
         form {
             max-width: 800px;  /* Adjust as needed */
@@ -24,82 +24,14 @@
         textarea {
             min-height: 100px;
         }
-    </style>
+    </style> -->
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css" />
+    
 </head>
 
-<body>
-
-    <form action="/prise_medoc_alimentation/" method="post"> <!-- You can change the action to your desired endpoint -->
-        {% csrf_token %} <!-- CSRF token for Django forms -->
-
-        <h2>Information général</h2>
-        
-        <table>
-            <tbody>
-                <tr>
-                    <!-- Poids Label -->
-                    <td><label for="poids">Poids:</label></td>
-                    <!-- Poids Input -->
-                    <td><input type="number" id="poids" name="poids" min="20.0" max="300.0" step="0.1" value="70.0" required></td>
-                </tr>
-                <tr>
-                    <!-- Tour de taille Label -->
-                    <td><label for="tour_2_taille">Tour de Taille:</label></td>
-                    <!-- Tour de taille Input -->
-                    <td><input type="number" id="tour_2_taille" name="tour_2_taille" min="40.0" max="300.0" step="0.1" value="80.0" required></td>
-                </tr>
-
-            </tbody>
-        </table>
-
-        <h2>Information cardiaque et tension arterielle</h2>
-        
-        <table>
-            <tbody>
-                <!-- Row for fréquence cardiaque -->
-                <tr>
-                    <td>Fréquence Cardiaque</td>
-                    <td><input type="number" name="frequence_cardiaque" min="20.0" max="120.0" step="0.1" value="60.0" required></td>
-                </tr>
-                <!-- Row for tension systolique matin -->
-                <tr>
-                    <td>Tension Systolique Matin</td>
-                    <td><input type="number" name="tension_systolique_matin" min="100.0" max="250.0" step="0.1" value="120.0" required></td>
-                </tr>
-                <!-- Row for tension systolique soir -->
-                <tr>
-                    <td>Tension Systolique Soir</td>
-                    <td><input type="number" name="tension_systolique_soir" min="100.0" max="250.0" step="0.1" value="120.0" required></td>
-                </tr>
-                <!-- Row for tension diastolique matin -->
-                <tr>
-                    <td>Tension Diastolique Matin</td>
-                    <td><input type="number" name="tension_diastolique_matin" min="40.0" max="100.0" step="0.1" value="60.0" required></td>
-                </tr>
-                <!-- Row for tension diastolique soir -->
-                <tr>
-                    <td>Tension Diastolique Soir</td>
-                    <td><input type="number" name="tension_diastolique_soir" min="40.0" max="100.0" step="0.1" value="60.0" required></td>
-                </tr>
-                
-            </tbody>
-        </table>
-
-        <table>
-            <tbody>
-                
-        Décrivez vos symptômes cardiovasculaires en quelques mots (malaise, perte de connaissance...):
-
-        <textarea id="symptomes_cardio" name="symptomes_cardio" placeholder="Votre description..." ></textarea>
-
-        <!-- Submit button -->
-        <tr>
-            <td colspan="2" style="text-align:center;"><input type="submit" value="Soumettre"></td>
-        </tr>
-
-        </tbody>
-        </table>
-    </form>
-
-</body>
-</html>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Soumettre">
+</form>
