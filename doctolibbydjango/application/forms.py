@@ -1,5 +1,5 @@
 from django import forms
-from .models import Symptome, Form_General
+from .models import Symptome, Form_General, Form_Info_Cardiaque_Tension_Arterielle
 
 
 class evaluation_symptomes_form(forms.ModelForm):
@@ -25,6 +25,20 @@ class general_form_form(forms.ModelForm):
                     'tour_2_taille',
                     ]
         
+class cardio_form(forms.ModelForm):
+    class Meta:
+        model = Form_Info_Cardiaque_Tension_Arterielle
+        fields = ['frquence_cardiaque' ,
+                    'tension_systolique_matin' ,
+                    'tension_systolique_soir' ,
+                    'tension_diastolique_matin' ,
+                    'tension_diastolique_soir' ,
+                    'description' ,
+                ]
+
+        
+
+
 
 
 
