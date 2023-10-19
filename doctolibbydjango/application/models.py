@@ -64,7 +64,7 @@ class Form_Info_Cardiaque_Tension_Arterielle(models.Model):
     tension_systolique_soir = models.FloatField( default=120.0,  validators=[MinValueValidator(100.0), MaxValueValidator(250.0)])
     tension_diastolique_matin = models.FloatField( default=60.0,  validators=[MinValueValidator(40.0), MaxValueValidator(100.0)])
     tension_diastolique_soir = models.FloatField( default=60.0,  validators=[MinValueValidator(40.0), MaxValueValidator(100.0)])
-    description = models.CharField(default = None, max_length=500)
+    description = models.CharField(blank=True, null=True, default = '', max_length=500)
 
 # Cette classe représente le modèle pour les données concernant la prise de médicaments du formulaire.
 class Form_Prise_Medoc(models.Model):

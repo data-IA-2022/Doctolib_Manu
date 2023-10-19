@@ -103,7 +103,7 @@ def form_general_view(request):
             
             # Sauvegarder les données dans la base de données
             # form.save()
-            return redirect('prise_medoc_alimentation')  # changez 'success_url' par votre URL de réussite.
+            return redirect('cardio')  # changez 'success_url' par votre URL de réussite.
     else:
         form = general_form_form(initial=personne_data)
     return render(request, 'form_general.html', {'form': form})
@@ -127,4 +127,4 @@ def caldio_view(request):
             return redirect('accueil')  # changez 'success_url' par votre URL de réussite.
     else:
         form = cardio_form(initial=personne_data)
-    return render(request, 'caldio.html', {'form': form})
+    return render(request, 'cardio.html', {'form': form})
