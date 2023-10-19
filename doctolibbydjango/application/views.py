@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate
 from django.shortcuts import redirect
 from authentification.models import Utilisateur, medecinPatient
 from application.models import Symptome, Form_General
-from .forms import evaluation_symptomes_form, general_form_form, cardio_form, prise_Medoc_form
+from .forms import evaluation_symptomes_form, general_form_form, cardio_form, prise_Medoc_form, Form_Alimentation_form, Form_Activite_Phisique_form
 
 @login_required
 def accueil(request):
@@ -101,7 +101,7 @@ def form_general_view(request):
 
             # Sauvegarder les données dans la base de données
             # form.save()
-            return redirect('/cardio')  # changez 'success_url' par votre URL de réussite.
+            return redirect('/cardio_')  # changez 'success_url' par votre URL de réussite.
     else:
         form = general_form_form(initial=personne_data)
     return render(request, 'form_general.html', {'form': form})
@@ -120,10 +120,10 @@ def caldio_view(request):
             
             # Sauvegarder les données dans la base de données
             # form.save()
-            return redirect('accueil')  # changez 'success_url' par votre URL de réussite.
+            return redirect('/prs_medoc')  # changez 'success_url' par votre URL de réussite.
     else:
         form = cardio_form(initial=personne_data)
-    return render(request, 'prise_medoc.html', {'form': form})
+    return render(request, 'cardio.html', {'form': form})
 
 def prise_Medoc_view(request):
     personne_data = request.session.get('personne_data', {})
@@ -141,7 +141,52 @@ def prise_Medoc_view(request):
             
             # Sauvegarder les données dans la base de données
             # form.save()
-            return redirect('accueil')  # changez 'success_url' par votre URL de réussite.
+            return redirect('alimentation')  # changez 'success_url' par votre URL de réussite.
     else:
         form = prise_Medoc_form(initial=personne_data)
-    return render(request, 'prise_medoc.html', {'form': form})
+    return render(request, 'prs_medoc.html', {'form': form})
+
+def alimentation_view(request):
+    personne_data = request.session.get('personne_data', {})
+    if request.method == 'POST':
+        form = Form_Alimentation_form(request.POST, initial=personne_data)
+        if form.is_valid():
+
+             # Fusionnez les deux dictionnaires
+            merged_data = {**personne_data, **{'alimentation': form.cleaned_data}}
+
+             # Si vous souhaitez mettre à jour les données de la session avec les nouvelles données
+            request.session['personne_data'] = merged_data
+
+            print("reponce ", merged_data)
+            
+            # Sauvegarder les données dans la base de données
+            # form.save()
+            return redirect('activite_physique')  # changez 'success_url' par votre URL de réussite.
+    else:
+        form = Form_Alimentation_form(initial=personne_data)
+    return render(request, 'alimentation.html', {'form': form})
+
+def activite_physique_view(request):
+    personne_data = request.session.get('personne_data', {})
+    if request.method == 'POST':
+        form = Form_Activite_Phisique_form(request.POST, initial=personne_data)
+        if form.is_valid():
+
+             # Fusionnez les deux dictionnaires
+            merged_data = {**personne_data, **{'activité_physique': form.cleaned_data}}
+
+             # Si vous souhaitez mettre à jour les données de la session avec les nouvelles données
+            request.session['personne_data'] = merged_data
+
+            print("reponce ", merged_data)
+            
+            # Sauvegarder les données dans la base de données
+            # form.save()
+            return redirect('accueil')  # changez 'success_url' par votre URL de réussite.
+    else:
+        form = Form_Activite_Phisique_form(initial=personne_data)
+    return render(request, 'activite_physique.html', {'form': form})
+
+
+

@@ -87,7 +87,7 @@ class Form_Alimentation(models.Model):
 # Cette classe représente le modèle pour les données concernant l'activité physique du formulaire.
 class Form_Activite_Phisique(models.Model):
     a_eu_activite_physique =  models.BooleanField( default="False")
-    duree_activite_physique = models.DurationField()
+    duree_activite_physique = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     description = models.CharField(default = None, max_length=500)
 
 # Cette classe représente le modèle pour les données concernant d'autres symptômes du formulaire.
