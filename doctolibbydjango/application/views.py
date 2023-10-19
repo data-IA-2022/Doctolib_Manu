@@ -75,52 +75,62 @@ def associationMedecinPatient(request):
 
 @login_required
 def evaluation_symptomes(request):
-  
-    # Liste des noms des champs
-    noms_des_champs = [
-        "Irritabilité",
-        "Sentiments dépressifs",
-        "Bouche sèche ou gorge sèche",
-        "Actions ou gestes impulsifs",
-        "Grincement des dents",
-        "Difficulté à rester assis",
-        "Cauchemars",
-        "Diarrhée",
-        "Attaques verbales envers quelqu’un",
-        "Hauts et bas émotifs",
-        "Grande envie de pleurer"
-    ]
-
-    print("------------------------------------------------------ ")
 
     if request.method == 'POST':
+        form = PremierFormulaire(request.POST)
+        if form.is_valid():
+            # Ici, plutôt que de sauvegarder directement, nous pourrions stocker les données dans la session.
+            request.session['personne_data'] = form.cleaned_data
+            return redirect('deuxieme_formulaire')
+    else:
+        form = PremierFormulaire()
+    return render(request, 'premier_formulaire.html', {'form': form})
+  
+    # # Liste des noms des champs
+    # noms_des_champs = [
+    #     "Irritabilité",
+    #     "Sentiments dépressifs",
+    #     "Bouche sèche ou gorge sèche",
+    #     "Actions ou gestes impulsifs",
+    #     "Grincement des dents",
+    #     "Difficulté à rester assis",
+    #     "Cauchemars",
+    #     "Diarrhée",
+    #     "Attaques verbales envers quelqu’un",
+    #     "Hauts et bas émotifs",
+    #     "Grande envie de pleurer"
+    # ]
+
+    # print("------------------------------------------------------ ")
+
+    # if request.method == 'POST':
      
-        print(request.POST)
+    #     print(request.POST)
 
-        symptome_instance = Symptome()
+    #     symptome_instance = Symptome()
 
-        symptome_instance.irratibilite = request.POST.get("Irritabilité")
-        symptome_instance.sentiment_depressif = request.POST.get("Sentiments dépressifs")
-        symptome_instance.bouche_gorge_seche = request.POST.get("Bouche sèche ou gorge sèche")
-        symptome_instance.actions_gestes_impulsif = request.POST.get("Actions ou gestes impulsifs")
-        symptome_instance.grincement_dents = request.POST.get("Grincement des dents")
-        symptome_instance.difficulte_a_rester_assis = request.POST.get("Difficulté à rester assis")
-        symptome_instance.cauchemars = request.POST.get("Cauchemars")
-        symptome_instance.diarrhee = request.POST.get("Diarrhée")
-        symptome_instance.attaques_verbales_envers_qq1 = request.POST.get("Attaques verbales envers quelqu’un")
-        symptome_instance.haut_bas_emotifs = request.POST.get("Hauts et bas émotifs")
-        symptome_instance.grande_envie_pleurer = request.POST.get("Grande envie de pleurer")
+    #     symptome_instance.irratibilite = request.POST.get("Irritabilité")
+    #     symptome_instance.sentiment_depressif = request.POST.get("Sentiments dépressifs")
+    #     symptome_instance.bouche_gorge_seche = request.POST.get("Bouche sèche ou gorge sèche")
+    #     symptome_instance.actions_gestes_impulsif = request.POST.get("Actions ou gestes impulsifs")
+    #     symptome_instance.grincement_dents = request.POST.get("Grincement des dents")
+    #     symptome_instance.difficulte_a_rester_assis = request.POST.get("Difficulté à rester assis")
+    #     symptome_instance.cauchemars = request.POST.get("Cauchemars")
+    #     symptome_instance.diarrhee = request.POST.get("Diarrhée")
+    #     symptome_instance.attaques_verbales_envers_qq1 = request.POST.get("Attaques verbales envers quelqu’un")
+    #     symptome_instance.haut_bas_emotifs = request.POST.get("Hauts et bas émotifs")
+    #     symptome_instance.grande_envie_pleurer = request.POST.get("Grande envie de pleurer")
 
-        symptome_instance.save()
+    #     symptome_instance.save()
 
-        return redirect('/form-general/')
+    #     return redirect('/form-general/')
 
-    context = {
-        'text': request.POST,
-        'choix_evaluation': Symptome.choises_evaluation,
-        'noms_des_champs': noms_des_champs
-    }
-    return render(request, 'evaluation_symptomes.html', context)
+    # context = {
+    #     'text': request.POST,
+    #     'choix_evaluation': Symptome.choises_evaluation,
+    #     'noms_des_champs': noms_des_champs
+    # }
+    # return render(request, 'evaluation_symptomes.html', context)
 
 
 def form_general_view(request):
