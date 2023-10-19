@@ -58,3 +58,8 @@ class Form_Infos_Medicales_form(forms.ModelForm):
     class Meta:
         model = Form_Infos_Medicales
         fields = '__all__'  # Utilise tous les champs du modèle Form_Infos_Medicales.
+  
+    def save(self, dic):
+        # Cette méthode a été surchargée pour afficher le dictionnaire `dic` lors de la sauvegarde.
+        # Cela peut être utile pour le débogage ou pour voir les données avant qu'elles ne soient effectivement enregistrées.
+        print(dic)

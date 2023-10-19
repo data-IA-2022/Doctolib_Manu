@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from django.shortcuts import redirect
 from authentification.models import Utilisateur, medecinPatient
-from application.models import Symptome, Form_General
 from .forms import evaluation_symptomes_form, general_form_form, cardio_form, prise_Medoc_form, Form_Alimentation_form, Form_Activite_Phisique_form, Form_Autres_Symptomes_form, Form_Infos_Medicales_form
 
 @login_required
@@ -99,8 +98,6 @@ def form_general_view(request):
              # Si vous souhaitez mettre à jour les données de la session avec les nouvelles données
             request.session['personne_data'] = merged_data
 
-            # Sauvegarder les données dans la base de données
-            # form.save()
             return redirect('/cardio_')  # changez 'success_url' par votre URL de réussite.
         
     else:
@@ -119,8 +116,6 @@ def caldio_view(request):
              # Si vous souhaitez mettre à jour les données de la session avec les nouvelles données
             request.session['personne_data'] = merged_data
             
-            # Sauvegarder les données dans la base de données
-            # form.save()
             return redirect('/prs_medoc')  # changez 'success_url' par votre URL de réussite.
     else:
         form = cardio_form(initial=personne_data)
@@ -138,10 +133,6 @@ def prise_Medoc_view(request):
              # Si vous souhaitez mettre à jour les données de la session avec les nouvelles données
             request.session['personne_data'] = merged_data
 
-            print("reponce ", merged_data)
-            
-            # Sauvegarder les données dans la base de données
-            # form.save()
             return redirect('alimentation')  # changez 'success_url' par votre URL de réussite.
     else:
         form = prise_Medoc_form(initial=personne_data)
@@ -158,11 +149,7 @@ def alimentation_view(request):
 
              # Si vous souhaitez mettre à jour les données de la session avec les nouvelles données
             request.session['personne_data'] = merged_data
-
-            print("reponce ", merged_data)
-            
-            # Sauvegarder les données dans la base de données
-            # form.save()
+  
             return redirect('activite_physique')  # changez 'success_url' par votre URL de réussite.
     else:
         form = Form_Alimentation_form(initial=personne_data)
@@ -180,10 +167,6 @@ def activite_physique_view(request):
              # Si vous souhaitez mettre à jour les données de la session avec les nouvelles données
             request.session['personne_data'] = merged_data
 
-            print("reponce ", merged_data)
-            
-            # Sauvegarder les données dans la base de données
-            # form.save()
             return redirect('autres_symptomes')  # changez 'success_url' par votre URL de réussite.
     else:
         form = Form_Activite_Phisique_form(initial=personne_data)
@@ -201,10 +184,6 @@ def autres_symptomes_view(request):
              # Si vous souhaitez mettre à jour les données de la session avec les nouvelles données
             request.session['personne_data'] = merged_data
 
-            print("reponce ", merged_data)
-            
-            # Sauvegarder les données dans la base de données
-            # form.save()
             return redirect('info_medicales')  # changez 'success_url' par votre URL de réussite.
     else:
         form = Form_Autres_Symptomes_form(initial=personne_data)
@@ -222,11 +201,10 @@ def info_medicales_view(request):
 
              # Si vous souhaitez mettre à jour les données de la session avec les nouvelles données
             request.session['personne_data'] = merged_data
-
-            print("reponce ", merged_data)
             
             # Sauvegarder les données dans la base de données
-            # form.save()
+            form.save(request.session['personne_data'])
+
             return redirect('accueil')  # changez 'success_url' par votre URL de réussite.
     else:
         form = Form_Infos_Medicales_form(initial=personne_data)
