@@ -206,11 +206,7 @@ def save_formulaire_atres_symptomes(request):
     # Récupération des données des formulaires précédents
     form1_data = request.session.get('autres_symptomes_view')
     # Créez des instances de vos modèles sans les sauvegarder immédiatement
-
-
-    a =time(int(request.session.get('autres_symptomes_view')['heure_debut_palpitations'].split(':')[0]),
-            int(request.session.get('autres_symptomes_view')['heure_debut_palpitations'].split(':')[1]))
-
+    
     instance1 = Form_Autres_Symptomes(**form1_data)
     
     instance1.heure_debut_palpitations = time(int(request.session.get('autres_symptomes_view')['heure_debut_palpitations'].split(':')[0]),
