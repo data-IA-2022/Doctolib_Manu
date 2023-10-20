@@ -172,6 +172,7 @@ def info_medicales_view(request):
     if request.method == 'POST':
         form = Form_Infos_Medicales_form(request.POST, initial=personne_data)
         if form.is_valid():
+            from datetime import time
 
             save_formulaire(request, Symptome, 'evaluation_symptomes')
             save_formulaire(request, Form_General, 'form_general_view')
@@ -179,7 +180,15 @@ def info_medicales_view(request):
             save_formulaire(request, Form_Prise_Medoc,'prise_Medoc_view')
             save_formulaire(request, Form_Alimentation,'alimentation_view')
             save_formulaire(request, Form_Activite_Phisique,'activite_physique_view')
+            # save_formulaire(request, Form_Autres_Symptomes,'autres_symptomes_view')
+            a =time(int(request.session.get('autres_symptomes_view')['heure_debut_palpitations'].split(':')[0]),
+                       int(request.session.get('autres_symptomes_view')['heure_debut_palpitations'].split(':')[1]))
+            request.session.get('autres_symptomes_view')['heure_debut_palpitations'] = str(a)
+            request.session.get('autres_symptomes_view')['heure_debut_douleurs_thoracique'] = str(a)
+            request.session.get('autres_symptomes_view')['heure_debut_malaises'] = str(a)
+            print(request.session.get('autres_symptomes_view'))
             save_formulaire(request, Form_Autres_Symptomes,'autres_symptomes_view')
+
             form.save()
             
             # save_formulaire(request,'form_general_view')
@@ -199,3 +208,5 @@ def save_formulaire(request, instance ,name):
     # N'oubliez pas de nettoyer les données de la session une fois que vous avez terminé
     del request.session[name]
 
+def save_formulaire_atres_symptomes(request, instance ,name):
+    pass
