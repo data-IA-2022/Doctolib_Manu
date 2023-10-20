@@ -180,15 +180,7 @@ def info_medicales_view(request):
             save_formulaire(request, Form_Prise_Medoc,'prise_Medoc_view')
             save_formulaire(request, Form_Alimentation,'alimentation_view')
             save_formulaire(request, Form_Activite_Phisique,'activite_physique_view')
-            # save_formulaire(request, Form_Autres_Symptomes,'autres_symptomes_view')
-            # a =time(int(request.session.get('autres_symptomes_view')['heure_debut_palpitations'].split(':')[0]),
-            #            int(request.session.get('autres_symptomes_view')['heure_debut_palpitations'].split(':')[1]))
-            # request.session.get('autres_symptomes_view')['heure_debut_palpitations'] = str(a)
-            # request.session.get('autres_symptomes_view')['heure_debut_douleurs_thoracique'] = str(a)
-            # request.session.get('autres_symptomes_view')['heure_debut_malaises'] = str(a)
-            # print(request.session.get('autres_symptomes_view'))
             save_formulaire_atres_symptomes(request)
-
             form.save()
             
             # save_formulaire(request,'form_general_view')
@@ -210,9 +202,7 @@ def save_formulaire(request, instance ,name):
 
 def save_formulaire_atres_symptomes(request):
     from datetime import time, timedelta
-
-
-
+    
     # Récupération des données des formulaires précédents
     form1_data = request.session.get('autres_symptomes_view')
     # Créez des instances de vos modèles sans les sauvegarder immédiatement
@@ -222,13 +212,24 @@ def save_formulaire_atres_symptomes(request):
             int(request.session.get('autres_symptomes_view')['heure_debut_palpitations'].split(':')[1]))
 
     instance1 = Form_Autres_Symptomes(**form1_data)
-    instance1.heure_debut_palpitations = time(0,0,0)
+    
+    instance1.heure_debut_palpitations = time(int(request.session.get('autres_symptomes_view')['heure_debut_palpitations'].split(':')[0]),
+                                              int(request.session.get('autres_symptomes_view')['heure_debut_palpitations'].split(':')[1]),
+                                              0)
+    
     instance1.duree_total_palpitations = timedelta(days =-1, seconds = 68400)
-    instance1.heure_debut_douleurs_thoracique = time(0,0,0)
-    instance1.duree_total_douleurs_thoracique = timedelta(days =-1, seconds = 68400)
-    instance1.heure_debut_malaises = time(0,0,0)
-    instance1.duree_total_malaises = timedelta(days =-1, seconds = 68400)
 
+    instance1.heure_debut_douleurs_thoracique = time(int(request.session.get('autres_symptomes_view')['heure_debut_douleurs_thoracique'].split(':')[0]),
+                                                        int(request.session.get('autres_symptomes_view')['heure_debut_douleurs_thoracique'].split(':')[1]),
+                                                        0)
+
+    instance1.duree_total_douleurs_thoracique = timedelta(days =-1, seconds = 68400)
+
+    instance1.heure_debut_malaises = time(int(request.session.get('autres_symptomes_view')['heure_debut_malaises'].split(':')[0]),
+                                            int(request.session.get('autres_symptomes_view')['heure_debut_malaises'].split(':')[1]),
+                                            0)
+
+    instance1.duree_total_malaises = timedelta(days =-1, seconds = 68400)
 
     # Validez le dernier formulaire et sauvegardez toutes les données
     instance1.save()
