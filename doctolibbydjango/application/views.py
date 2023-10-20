@@ -179,7 +179,7 @@ def info_medicales_view(request):
             save_formulaire(request, Form_Prise_Medoc,'prise_Medoc_view')
             save_formulaire(request, Form_Alimentation,'alimentation_view')
             save_formulaire(request, Form_Activite_Phisique,'activite_physique_view')
-            # save_formulaire(request, Form_Autres_Symptomes,'autres_symptomes_view')
+            save_formulaire(request, Form_Autres_Symptomes,'autres_symptomes_view')
             form.save()
             
             # save_formulaire(request,'form_general_view')
