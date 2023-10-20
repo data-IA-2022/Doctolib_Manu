@@ -8,6 +8,14 @@ class evaluation_symptomes_form(forms.ModelForm):
         model = Symptome
         fields = '__all__'  # Utilise tous les champs du modèle Symptome.
 
+    # def save(self, dic):
+    #     # print(dic)
+    #     # self.Meta.fields=dic['symptomes']
+    #     # print(self.Meta.fields)
+
+    #     super().save()
+    #     pass
+
 # Cette classe crée un formulaire basé sur le modèle Form_General.
 # Il utilise tous les champs de ce modèle pour le formulaire.
 class general_form_form(forms.ModelForm):
@@ -28,6 +36,8 @@ class prise_Medoc_form(forms.ModelForm):
     class Meta:
         model = Form_Prise_Medoc
         fields = '__all__'  # Utilise tous les champs du modèle Form_Prise_Medoc.
+    
+    
 
 # Cette classe crée un formulaire basé sur le modèle Form_Alimentation.
 # Il utilise tous les champs de ce modèle pour le formulaire.
@@ -67,7 +77,9 @@ class Form_Infos_Medicales_form(forms.ModelForm):
         model = Form_Infos_Medicales
         fields = '__all__'  # Utilise tous les champs du modèle Form_Infos_Medicales.
   
-    def save(self, dic):
-        # Cette méthode a été surchargée pour afficher le dictionnaire `dic` lors de la sauvegarde.
-        # Cela peut être utile pour le débogage ou pour voir les données avant qu'elles ne soient effectivement enregistrées.
-        print(dic)
+    # def save(self, dic):
+    #     # Cette méthode a été surchargée pour afficher le dictionnaire `dic` lors de la sauvegarde.
+    #     # Cela peut être utile pour le débogage ou pour voir les données avant qu'elles ne soient effectivement enregistrées.
+    #     # print(dic)
+    #     form = evaluation_symptomes_form()  
+    #     form.save(  dic)
