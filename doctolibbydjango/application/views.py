@@ -318,3 +318,4 @@ def save_formulaire_atres_symptomes(request):
     del request.session['autres_symptomes_view']
 
     return instance1
+
