@@ -88,7 +88,11 @@ def evaluation_symptomes(request):
         form = evaluation_symptomes_form(request.POST)
         if form.is_valid():
             request.session['evaluation_symptomes'] = form.cleaned_data 
-            return redirect('/form-general/')
+            action = request.POST.get('action')
+            if action == 'suivant':
+                return redirect('/form-general/')
+            elif action == 'precedent':
+                return redirect('accueil')
     else:
         form = evaluation_symptomes_form()
     return render(request, 'evaluation_symptomes.html', {'form': form})
@@ -100,7 +104,11 @@ def form_general_view(request):
         form = general_form_form(request.POST, initial=personne_data)
         if form.is_valid():
             request.session['form_general_view'] = form.cleaned_data
-            return redirect('/cardio_')    
+            action = request.POST.get('action')
+            if action == 'suivant':
+                return redirect('/cardio_')
+            elif action == 'precedent':
+                return redirect('evaluation_symptomes')  
     else:
         form = general_form_form(initial=personne_data)
     return render(request, 'form_general.html', {'form': form})
@@ -112,7 +120,11 @@ def caldio_view(request):
         form = cardio_form(request.POST, initial=personne_data)
         if form.is_valid():
             request.session['caldio_view'] = form.cleaned_data
-            return redirect('/prs_medoc')
+            action = request.POST.get('action')
+            if action == 'suivant':
+                return redirect('/prs_medoc')
+            elif action == 'precedent':
+                return redirect('/cardio_')
     else:
         form = cardio_form(initial=personne_data)
     return render(request, 'cardio.html', {'form': form})
@@ -124,7 +136,11 @@ def prise_Medoc_view(request):
         form = prise_Medoc_form(request.POST, initial=personne_data)
         if form.is_valid():
             request.session['prise_Medoc_view'] = form.cleaned_data
-            return redirect('alimentation') 
+            action = request.POST.get('action')
+            if action == 'suivant':
+                return redirect('alimentation')
+            elif action == 'precedent':
+                return redirect('/prs_medoc')
     else:
         form = prise_Medoc_form(initial=personne_data)
     return render(request, 'prs_medoc.html', {'form': form})
@@ -136,7 +152,11 @@ def alimentation_view(request):
         form = Form_Alimentation_form(request.POST, initial=personne_data)
         if form.is_valid():
             request.session['alimentation_view'] = form.cleaned_data
-            return redirect('activite_physique') 
+            action = request.POST.get('action')
+            if action == 'suivant':
+                return redirect('activite_physique')
+            elif action == 'precedent':
+                return redirect('alimentation')
     else:
         form = Form_Alimentation_form(initial=personne_data)
     return render(request, 'alimentation.html', {'form': form})
@@ -148,7 +168,11 @@ def activite_physique_view(request):
         form = Form_Activite_Phisique_form(request.POST, initial=personne_data)
         if form.is_valid():
             request.session['activite_physique_view'] = form.cleaned_data
-            return redirect('autres_symptomes')
+            action = request.POST.get('action')
+            if action == 'suivant':
+                return redirect('autres_symptomes')
+            elif action == 'precedent':
+                return redirect('activite_physique')
     else:
         form = Form_Activite_Phisique_form(initial=personne_data)
     return render(request, 'activite_physique.html', {'form': form})
@@ -163,7 +187,11 @@ def autres_symptomes_view(request):
             converted_dict = {key: value for key, value in request.POST.items()}
             converted_dict = dict(list(converted_dict.items())[1:])
             request.session['autres_symptomes_view'] = converted_dict
-            return redirect('info_medicales') 
+            action = request.POST.get('action')
+            if action == 'suivant':
+                return redirect('info_medicales')
+            elif action == 'precedent':
+                return redirect('autres_symptomes')
     else:
         form = Form_Autres_Symptomes_form(initial=personne_data)
     return render(request, 'autres_symptomes.html', {'form': form})
@@ -173,28 +201,43 @@ def info_medicales_view(request):
     personne_data = request.session.get('personne_data', {})
     if request.method == 'POST':
         form = Form_Infos_Medicales_form(request.POST, initial=personne_data)
+        
         if form.is_valid():
+            
+            action = request.POST.get('action')
+            form1_data = request.session.get('autres_symptomes_view')
 
-            symtomes = save_formulaire(request, Symptome, 'evaluation_symptomes')
+            if action == 'valider':
 
-            general = save_formulaire(request, Form_General, 'form_general_view')
-            cardio = save_formulaire(request, Form_Info_Cardiaque_Tension_Arterielle,'caldio_view')
-            medoc = save_formulaire(request, Form_Prise_Medoc,'prise_Medoc_view')
-            alimentation = save_formulaire(request, Form_Alimentation,'alimentation_view')
-            physique = save_formulaire(request, Form_Activite_Phisique,'activite_physique_view')
-            autres_symptomes = save_formulaire_atres_symptomes(request)
-            info_medic = form.save()
+                # print (request.session.get('evaluation_symptomes'))
+                # print()
+                # print (request.session.get('form_general_view'))
+                symtomes = save_formulaire(request, Symptome, 'evaluation_symptomes')
 
-            formulaire = save_hub_formulaire(general, cardio, medoc, alimentation, physique, autres_symptomes, info_medic)
+                general = save_formulaire(request, Form_General, 'form_general_view')
+                cardio = save_formulaire(request, Form_Info_Cardiaque_Tension_Arterielle,'caldio_view')
+                medoc = save_formulaire(request, Form_Prise_Medoc,'prise_Medoc_view')
+                alimentation = save_formulaire(request, Form_Alimentation,'alimentation_view')
+                physique = save_formulaire(request, Form_Activite_Phisique,'activite_physique_view')
 
-            rapport = save_rapport(formulaire, symtomes)
+                instance1 = Form_Autres_Symptomes(**form1_data)
 
-            association = medecinPatient.objects.get(idMedecin_id = Utilisateur.objects.get(username = "No"), 
-                                                     idPatient_id =  Utilisateur.objects.get(username = request.user.username))
-
-            save_patient_rapport(rapport, association)
+                # autres_symptomes = save_formulaire_atres_symptomes(form1_data)
                 
-            return redirect('accueil')  # changez 'success_url' par votre URL de réussite.
+                info_medic = form.save()
+
+                # formulaire = save_hub_formulaire(general, cardio, medoc, alimentation, physique, autres_symptomes, info_medic)
+
+                # rapport = save_rapport(formulaire, symtomes)
+
+                # association = medecinPatient.objects.get(idMedecin_id = Utilisateur.objects.get(username = "No"), 
+                #                                         idPatient_id =  Utilisateur.objects.get(username = request.user.username))
+
+                # save_patient_rapport(rapport, association)
+
+                return redirect('accueil')
+            elif action == 'precedent':
+                return redirect('info_medicales')
     else:
         form = Form_Infos_Medicales_form(initial=personne_data)
     return render(request, 'info_medicales.html', {'form': form})
@@ -250,36 +293,38 @@ def save_formulaire(request, instance ,name):
 
     return instance1
 
-def save_formulaire_atres_symptomes(request):
+def save_formulaire_atres_symptomes(form1_data):
     from datetime import time, timedelta
     
-    # Récupération des données des formulaires précédents
-    form1_data = request.session.get('autres_symptomes_view')
-    # Créez des instances de vos modèles sans les sauvegarder immédiatement
+
+    print (form1_data)
+    # # Récupération des données des formulaires précédents
+    # form1_data = request.session.get('autres_symptomes_view')
+    # # Créez des instances de vos modèles sans les sauvegarder immédiatement
     
     instance1 = Form_Autres_Symptomes(**form1_data)
     
-    instance1.heure_debut_palpitations = time(int(request.session.get('autres_symptomes_view')['heure_debut_palpitations'].split(':')[0]),
-                                              int(request.session.get('autres_symptomes_view')['heure_debut_palpitations'].split(':')[1]),
-                                              0)
+    # instance1.heure_debut_palpitations = time(int(request.session.get('autres_symptomes_view')['heure_debut_palpitations'].split(':')[0]),
+    #                                           int(request.session.get('autres_symptomes_view')['heure_debut_palpitations'].split(':')[1]),
+    #                                           0)
     
-    instance1.duree_total_palpitations = timedelta(days = 0, minutes = int(request.session.get('autres_symptomes_view')['duree_total_palpitations']))
+    # instance1.duree_total_palpitations = timedelta(days = 0, minutes = int(request.session.get('autres_symptomes_view')['duree_total_palpitations']))
 
-    instance1.heure_debut_douleurs_thoracique = time(int(request.session.get('autres_symptomes_view')['heure_debut_douleurs_thoracique'].split(':')[0]),
-                                                        int(request.session.get('autres_symptomes_view')['heure_debut_douleurs_thoracique'].split(':')[1]),
-                                                        0)
+    # instance1.heure_debut_douleurs_thoracique = time(int(request.session.get('autres_symptomes_view')['heure_debut_douleurs_thoracique'].split(':')[0]),
+    #                                                     int(request.session.get('autres_symptomes_view')['heure_debut_douleurs_thoracique'].split(':')[1]),
+    #                                                     0)
 
-    instance1.duree_total_douleurs_thoracique = timedelta(days = 0, minutes = int(request.session.get('autres_symptomes_view')['duree_total_douleurs_thoracique']))
+    # instance1.duree_total_douleurs_thoracique = timedelta(days = 0, minutes = int(request.session.get('autres_symptomes_view')['duree_total_douleurs_thoracique']))
 
-    instance1.heure_debut_malaises = time(int(request.session.get('autres_symptomes_view')['heure_debut_malaises'].split(':')[0]),
-                                            int(request.session.get('autres_symptomes_view')['heure_debut_malaises'].split(':')[1]),
-                                            0)
+    # instance1.heure_debut_malaises = time(int(request.session.get('autres_symptomes_view')['heure_debut_malaises'].split(':')[0]),
+    #                                         int(request.session.get('autres_symptomes_view')['heure_debut_malaises'].split(':')[1]),
+    #                                         0)
 
-    instance1.duree_total_malaises = timedelta(days = 0, minutes = int(request.session.get('autres_symptomes_view')['duree_total_malaises']))
+    # instance1.duree_total_malaises = timedelta(days = 0, minutes = int(request.session.get('autres_symptomes_view')['duree_total_malaises']))
 
-    # Validez le dernier formulaire et sauvegardez toutes les données
-    instance1.save()
-    # N'oubliez pas de nettoyer les données de la session une fois que vous avez terminé
-    del request.session['autres_symptomes_view']
+    # # # Validez le dernier formulaire et sauvegardez toutes les données
+    # # instance1.save()
+    # # # N'oubliez pas de nettoyer les données de la session une fois que vous avez terminé
+    # # del request.session['autres_symptomes_view']
 
-    return instance1
+    return None #instance1
