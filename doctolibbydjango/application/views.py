@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from authentification.models import Utilisateur, medecinPatient
 from .models import (
     Symptome, Form_General, Form_Info_Cardiaque_Tension_Arterielle,
-    Form_Prise_Medoc, Form_Alimentation, Form_Activite_Phisique, Form_Autres_Symptomes, Formulaire, Rapport
+    Form_Prise_Medoc, Form_Alimentation, Form_Activite_Phisique, Form_Autres_Symptomes, Formulaire, Rapport, Patient
 )
 from .forms import (evaluation_symptomes_form, general_form_form, cardio_form, prise_Medoc_form, Form_Alimentation_form, 
                     Form_Activite_Phisique_form, Form_Autres_Symptomes_form, Form_Infos_Medicales_form
@@ -175,6 +175,7 @@ def info_medicales_view(request):
         form = Form_Infos_Medicales_form(request.POST, initial=personne_data)
         if form.is_valid():
             
+            print(request.user.username, request.user.role, request.user.id)
 
             symtomes = save_formulaire(request, Symptome, 'evaluation_symptomes')
 
@@ -189,11 +190,25 @@ def info_medicales_view(request):
             formulaire = save_hub_formulaire(general, cardio, medoc, alimentation, physique, autres_symptomes, info_medic)
 
             rapport = save_rapport(formulaire, symtomes)
+
+            save_patient_rapport(rapport, Utilisateur.objects.get(username = request.user.username))
                 
             return redirect('accueil')  # changez 'success_url' par votre URL de réussite.
     else:
         form = Form_Infos_Medicales_form(initial=personne_data)
     return render(request, 'info_medicales.html', {'form': form})
+
+
+def save_patient_rapport(rapport, user):
+
+    instance1 = Patient()
+
+    instance1.user_id = user
+    instance1.rapport = rapport
+
+    instance1.save()
+
+    return instance1
 
 def save_rapport(formulaire, symptome, date = datetime.now()):
     
