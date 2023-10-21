@@ -1,7 +1,7 @@
 from django.db import models
 from datetime import time
 from django.core.validators import MaxValueValidator, MinValueValidator
-from authentification.models import Utilisateur
+from authentification.models import Utilisateur, medecinPatient
 # import datetime
 
 # Create your models here.
@@ -146,6 +146,5 @@ class Rapport(models.Model):
 # La classe Patient représente un patient avec une référence à un utilisateur,
 # un rapport par défaut, et une liste de médecins associés.
 class Patient(models.Model): 
-    user_id = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)  # Note : Utilisateur doit être défini ailleurs dans le code.
+    medecin_patient = models.ForeignKey(medecinPatient, on_delete=models.CASCADE)  # Note : Utilisateur doit être défini ailleurs dans le code.
     rapport = models.ForeignKey(Rapport, on_delete=models.CASCADE, default=None)
-    medicin = models.ManyToManyField(Medecin)

@@ -174,8 +174,6 @@ def info_medicales_view(request):
     if request.method == 'POST':
         form = Form_Infos_Medicales_form(request.POST, initial=personne_data)
         if form.is_valid():
-            
-            print(request.user.username, request.user.role, request.user.id)
 
             symtomes = save_formulaire(request, Symptome, 'evaluation_symptomes')
 
@@ -191,19 +189,21 @@ def info_medicales_view(request):
 
             rapport = save_rapport(formulaire, symtomes)
 
-            save_patient_rapport(rapport, Utilisateur.objects.get(username = request.user.username))
+            association = medecinPatient.objects.get(idMedecin_id = Utilisateur.objects.get(username = "No"), 
+                                                     idPatient_id =  Utilisateur.objects.get(username = request.user.username))
+
+            save_patient_rapport(rapport, association)
                 
             return redirect('accueil')  # changez 'success_url' par votre URL de réussite.
     else:
         form = Form_Infos_Medicales_form(initial=personne_data)
     return render(request, 'info_medicales.html', {'form': form})
 
-
-def save_patient_rapport(rapport, user):
+def save_patient_rapport(rapport, medecin_patient):
 
     instance1 = Patient()
 
-    instance1.user_id = user
+    instance1.medecin_patient = medecin_patient
     instance1.rapport = rapport
 
     instance1.save()
