@@ -199,6 +199,7 @@ def info_medicales_view(request):
         form = Form_Infos_Medicales_form(initial=personne_data)
     return render(request, 'info_medicales.html', {'form': form})
 
+
 def save_patient_rapport(rapport, medecin_patient):
 
     instance1 = Patient()
