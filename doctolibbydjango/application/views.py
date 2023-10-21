@@ -88,7 +88,11 @@ def evaluation_symptomes(request):
         form = evaluation_symptomes_form(request.POST)
         if form.is_valid():
             request.session['evaluation_symptomes'] = form.cleaned_data 
-            return redirect('/form-general/')
+            action = request.POST.get('action')
+            if action == 'suivant':
+                return redirect('/form-general/')  
+            elif action == 'precedent':
+                return redirect('accueil') 
     else:
         form = evaluation_symptomes_form()
     return render(request, 'evaluation_symptomes.html', {'form': form})
@@ -99,8 +103,12 @@ def form_general_view(request):
     if request.method == 'POST':
         form = general_form_form(request.POST, initial=personne_data)
         if form.is_valid():
-            request.session['form_general_view'] = form.cleaned_data
-            return redirect('/cardio_')    
+            request.session['form_general_view'] = form.cleaned_data    
+            action = request.POST.get('action')
+            if action == 'suivant':
+                return redirect('/cardio_')  
+            elif action == 'precedent':
+                return redirect('evaluation_symptomes') 
     else:
         form = general_form_form(initial=personne_data)
     return render(request, 'form_general.html', {'form': form})
@@ -112,7 +120,11 @@ def caldio_view(request):
         form = cardio_form(request.POST, initial=personne_data)
         if form.is_valid():
             request.session['caldio_view'] = form.cleaned_data
-            return redirect('/prs_medoc')
+            action = request.POST.get('action')
+            if action == 'suivant':
+                return redirect('/prs_medoc')
+            elif action == 'precedent':
+                return redirect('form-general/')
     else:
         form = cardio_form(initial=personne_data)
     return render(request, 'cardio.html', {'form': form})
@@ -123,8 +135,12 @@ def prise_Medoc_view(request):
     if request.method == 'POST':
         form = prise_Medoc_form(request.POST, initial=personne_data)
         if form.is_valid():
-            request.session['prise_Medoc_view'] = form.cleaned_data
-            return redirect('alimentation') 
+            request.session['prise_Medoc_view'] = form.cleaned_data    
+            action = request.POST.get('action')
+            if action == 'suivant':
+                return redirect('alimentation') 
+            elif action == 'precedent':
+                return redirect('cardio')
     else:
         form = prise_Medoc_form(initial=personne_data)
     return render(request, 'prs_medoc.html', {'form': form})
@@ -135,8 +151,12 @@ def alimentation_view(request):
     if request.method == 'POST':
         form = Form_Alimentation_form(request.POST, initial=personne_data)
         if form.is_valid():
-            request.session['alimentation_view'] = form.cleaned_data
-            return redirect('activite_physique') 
+            request.session['alimentation_view'] = form.cleaned_data         
+            action = request.POST.get('action')
+            if action == 'suivant':
+                return redirect('activite_physique')
+            elif action == 'precedent':
+                return redirect('prise_medoc')
     else:
         form = Form_Alimentation_form(initial=personne_data)
     return render(request, 'alimentation.html', {'form': form})
@@ -148,7 +168,12 @@ def activite_physique_view(request):
         form = Form_Activite_Phisique_form(request.POST, initial=personne_data)
         if form.is_valid():
             request.session['activite_physique_view'] = form.cleaned_data
-            return redirect('autres_symptomes')
+            action = request.POST.get('action')
+            if action == 'suivant':
+                return redirect('autres_symptomes')
+            elif action == 'precedent':
+                return redirect('alimentation')
+            
     else:
         form = Form_Activite_Phisique_form(initial=personne_data)
     return render(request, 'activite_physique.html', {'form': form})
@@ -224,7 +249,7 @@ def save_rapport(formulaire, symptome, date = datetime.now()):
 
 def save_hub_formulaire(general, cardio, medoc, alimentation, physique, autres_symptomes, info_medic):
 
-    instance1 = Formulaire()
+    instance1 = Formulaire() 
 
     instance1.general = general
     instance1.info_cardiaque = cardio
