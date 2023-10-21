@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from authentification.models import Utilisateur, medecinPatient
 from .models import (
     Symptome, Form_General, Form_Info_Cardiaque_Tension_Arterielle,
-    Form_Prise_Medoc, Form_Alimentation, Form_Activite_Phisique, Form_Autres_Symptomes, Form_Infos_Medicales,
+    Form_Prise_Medoc, Form_Alimentation, Form_Activite_Phisique, Form_Autres_Symptomes, Formulaire,
 )
 from .forms import (evaluation_symptomes_form, general_form_form, cardio_form, prise_Medoc_form, Form_Alimentation_form, 
                     Form_Activite_Phisique_form, Form_Autres_Symptomes_form, Form_Infos_Medicales_form
@@ -174,21 +174,41 @@ def info_medicales_view(request):
         if form.is_valid():
             
 
-            save_formulaire(request, Symptome, 'evaluation_symptomes')
-            save_formulaire(request, Form_General, 'form_general_view')
-            save_formulaire(request, Form_Info_Cardiaque_Tension_Arterielle,'caldio_view')
-            save_formulaire(request, Form_Prise_Medoc,'prise_Medoc_view')
-            save_formulaire(request, Form_Alimentation,'alimentation_view')
-            save_formulaire(request, Form_Activite_Phisique,'activite_physique_view')
-            save_formulaire_atres_symptomes(request)
-            form.save()
+            symtomes = save_formulaire(request, Symptome, 'evaluation_symptomes')
+
+            general = save_formulaire(request, Form_General, 'form_general_view')
+            cardio = save_formulaire(request, Form_Info_Cardiaque_Tension_Arterielle,'caldio_view')
+            medoc = save_formulaire(request, Form_Prise_Medoc,'prise_Medoc_view')
+            alimentation = save_formulaire(request, Form_Alimentation,'alimentation_view')
+            physique = save_formulaire(request, Form_Activite_Phisique,'activite_physique_view')
+            autres_symptomes = save_formulaire_atres_symptomes(request)
+            info_medic = form.save()
+
+            formulaire = save_hub_formulaire(general, cardio, medoc, alimentation, physique, autres_symptomes, info_medic)
             
+            # print(id_formulaire)
             # save_formulaire(request,'form_general_view')
     
             return redirect('accueil')  # changez 'success_url' par votre URL de réussite.
     else:
         form = Form_Infos_Medicales_form(initial=personne_data)
     return render(request, 'info_medicales.html', {'form': form})
+
+def save_hub_formulaire(general, cardio, medoc, alimentation, physique, autres_symptomes, info_medic):
+
+    instance1 = Formulaire()
+
+    instance1.general = general
+    instance1.info_cardiaque = cardio
+    instance1.prise_medoc = medoc
+    instance1.alimentation = alimentation
+    instance1.activite_phisique = physique
+    instance1.autres_symptomes = autres_symptomes
+    instance1.infos_medicales = info_medic
+
+    instance1.save()
+
+    return instance1
 
 def save_formulaire(request, instance ,name):
     # Récupération des données des formulaires précédents
@@ -199,6 +219,8 @@ def save_formulaire(request, instance ,name):
     instance1.save()
     # N'oubliez pas de nettoyer les données de la session une fois que vous avez terminé
     del request.session[name]
+
+    return instance1
 
 def save_formulaire_atres_symptomes(request):
     from datetime import time, timedelta
@@ -213,21 +235,23 @@ def save_formulaire_atres_symptomes(request):
                                               int(request.session.get('autres_symptomes_view')['heure_debut_palpitations'].split(':')[1]),
                                               0)
     
-    instance1.duree_total_palpitations = timedelta(days =-1, seconds = 68400)
+    instance1.duree_total_palpitations = timedelta(days = 0, minutes = int(request.session.get('autres_symptomes_view')['duree_total_palpitations']))
 
     instance1.heure_debut_douleurs_thoracique = time(int(request.session.get('autres_symptomes_view')['heure_debut_douleurs_thoracique'].split(':')[0]),
                                                         int(request.session.get('autres_symptomes_view')['heure_debut_douleurs_thoracique'].split(':')[1]),
                                                         0)
 
-    instance1.duree_total_douleurs_thoracique = timedelta(days =-1, seconds = 68400)
+    instance1.duree_total_douleurs_thoracique = timedelta(days = 0, minutes = int(request.session.get('autres_symptomes_view')['duree_total_douleurs_thoracique']))
 
     instance1.heure_debut_malaises = time(int(request.session.get('autres_symptomes_view')['heure_debut_malaises'].split(':')[0]),
                                             int(request.session.get('autres_symptomes_view')['heure_debut_malaises'].split(':')[1]),
                                             0)
 
-    instance1.duree_total_malaises = timedelta(days =-1, seconds = 68400)
+    instance1.duree_total_malaises = timedelta(days = 0, minutes = int(request.session.get('autres_symptomes_view')['duree_total_malaises']))
 
     # Validez le dernier formulaire et sauvegardez toutes les données
     instance1.save()
     # N'oubliez pas de nettoyer les données de la session une fois que vous avez terminé
     del request.session['autres_symptomes_view']
+
+    return instance1
