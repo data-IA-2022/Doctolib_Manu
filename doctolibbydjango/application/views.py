@@ -203,27 +203,33 @@ def info_medicales_view(request):
     if request.method == 'POST':
         form = Form_Infos_Medicales_form(request.POST, initial=personne_data)
         if form.is_valid():
+            action = request.POST.get('action')
+            if action == 'suivant':
 
-            symtomes = save_formulaire(request, Symptome, 'evaluation_symptomes')
+                symtomes = save_formulaire(request, Symptome, 'evaluation_symptomes')
 
-            general = save_formulaire(request, Form_General, 'form_general_view')
-            cardio = save_formulaire(request, Form_Info_Cardiaque_Tension_Arterielle,'caldio_view')
-            medoc = save_formulaire(request, Form_Prise_Medoc,'prise_Medoc_view')
-            alimentation = save_formulaire(request, Form_Alimentation,'alimentation_view')
-            physique = save_formulaire(request, Form_Activite_Phisique,'activite_physique_view')
-            autres_symptomes = save_formulaire_atres_symptomes(request)
-            info_medic = form.save()
+                general = save_formulaire(request, Form_General, 'form_general_view')
+                cardio = save_formulaire(request, Form_Info_Cardiaque_Tension_Arterielle,'caldio_view')
+                medoc = save_formulaire(request, Form_Prise_Medoc,'prise_Medoc_view')
+                alimentation = save_formulaire(request, Form_Alimentation,'alimentation_view')
+                physique = save_formulaire(request, Form_Activite_Phisique,'activite_physique_view')
+                autres_symptomes = save_formulaire_atres_symptomes(request)
+                info_medic = form.save()
 
-            formulaire = save_hub_formulaire(general, cardio, medoc, alimentation, physique, autres_symptomes, info_medic)
+                formulaire = save_hub_formulaire(general, cardio, medoc, alimentation, physique, autres_symptomes, info_medic)
 
-            rapport = save_rapport(formulaire, symtomes)
+                rapport = save_rapport(formulaire, symtomes)
 
-            association = medecinPatient.objects.get(idMedecin_id = Utilisateur.objects.get(username = "No"), 
-                                                     idPatient_id =  Utilisateur.objects.get(username = request.user.username))
+                association = medecinPatient.objects.get(idMedecin_id = Utilisateur.objects.get(username = "No"), 
+                                                        idPatient_id =  Utilisateur.objects.get(username = request.user.username))
 
-            save_patient_rapport(rapport, association)
-                
-            return redirect('accueil')  # changez 'success_url' par votre URL de réussite.
+                save_patient_rapport(rapport, association)
+                    
+                return redirect('accueil')
+            
+            elif action == 'precedent':
+
+                return redirect('autres_symptomes')
     else:
         form = Form_Infos_Medicales_form(initial=personne_data)
     return render(request, 'info_medicales.html', {'form': form})
