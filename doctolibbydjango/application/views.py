@@ -207,7 +207,7 @@ def info_medicales_view(request):
             action = request.POST.get('action')
             form1_data = request.session.get('autres_symptomes_view')
 
-            if action == 'valider':
+            if action == 'suivant':
 
                 # print (request.session.get('evaluation_symptomes'))
                 # print()
@@ -220,20 +220,20 @@ def info_medicales_view(request):
                 alimentation = save_formulaire(request, Form_Alimentation,'alimentation_view')
                 physique = save_formulaire(request, Form_Activite_Phisique,'activite_physique_view')
 
-                instance1 = Form_Autres_Symptomes(**form1_data)
+                # instance1 = Form_Autres_Symptomes(**form1_data)
 
-                # autres_symptomes = save_formulaire_atres_symptomes(form1_data)
+                autres_symptomes = save_formulaire_atres_symptomes(form1_data)
                 
                 info_medic = form.save()
 
-                # formulaire = save_hub_formulaire(general, cardio, medoc, alimentation, physique, autres_symptomes, info_medic)
+                formulaire = save_hub_formulaire(general, cardio, medoc, alimentation, physique, autres_symptomes, info_medic)
 
-                # rapport = save_rapport(formulaire, symtomes)
+                rapport = save_rapport(formulaire, symtomes)
 
-                # association = medecinPatient.objects.get(idMedecin_id = Utilisateur.objects.get(username = "No"), 
-                #                                         idPatient_id =  Utilisateur.objects.get(username = request.user.username))
+                association = medecinPatient.objects.get(idMedecin_id = Utilisateur.objects.get(username = "No"), 
+                                                        idPatient_id =  Utilisateur.objects.get(username = request.user.username))
 
-                # save_patient_rapport(rapport, association)
+                save_patient_rapport(rapport, association)
 
                 return redirect('accueil')
             elif action == 'precedent':
