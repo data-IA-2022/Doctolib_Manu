@@ -188,7 +188,12 @@ def autres_symptomes_view(request):
             converted_dict = {key: value for key, value in request.POST.items()}
             converted_dict = dict(list(converted_dict.items())[1:])
             request.session['autres_symptomes_view'] = converted_dict
-            return redirect('info_medicales') 
+
+            action = request.POST.get('action')
+            if action == 'suivant':
+                return redirect('info_medicales') 
+            elif action == 'precedent':
+                return redirect('activite_physique')
     else:
         form = Form_Autres_Symptomes_form(initial=personne_data)
     return render(request, 'autres_symptomes.html', {'form': form})
