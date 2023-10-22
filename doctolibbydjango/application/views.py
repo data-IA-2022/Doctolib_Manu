@@ -6,7 +6,7 @@ from authentification.models import Utilisateur, medecinPatient
 # Importation des modèles spécifiques à votre application
 from .models import (
     Symptome, Form_General, Form_Info_Cardiaque_Tension_Arterielle,
-    Form_Prise_Medoc, Form_Alimentation, Form_Activite_Phisique, Form_Autres_Symptomes, Formulaire, Rapport, Patient
+    Form_Prise_Medoc, Form_Alimentation, Form_Activite_Phisique, Form_Autres_Symptomes, Formulaire, Rapport, Rapport_Patient
 )
 # Importation des formulaires spécifiques à votre application
 from .forms import (evaluation_symptomes_form, general_form_form, cardio_form, prise_Medoc_form, Form_Alimentation_form, 
@@ -289,7 +289,7 @@ def info_medicales_view(request):
 #region
 def save_patient_rapport(rapport, medecin_patient):
     # Création d'une nouvelle instance de la classe Patient
-    instance1 = Patient()
+    instance1 = Rapport_Patient()
 
     # Assignation des arguments rapport et medecin_patient aux attributs correspondants de l'instance
     instance1.medecin_patient = medecin_patient

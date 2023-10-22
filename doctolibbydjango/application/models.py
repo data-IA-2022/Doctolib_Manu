@@ -29,9 +29,9 @@ class Membership(models.Model):
     invite_reason = models.CharField(max_length=64)
     test = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)  # Note : Utilisateur doit être défini ailleurs dans le code.
 
-# La classe Medecin représente un médecin avec une référence à un utilisateur.
-class Medecin(models.Model): 
-    user_id = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)  # Note : Utilisateur doit être défini ailleurs dans le code.
+# # La classe Medecin représente un médecin avec une référence à un utilisateur.
+# class Medecin(models.Model): 
+#     user_id = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)  # Note : Utilisateur doit être défini ailleurs dans le code.
 
 # La classe Symptome représente un symptôme avec une description et une valeur.
 class Symptome(models.Model):
@@ -145,6 +145,6 @@ class Rapport(models.Model):
 
 # La classe Patient représente un patient avec une référence à un utilisateur,
 # un rapport par défaut, et une liste de médecins associés.
-class Patient(models.Model): 
+class Rapport_Patient(models.Model): 
     medecin_patient = models.ForeignKey(medecinPatient, on_delete=models.CASCADE)  # Note : Utilisateur doit être défini ailleurs dans le code.
     rapport = models.ForeignKey(Rapport, on_delete=models.CASCADE, default=None)
