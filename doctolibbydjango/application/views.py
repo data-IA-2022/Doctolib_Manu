@@ -98,22 +98,25 @@ def associationMedecinPatient(request):
 
 @login_required
 def evaluation_symptomes(request):
-    if request.method == 'POST':
-        form = evaluation_symptomes_form(request.POST)
-        if form.is_valid():
-            request.session['evaluation_symptomes'] = form.cleaned_data 
-            action = request.POST.get('action')
-            if action == 'suivant':
-                return redirect('/form-general/')  
-            elif action == 'precedent':
-                return redirect('accueil') 
-    else:
-        form = evaluation_symptomes_form()
-    return render(request, 'evaluation_symptomes.html', {'form': form})
+    if request.method == 'POST':  # Vérification si la requête est de type POST
+        personne_data={}  # Initialisation d'un dictionnaire vide pour les données initiales du formulaire
+        form = evaluation_symptomes_form(request.POST, initial=personne_data)  # Création d'une instance du formulaire avec les données POST et les données initiales
+        if form.is_valid():  # Validation du formulaire
+            request.session['evaluation_symptomes'] = form.cleaned_data  # Stockage des données validées dans la session
+            action = request.POST.get('action')  # Récupération de l'action souhaitée depuis les données POST
+            if action == 'suivant':  # Vérification si l'action est 'suivant'
+                return redirect('/form-general/')  # Redirection vers la vue suivante
+            elif action == 'precedent':  # Vérification si l'action est 'precedent'
+                return redirect('accueil')  # Redirection vers la vue d'accueil
+    else:  # Si la requête n'est pas de type POST (i.e., GET)
+        personne_data = request.session.get('evaluation_symptomes', {})  # Récupération des données précédemment stockées dans la session, ou un dictionnaire vide si aucune donnée n'est trouvée
+        form = evaluation_symptomes_form(initial=personne_data)  # Création d'une instance du formulaire avec les données initiales
+    return render(request, 'evaluation_symptomes.html', {'form': form})  # Rendu du formulaire dans le template HTML
+
 
 @login_required
 def form_general_view(request):
-    personne_data = request.session.get('personne_data', {})
+    personne_data = request.session.get('evaluation_symptomes', {})
     if request.method == 'POST':
         form = general_form_form(request.POST, initial=personne_data)
         if form.is_valid():
@@ -124,12 +127,13 @@ def form_general_view(request):
             elif action == 'precedent':
                 return redirect('evaluation_symptomes') 
     else:
+        personne_data = request.session.get('form_general_view', {})
         form = general_form_form(initial=personne_data)
     return render(request, 'form_general.html', {'form': form})
 
 @login_required
 def caldio_view(request):
-    personne_data = request.session.get('personne_data', {})
+    personne_data = request.session.get('form_general', {})
     if request.method == 'POST':
         form = cardio_form(request.POST, initial=personne_data)
         if form.is_valid():
@@ -140,12 +144,13 @@ def caldio_view(request):
             elif action == 'precedent':
                 return redirect('form-general/')
     else:
+        personne_data = request.session.get('caldio_view', {})
         form = cardio_form(initial=personne_data)
     return render(request, 'cardio.html', {'form': form})
 
 @login_required
 def prise_Medoc_view(request):
-    personne_data = request.session.get('personne_data', {})
+    personne_data = request.session.get('cardio', {})
     if request.method == 'POST':
         form = prise_Medoc_form(request.POST, initial=personne_data)
         if form.is_valid():
@@ -156,12 +161,13 @@ def prise_Medoc_view(request):
             elif action == 'precedent':
                 return redirect('cardio')
     else:
+        personne_data = request.session.get('prise_Medoc_view', {})
         form = prise_Medoc_form(initial=personne_data)
     return render(request, 'prs_medoc.html', {'form': form})
 
 @login_required
 def alimentation_view(request):
-    personne_data = request.session.get('personne_data', {})
+    personne_data = request.session.get('prs_medoc', {})
     if request.method == 'POST':
         form = Form_Alimentation_form(request.POST, initial=personne_data)
         if form.is_valid():
@@ -172,12 +178,13 @@ def alimentation_view(request):
             elif action == 'precedent':
                 return redirect('prise_medoc')
     else:
+        personne_data = request.session.get('alimentation_view', {})
         form = Form_Alimentation_form(initial=personne_data)
     return render(request, 'alimentation.html', {'form': form})
 
 @login_required
 def activite_physique_view(request):
-    personne_data = request.session.get('personne_data', {})
+    personne_data = request.session.get('alimentation', {})
     if request.method == 'POST':
         form = Form_Activite_Phisique_form(request.POST, initial=personne_data)
         if form.is_valid():
@@ -189,6 +196,7 @@ def activite_physique_view(request):
                 return redirect('alimentation')
             
     else:
+        personne_data = request.session.get('activite_physique_view', {})
         form = Form_Activite_Phisique_form(initial=personne_data)
     return render(request, 'activite_physique.html', {'form': form})
 
@@ -197,7 +205,7 @@ def activite_physique_view(request):
 @login_required
 def autres_symptomes_view(request):
     # Récupération des données précédemment sauvegardées dans la session, si elles existent
-    personne_data = request.session.get('personne_data', {})
+    personne_data = request.session.get('activite_physique', {})
     
     # Vérification si la requête est une requête POST
     if request.method == 'POST':
@@ -223,6 +231,7 @@ def autres_symptomes_view(request):
                 # Redirection vers la vue précédente
                 return redirect('activite_physique')
     else:
+        personne_data = request.session.get('autres_symptomes_view', {})
         # Création d'une instance du formulaire avec les données initiales récupérées de la session (pour une requête GET)
         form = Form_Autres_Symptomes_form(initial=personne_data)
     
@@ -232,7 +241,7 @@ def autres_symptomes_view(request):
 @login_required
 def info_medicales_view(request):
     # Récupération des données précédemment sauvegardées dans la session, si elles existent
-    personne_data = request.session.get('personne_data', {})
+    personne_data = request.session.get('autres_symptomes', {})
     
     # Vérification si la requête est une requête POST
     if request.method == 'POST':
@@ -269,6 +278,10 @@ def info_medicales_view(request):
                 
                 # Appel de la fonction save_patient_rapport pour créer une instance du modèle Patient et la sauvegarder dans la base de données
                 save_patient_rapport(rapport, association)
+
+                # Efface toutes les données de la session
+                for key in ['evaluation_symptomes', 'form_general_view', 'caldio_view']:
+                    request.session.pop(key, None)
                 
                 # Redirection vers la vue accueil
                 return redirect('accueil')
