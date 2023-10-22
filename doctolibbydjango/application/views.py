@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from authentification.models import Utilisateur, medecinPatient
+from .tables import VotreModelTable
+from .filters import VotreModelFilter
 # Importation des modèles spécifiques à votre application
 from .models import (
     Symptome, Form_General, Form_Info_Cardiaque_Tension_Arterielle,
@@ -20,7 +22,6 @@ def accueil(request):
     # Rendu du template avec le contexte
     return render(request,"accueil.html",
                   context={"prenom": prenom})
-
 
 @login_required  # Décorateur pour s'assurer que seul un utilisateur connecté puisse accéder à cette vue
 def comptes(request):
@@ -57,7 +58,17 @@ def edaia(request):
         return redirect("https://media.tenor.com/2euSOQYdz8oAAAAj/this-was-technically-illegal-maclen-stanley.gif")
     else:
         # Rendu de la page 'edaia.html' si l'utilisateur est un médecin
-        return render(request, "edaia.html")
+
+        qs = Symptome.objects.all()
+        filtered = VotreModelFilter(request.GET, queryset=qs)
+        table = VotreModelTable(filtered.qs)
+        return render(request, 'edaia.html', {'table': table, 'filter': filtered})
+
+        # return render(request, "edaia.html")
+    
+
+
+
 
 @login_required
 def associationMedecinPatient(request):

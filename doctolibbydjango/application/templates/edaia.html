@@ -5,4 +5,15 @@
 
 <h1>Bienvenue dans la zone EDA IA {{prenom}} !</h1>
 
+
+
+<!-- app/templates/votre_template.html -->
+{% load django_tables2 %}
+<form method="get">
+    {{ filter.form.as_p }}
+    <button type="submit">Filtrer</button>
+</form>
+
+{% render_table table %}
+
 {% endblock %}

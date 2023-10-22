@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "authentification",
     'application',
+    # 'datatable',
+    'django_tables2',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
