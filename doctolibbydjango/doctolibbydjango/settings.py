@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "authentification",
     'application',
+    'crispy_forms',
     # 'datatable',
     'django_tables2',
     'django_filters',
@@ -104,6 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'  # Ou 'bootstrap3' selon votre version de Bootstrap
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

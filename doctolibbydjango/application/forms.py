@@ -38,8 +38,6 @@ class prise_Medoc_form(forms.ModelForm):
         model = Form_Prise_Medoc
         fields = '__all__'  # Utilise tous les champs du modèle Form_Prise_Medoc.
     
-    
-
 # Cette classe crée un formulaire basé sur le modèle Form_Alimentation.
 # Il utilise tous les champs de ce modèle pour le formulaire.
 class Form_Alimentation_form(forms.ModelForm):

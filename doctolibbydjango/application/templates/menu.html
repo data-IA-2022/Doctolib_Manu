@@ -10,7 +10,7 @@
         <li><a href="{% url 'evaluation_symptomes' %}">Formulaire d'information</a></li>
             <!-- </ul>
         </li> -->
-        <li><a href="">Historique</a></li>
+        <li><a href="{% url 'histo' %}">Historique</a></li>
         {% if user.role == "medecin" %}
             <li><a href="{% url 'edaia' %}">EDA et IA</a></li>
         {% endif %}

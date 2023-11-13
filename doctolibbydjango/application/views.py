@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from authentification.models import Utilisateur, medecinPatient
-from .tables import VotreModelTable
-from .filters import VotreModelFilter
+from .tables import VotreModelTable, RapportTable
+from .filters import VotreModelFilter, SymptomeFilter, RapportFilter
 # Importation des modèles spécifiques à votre application
 from .models import (
     Symptome, Form_General, Form_Info_Cardiaque_Tension_Arterielle,
@@ -67,7 +67,19 @@ def edaia(request):
         # return render(request, "edaia.html")
     
 
+@login_required
+def histo(request):
 
+    # Obtenez la queryset de Rapport avec les objets liés
+    rapports = Rapport.objects.select_related('symptome', 'formulaire').all()
+
+    # Appliquez le filtre
+    filtered = RapportFilter(request.GET, queryset=rapports)
+
+    # Créez la table avec la queryset filtrée
+    table = RapportTable(filtered.qs)
+
+    return render(request, 'histo.html', {'table': table, 'filter': filtered})
 
 
 @login_required
