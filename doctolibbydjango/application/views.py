@@ -87,16 +87,40 @@ def histo(request):
     username = request.user.username
     user_role = request.user.role
 
-    # Commencez avec une queryset de base de Rapport_Patient
     rapports = Rapport_Patient.objects.select_related('medecin_patient', 'rapport')
 
-    # Appliquez le filtre en passant le username et le rôle
-    filtered = Rapport_PatientFilter(request.GET, queryset=rapports, username=username, user_role=user_role)
+    # Appliquer le filtre basé sur le rôle
+    if user_role == 'medecin':
+        patients_associes = medecinPatient.objects.filter(
+            idMedecin__username=username
+        ).values_list('idPatient__username', flat=True)
+        rapports = rapports.filter(medecin_patient__idPatient__username__in=patients_associes)
 
-    # Créez la table avec la queryset filtrée en passant aussi le username et le rôle
+    elif user_role == 'patient':
+        medecins_associes = medecinPatient.objects.filter(
+            idPatient__username=username
+        ).values_list('idMedecin__username', flat=True)
+        rapports = rapports.filter(medecin_patient__idMedecin__username__in=medecins_associes)
+
+    filtered = Rapport_PatientFilter(request.GET, queryset=rapports, username=username, user_role=user_role)
     table = Rapport_PatientTable(filtered.qs, username=username, user_role=user_role)
 
     return render(request, 'histo.html', {'table': table, 'filter': filtered})
+
+# def histo(request):
+#     username = request.user.username
+#     user_role = request.user.role
+
+#     # Commencez avec une queryset de base de Rapport_Patient
+#     rapports = Rapport_Patient.objects.select_related('medecin_patient', 'rapport')
+
+#     # Appliquez le filtre en passant le username et le rôle
+#     filtered = Rapport_PatientFilter(request.GET, queryset=rapports, username=username, user_role=user_role)
+
+#     # Créez la table avec la queryset filtrée en passant aussi le username et le rôle
+#     table = Rapport_PatientTable(filtered.qs, username=username, user_role=user_role)
+
+#     return render(request, 'histo.html', {'table': table, 'filter': filtered})
 
 
 
