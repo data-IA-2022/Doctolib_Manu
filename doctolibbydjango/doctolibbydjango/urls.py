@@ -20,7 +20,7 @@ from authentification.views import connexion, deconnexion, inscription
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("accueil", accueil, name="accueil"),
+    path("accueil/", accueil, name="accueil"),
     path("", connexion, name="connexion"),
     path("comptes", comptes, name="comptes"),
     path("edaia", edaia, name="edaia"),

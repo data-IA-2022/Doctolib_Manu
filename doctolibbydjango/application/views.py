@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from authentification.models import Utilisateur, medecinPatient
-from .tables import VotreModelTable, RapportTable
-from .filters import VotreModelFilter, SymptomeFilter, RapportFilter
+from .tables import VotreModelTable, RapportTable, Rapport_PatientTable, Rapport_PatientTable
+from .filters import VotreModelFilter, SymptomeFilter, RapportFilter, Rapport_PatientFilter
 # Importation des modèles spécifiques à votre application
 from .models import (
     Symptome, Form_General, Form_Info_Cardiaque_Tension_Arterielle,
@@ -67,19 +67,37 @@ def edaia(request):
         # return render(request, "edaia.html")
     
 
+# @login_required
+# def histo(request):
+
+#     # Obtenez la queryset de Rapport avec les objets liés
+#     rapports = Rapport.objects.select_related('symptome', 'formulaire').all()
+
+#     # Appliquez le filtre
+#     filtered = RapportFilter(request.GET, queryset=rapports)
+
+#     # Créez la table avec la queryset filtrée
+#     table = RapportTable(filtered.qs)
+
+#     return render(request, 'histo.html', {'table': table, 'filter': filtered})
+
+
 @login_required
 def histo(request):
+    username = request.user.username
+    user_role = request.user.role
 
-    # Obtenez la queryset de Rapport avec les objets liés
-    rapports = Rapport.objects.select_related('symptome', 'formulaire').all()
+    # Commencez avec une queryset de base de Rapport_Patient
+    rapports = Rapport_Patient.objects.select_related('medecin_patient', 'rapport')
 
-    # Appliquez le filtre
-    filtered = RapportFilter(request.GET, queryset=rapports)
+    # Appliquez le filtre en passant le username et le rôle
+    filtered = Rapport_PatientFilter(request.GET, queryset=rapports, username=username, user_role=user_role)
 
-    # Créez la table avec la queryset filtrée
-    table = RapportTable(filtered.qs)
+    # Créez la table avec la queryset filtrée en passant aussi le username et le rôle
+    table = Rapport_PatientTable(filtered.qs, username=username, user_role=user_role)
 
     return render(request, 'histo.html', {'table': table, 'filter': filtered})
+
 
 
 @login_required

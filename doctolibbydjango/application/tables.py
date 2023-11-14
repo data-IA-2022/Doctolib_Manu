@@ -1,6 +1,7 @@
 # app/tables.py
 import django_tables2 as tables
-from .models import Symptome, Rapport
+from .models import Symptome, Rapport,Rapport_Patient
+from authentification.models import Utilisateur
 
 class VotreModelTable(tables.Table):
     class Meta:
@@ -36,3 +37,37 @@ class RapportTable(tables.Table):
             'symptome_grande_envie_pleurer', 'formulaire_general_poids', 
             'formulaire_alimentation_consommation_alcool',
         )
+
+class Rapport_PatientTable(tables.Table):
+    medecin = tables.Column(accessor='medecin_patient.idMedecin.username', verbose_name='Nom du médecin')
+    patient = tables.Column(accessor='medecin_patient.idPatient.username', verbose_name='Nom du patient')
+    date_rapport = tables.Column(accessor='rapport.date_saisie', verbose_name='Date du rapport')
+
+    # Initialiser la colonne 'action_medecin' ici pour l'ajouter conditionnellement plus tard
+    action_medecin = tables.TemplateColumn(
+        template_code='<a href="{% url \'accueil\' %}" class="btn btn-primary btn-sm">Détails</a>',
+        verbose_name='Action',
+        orderable=False,
+        empty_values=(),
+        attrs={"td": {"class": "text-center"}},
+        extra_context={'user_role': 'medecin'},
+    )
+
+    def __init__(self, *args, username=None, user_role=None, **kwargs):
+        user_role = kwargs.pop('user_role', None)
+        super(Rapport_PatientTable, self).__init__(*args, **kwargs)
+
+        # Conditionne l'affichage des colonnes d'action en fonction du rôle de l'utilisateur
+        if user_role == 'medecin':
+            # Ajoute la colonne d'action si l'utilisateur est un médecin
+            self.base_columns['action_medecin'] = self.action_medecin
+            self.sequence.append('action_medecin')
+        elif user_role == 'patient':
+            # Retire la colonne d'action si l'utilisateur est un patient
+            self.base_columns.pop('action_medecin', None)
+            self.sequence = [column for column in self.sequence if column != 'action_medecin']
+
+    class Meta:
+        model = Rapport_Patient
+        template_name = "django_tables2/bootstrap.html"
+        fields = ('medecin', 'patient', 'date_rapport')  # Ne pas inclure 'action_medecin' ici

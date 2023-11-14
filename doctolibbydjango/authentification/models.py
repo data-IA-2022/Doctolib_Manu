@@ -12,6 +12,12 @@ class Utilisateur(AbstractUser):
     role = models.CharField(max_length=30, 
                             choices=lesRoles, 
                             verbose_name='Rôle', null=True)
+    
+    # def get_full_name(self):
+    #     # Vous pouvez personnaliser la façon dont le nom complet est affiché ici
+    #     # Par exemple, si vous voulez inverser l'ordre et séparer par une virgule
+    #     full_name = f'{self.last_name}, {self.first_name}'
+    #     return full_name.strip()
 
 
 """

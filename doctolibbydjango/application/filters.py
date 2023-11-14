@@ -1,6 +1,10 @@
 # app/filters.py
 import django_filters
-from .models import Symptome, Rapport
+from .models import Symptome, Rapport, Rapport_Patient, Utilisateur
+from django import forms
+from django.db.models.functions import Concat
+from django.db.models import CharField, Value 
+
 
 class VotreModelFilter(django_filters.FilterSet):
     class Meta:
@@ -37,3 +41,43 @@ class RapportFilter(django_filters.FilterSet):
     class Meta:
         model = Rapport
         fields = []  # Spécifiez des champs si nécessaire, mais avec des filtres personnalisés, cela peut ne pas être nécessaire.
+
+class Rapport_PatientFilter(django_filters.FilterSet):
+    nom_patient = django_filters.ModelChoiceFilter(
+        field_name='medecin_patient__idPatient',
+        queryset=Utilisateur.objects.none(),  # Défini à 'none' par défaut, sera remplacé si l'utilisateur est médecin
+        label='Nom du patient',
+    )
+    nom_medecin = django_filters.ModelChoiceFilter(
+        field_name='medecin_patient__idMedecin',
+        queryset=Utilisateur.objects.none(),  # Défini à 'none' par défaut, sera remplacé si l'utilisateur est patient
+        label='Nom du médecin',
+    )
+
+    class Meta:
+        model = Rapport_Patient
+        fields = []
+
+    def __init__(self, *args, username=None, user_role=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        if user_role == 'medecin':
+            self.filters['nom_patient'].queryset = Utilisateur.objects.filter(
+                role='patient'
+            ).annotate(
+                nom_complet=Concat(
+                    'first_name', Value(' '), 'last_name', output_field=CharField()
+                )
+            ).order_by('nom_complet')
+
+            del self.filters['nom_medecin']
+
+        elif user_role == 'patient':
+            self.filters['nom_medecin'].queryset = Utilisateur.objects.filter(
+                role='medecin'
+            ).annotate(
+                nom_complet=Concat(
+                    'first_name', Value(' '), 'last_name', output_field=CharField()
+                )
+            ).order_by('nom_complet')
+
+            del self.filters['nom_patient']
