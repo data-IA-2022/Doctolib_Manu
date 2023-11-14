@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "authentification",
     'application',
-    'crispy_forms',
+    #'crispy_forms',
     # 'datatable',
     'django_tables2',
     'django_filters',
