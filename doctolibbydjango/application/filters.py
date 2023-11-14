@@ -1,6 +1,10 @@
 # app/filters.py
 import django_filters
-from .models import Symptome, Rapport
+from .models import Symptome, Rapport, Rapport_Patient, Utilisateur
+from django import forms
+from django.db.models.functions import Concat
+from django.db.models import Value 
+
 
 class VotreModelFilter(django_filters.FilterSet):
     class Meta:
@@ -37,3 +41,40 @@ class RapportFilter(django_filters.FilterSet):
     class Meta:
         model = Rapport
         fields = []  # Spécifiez des champs si nécessaire, mais avec des filtres personnalisés, cela peut ne pas être nécessaire.
+
+class Rapport_PatientFilter(django_filters.FilterSet):
+    # Créer un filtre pour le nom complet du patient
+    nom_patient = django_filters.ModelChoiceFilter(
+        queryset=Utilisateur.objects.filter(role='patient').annotate(
+            nom_complet=Concat('first_name', Value(' '), 'last_name')
+        ).order_by('nom_complet'),
+        field_name='medecin_patient__idPatient',
+        label='Nom du patient',
+        to_field_name='id'  # Assurez-vous d'utiliser le bon champ ici
+    )
+    # Créer un filtre pour le nom complet du médecin
+    nom_medecin = django_filters.ModelChoiceFilter(
+        queryset=Utilisateur.objects.filter(role='medecin').annotate(
+            nom_complet=Concat('first_name', Value(' '), 'last_name')
+        ).order_by('nom_complet'),
+        field_name='medecin_patient__idMedecin',
+        label='Nom du médecin',
+        to_field_name='id'  # Assurez-vous d'utiliser le bon champ ici
+    )
+
+    # date_min = django_filters.DateFilter(
+    #     field_name='rapport__date_saisie',
+    #     lookup_expr='gte',
+    #     widget=forms.DateInput(attrs={'type': 'date'}),
+    #     label='Date depuis'
+    # )
+    # date_max = django_filters.DateFilter(
+    #     field_name='rapport__date_saisie',
+    #     lookup_expr='lte',
+    #     widget=forms.DateInput(attrs={'type': 'date'}),
+    #     label='Date jusqu’à'
+    # )
+
+    class Meta:
+        model = Rapport_Patient
+        fields = ['nom_patient', 'nom_medecin']#, 'date_min', 'date_max']
