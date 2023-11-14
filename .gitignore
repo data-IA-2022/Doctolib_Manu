@@ -8,3 +8,6 @@ doctolibbydjango/db.sqlite3
 doctolibbydjango/db.sqlite3
 doctolibbydjango/application/migrations
 doctolibbydjango/authentification/migrations
+env
+doctolibbydjango/db.sqlite3__
+.vscode

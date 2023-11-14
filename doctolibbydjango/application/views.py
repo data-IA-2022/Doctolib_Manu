@@ -64,39 +64,32 @@ def edaia(request):
         table = VotreModelTable(filtered.qs)
         return render(request, 'edaia.html', {'table': table, 'filter': filtered})
 
-        # return render(request, "edaia.html")
-    
-
-# @login_required
-# def histo(request):
-
-#     # Obtenez la queryset de Rapport avec les objets liés
-#     rapports = Rapport.objects.select_related('symptome', 'formulaire').all()
-
-#     # Appliquez le filtre
-#     filtered = RapportFilter(request.GET, queryset=rapports)
-
-#     # Créez la table avec la queryset filtrée
-#     table = RapportTable(filtered.qs)
-
-#     return render(request, 'histo.html', {'table': table, 'filter': filtered})
-
-
 @login_required
 def histo(request):
+    username = request.user.username
+    user_role = request.user.role
 
-    # Obtenez la queryset de Rapport avec les objets liés
-    rapports = Rapport_Patient.objects.select_related('medecin_patient', 'rapport').all()
+    rapports = Rapport_Patient.objects.select_related('medecin_patient', 'rapport')
 
-    # Appliquez le filtre
-    filtered = Rapport_PatientFilter(request.GET, queryset=rapports)
+    # Appliquer le filtre basé sur le rôle
+    if user_role == 'medecin':
+        patients_associes = medecinPatient.objects.filter(
+            idMedecin__username=username
+        ).values_list('idPatient__username', flat=True)
+        rapports = rapports.filter(medecin_patient__idPatient__username__in=patients_associes)
 
-    # Créez la table avec la queryset filtrée
-    table = Rapport_PatientTable(filtered.qs)
+    elif user_role == 'patient':
+        medecins_associes = medecinPatient.objects.filter(
+            idPatient__username=username
+        ).values_list('idMedecin__username', flat=True)
+        # rapports = rapports.filter(medecin_patient__idMedecin__username__in=medecins_associes)
+        rapports = rapports.filter(medecin_patient__idPatient__username=username)
+
+
+    filtered = Rapport_PatientFilter(request.GET, queryset=rapports, username=username, user_role=user_role)
+    table = Rapport_PatientTable(filtered.qs, username=username, user_role=user_role)
 
     return render(request, 'histo.html', {'table': table, 'filter': filtered})
-
-
 
 @login_required
 def associationMedecinPatient(request):
