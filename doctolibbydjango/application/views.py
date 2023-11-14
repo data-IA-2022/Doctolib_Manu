@@ -100,7 +100,9 @@ def histo(request):
         medecins_associes = medecinPatient.objects.filter(
             idPatient__username=username
         ).values_list('idMedecin__username', flat=True)
-        rapports = rapports.filter(medecin_patient__idMedecin__username__in=medecins_associes)
+        # rapports = rapports.filter(medecin_patient__idMedecin__username__in=medecins_associes)
+        rapports = rapports.filter(medecin_patient__idPatient__username=username)
+
 
     filtered = Rapport_PatientFilter(request.GET, queryset=rapports, username=username, user_role=user_role)
     table = Rapport_PatientTable(filtered.qs, username=username, user_role=user_role)
