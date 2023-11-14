@@ -61,6 +61,6 @@ class Rapport_PatientTable(tables.Table):
         super(Rapport_PatientTable, self).__init__(queryset, *args, **kwargs)
 
         # Ajouter la colonne 'action_medecin' si l'utilisateur est un médecin
-        if user_role != 'medecin':
-            self.columns.hide('action_medecin')
+        # if user_role != 'medecin':
+        #     self.columns.hide('action_medecin')
 

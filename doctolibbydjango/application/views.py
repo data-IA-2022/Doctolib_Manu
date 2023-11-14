@@ -64,24 +64,6 @@ def edaia(request):
         table = VotreModelTable(filtered.qs)
         return render(request, 'edaia.html', {'table': table, 'filter': filtered})
 
-        # return render(request, "edaia.html")
-    
-
-# @login_required
-# def histo(request):
-
-#     # Obtenez la queryset de Rapport avec les objets liés
-#     rapports = Rapport.objects.select_related('symptome', 'formulaire').all()
-
-#     # Appliquez le filtre
-#     filtered = RapportFilter(request.GET, queryset=rapports)
-
-#     # Créez la table avec la queryset filtrée
-#     table = RapportTable(filtered.qs)
-
-#     return render(request, 'histo.html', {'table': table, 'filter': filtered})
-
-
 @login_required
 def histo(request):
     username = request.user.username
@@ -108,23 +90,6 @@ def histo(request):
     table = Rapport_PatientTable(filtered.qs, username=username, user_role=user_role)
 
     return render(request, 'histo.html', {'table': table, 'filter': filtered})
-
-# def histo(request):
-#     username = request.user.username
-#     user_role = request.user.role
-
-#     # Commencez avec une queryset de base de Rapport_Patient
-#     rapports = Rapport_Patient.objects.select_related('medecin_patient', 'rapport')
-
-#     # Appliquez le filtre en passant le username et le rôle
-#     filtered = Rapport_PatientFilter(request.GET, queryset=rapports, username=username, user_role=user_role)
-
-#     # Créez la table avec la queryset filtrée en passant aussi le username et le rôle
-#     table = Rapport_PatientTable(filtered.qs, username=username, user_role=user_role)
-
-#     return render(request, 'histo.html', {'table': table, 'filter': filtered})
-
-
 
 @login_required
 def associationMedecinPatient(request):

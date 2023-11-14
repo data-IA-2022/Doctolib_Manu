@@ -59,30 +59,6 @@ class Rapport_PatientFilter(django_filters.FilterSet):
         model = Rapport_Patient
         fields = []
 
-    # def __init__(self, *args, username=None, user_role=None, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     if user_role == 'medecin':
-    #         self.filters['nom_patient'].queryset = Utilisateur.objects.filter(
-    #             role='patient'
-    #         ).annotate(
-    #             nom_complet=Concat(
-    #                 'first_name', Value(' '), 'last_name', output_field=CharField()
-    #             )
-    #         ).order_by('nom_complet')
-
-    #         del self.filters['nom_medecin']
-
-    #     elif user_role == 'patient':
-    #         self.filters['nom_medecin'].queryset = Utilisateur.objects.filter(
-    #             role='medecin'
-    #         ).annotate(
-    #             nom_complet=Concat(
-    #                 'first_name', Value(' '), 'last_name', output_field=CharField()
-    #             )
-    #         ).order_by('nom_complet')
-
-    #         del self.filters['nom_patient']
-
     def __init__(self, *args, username=None, user_role=None, **kwargs):
         super().__init__(*args, **kwargs)
 
