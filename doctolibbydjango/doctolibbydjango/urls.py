@@ -36,5 +36,5 @@ urlpatterns = [
     path('activite_physique', activite_physique_view, name='activite_physique'),
     path('autres_symptomes', autres_symptomes_view, name='autres_symptomes'),
     path('info_medicales', info_medicales_view, name='info_medicales'),
-    path('rapport/', rapport, name='rapport'),
+    path('rapport/<int:rapport_id>/', rapport, name='rapport'),
 ] 
