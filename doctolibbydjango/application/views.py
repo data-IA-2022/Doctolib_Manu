@@ -91,6 +91,33 @@ def histo(request):
     return render(request, 'histo.html', {'table': table, 'filter': filtered})
 
 @login_required
+def rapport(request):
+    username = request.user.username
+    user_role = request.user.role
+
+    rapports = Rapport_Patient.objects.select_related('medecin_patient', 'rapport')
+
+    # Appliquer le filtre basé sur le rôle
+    if user_role == 'medecin':
+        patients_associes = medecinPatient.objects.filter(
+            idMedecin__username=username
+        ).values_list('idPatient__username', flat=True)
+        rapports = rapports.filter(medecin_patient__idPatient__username__in=patients_associes)
+
+    elif user_role == 'patient':
+        medecins_associes = medecinPatient.objects.filter(
+            idPatient__username=username
+        ).values_list('idMedecin__username', flat=True)
+        # rapports = rapports.filter(medecin_patient__idMedecin__username__in=medecins_associes)
+        rapports = rapports.filter(medecin_patient__idPatient__username=username)
+
+    filtered = Rapport_PatientFilter(request.GET, queryset=rapports, username=username, user_role=user_role)
+    table = Rapport_PatientTable(filtered.qs, username=username, user_role=user_role)
+
+    return render(request, 'histo.html', {'table': table, 'filter': filtered})
+
+
+@login_required
 def associationMedecinPatient(request):
     # Étapes pour associer des médecins à des patients
     # 1- Récupération de la liste des médecins et des patients
