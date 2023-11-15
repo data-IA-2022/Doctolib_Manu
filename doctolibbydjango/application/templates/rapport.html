@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<title>Rapport</title>
+
+<h1>Rapport {{prenom}} !</h1>
+
+
+<h1>Détails du Rapport</h1>
+<p>Nom du médecin: {{ rapport.medecin }}</p>
+<p>Nom du patient: {{ rapport.patient }}</p>
+<p>Date du rapport: {{ rapport.date_rapport }}</p>
+
+{% endblock %}
