@@ -1,7 +1,69 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
+
 
 {% block content %}
+<p>Médecin: {{ rapport.medecin_patient.idMedecin.username }}</p>
+<p>Patient: {{ rapport.medecin_patient.idPatient.username }}</p>
+<p>Date du rapport: {{ rapport.rapport.date_saisie|date:"d/m/Y H:i"}}</p>
 
+<div class="container mt-3">
+    <!-- Onglets de navigation -->
+    <ul class="nav nav-tabs" id="rapportTabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#general">General</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" href="#symptomes">Symptômes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" href="#cardiaque">Info cardiaque</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" href="#medoc">Prise médoc</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" href="#Alimentation">Alimentation</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" href="#physique">Activite physique</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" href="#médicales">Informations medicales</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" href="#autres_symptomes">Autres symptomes</a>
+        </li>
+
+        <!-- Plus d'onglets si nécessaire -->
+    </ul>
+     <!-- Panneaux des onglets -->
+     <div class="tab-content">
+        <div id="symptomes" class="container tab-pane fade">
+            <p>Symptôme d'irritabilité: {{ rapport.rapport.symptome.get_irratibilite_display }}</p>
+            <p>Sentiment dépressif: {{ rapport.rapport.symptome.get_sentiment_depressif_display }}</p>
+            <p>Bouche ou gorge sèche: {{ rapport.rapport.symptome.get_bouche_gorge_seche_display }}</p>
+            <p>Actions ou gestes impulsifs: {{ rapport.rapport.symptome.get_actions_gestes_impulsif_display }}</p>
+            <p>Grincement des dents: {{ rapport.rapport.symptome.get_grincement_dents_display }}</p>
+            <p>Difficulté à rester assis: {{ rapport.rapport.symptome.get_difficulte_a_rester_assis_display }}</p>
+            <p>Cauchemars: {{ rapport.rapport.symptome.get_cauchemars_display }}</p>
+            <p>Diarrhée: {{ rapport.rapport.symptome.get_diarrhee_display }}</p>
+            <p>Attaques verbales envers quelqu'un: {{ rapport.rapport.symptome.get_attaques_verbales_envers_qq1_display }}</p>
+            <p>Hauts et bas émotionnels: {{ rapport.rapport.symptome.get_haut_bas_emotifs_display }}</p>
+            <p>Grande envie de pleurer: {{ rapport.rapport.symptome.get_grande_envie_pleurer_display }}</p>
+        </div>
+        <!-- Plus de panneaux de contenu si nécessaire -->
+    
+        <div id="general" class="container tab-pane active">
+            <p>Poids: {{ rapport.rapport.formulaire.general.poids }} kg</p>
+            <p>Tour de taille: {{ rapport.rapport.formulaire.general.tour_2_taille }} cm</p>
+
+            <!-- Plus de contenu... -->
+        </div>
+    </div>
+</div>
+
+
+<!--
 <p>Médecin: {{ rapport.medecin_patient.idMedecin.username }}</p>
 <p>Patient: {{ rapport.medecin_patient.idPatient.username }}</p>
 <p>Date du rapport: {{ rapport.rapport.date_saisie|date:"d/m/Y H:i"}}</p>
@@ -86,5 +148,17 @@
 <p>Taux d'INR: {{ rapport.rapport.formulaire.infos_medicales.taux_inr }}</p>
 
 
+<script>
+    // Assurez-vous que jQuery est chargé avant d'utiliser ce script
+    $(document).ready(function(){
+        // Initialise les onglets
+        $('.nav-tabs a').click(function(){
+            $(this).tab('show');
+        });
+
+        // Active le premier onglet à chaque chargement de page
+        $('.nav-tabs a:first').tab('show');
+    });
+</script><--->
 <!-- Autres détails que vous souhaitez afficher -->
 {% endblock %}
