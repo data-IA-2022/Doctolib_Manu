@@ -114,7 +114,7 @@ def rapport(request):
     filtered = Rapport_PatientFilter(request.GET, queryset=rapports, username=username, user_role=user_role)
     table = Rapport_PatientTable(filtered.qs, username=username, user_role=user_role)
 
-    return render(request, 'histo.html', {'table': table, 'filter': filtered})
+    return render(request, 'rapport.html', {'table': table, 'filter': filtered})
 
 
 @login_required

@@ -44,7 +44,7 @@ class Rapport_PatientTable(tables.Table):
     date_rapport = tables.Column(accessor='rapport.date_saisie', verbose_name='Date du rapport')
 
     action_medecin = tables.TemplateColumn(
-        template_code='<a href="{% url \'accueil\'     %}" class="btn btn-primary btn-sm">Détails</a>',
+        template_code='<a href="{% url \'rapport\' %}" class="btn btn-primary btn-sm">Détails</a>',
         verbose_name='Action',
         orderable=False,
         empty_values=(),
