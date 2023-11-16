@@ -5,9 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+        th, td {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: left;
+        }
+        th {
+          background-color: #f2f2f2;
+        }
+        .menu-horizontal {
+            text-align: center; /* Centrer le menu si vous le souhaitez */
+            padding: 0;
+            margin: 0;
+            list-style-type: none; /* Retirer les puces de la liste */
+        }
+        .menu-horizontal li {
+            display: inline; /* Afficher les éléments de la liste en ligne */
+        }
+        .menu-horizontal a {
+            display: inline-block;
+            margin: 0 10px; /* Espacement horizontal entre les liens */
+            padding: 10px 15px; /* Espacement autour du texte des liens */
+            text-decoration: none; /* Supprimer le soulignement des liens */
+            color: black; /* Couleur initiale du texte des liens */
+            background-color: white; /* Couleur initiale de fond des liens */
+            transition: color 0.3s, background-color 0.3s; /* Transition douce pour le survol */
+        }
+        .menu-horizontal a:hover {
+            color: white; /* Couleur du texte au survol */
+            background-color: #007bff; /* Couleur de fond au survol */
+        }
+      </style>
+      
 </head>
 <body>
-    <a href="{% url 'accueil' %}">Accueil</a>
+    <div class="menu-horizontal">
+        <a href="{% url 'accueil' %}">Accueil</a>
+        <a href="{% url 'histo' %}">Historique</a>
+      </div>
     {% block content %}
     
     <!-- Le contenu spécifique de la page viendra ici -->
