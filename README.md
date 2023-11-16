@@ -9,10 +9,12 @@
 - [Aperçu du Projet](#aperçu-du-projet)
 - [Versions Futures](#versions-futures)
 
+
 ## Contexte
 ---
 - **Projet en Développement** : Intégration à l'équipe Doctolib pour un nouveau projet ambitieux.
 - **Objectif de l'Application** : Expansion de la portée des professionnels de santé et facilitation de la publication d'enquêtes sur la santé des patients consentants.
+
 
 ## Objectifs Principaux
 ---
@@ -59,13 +61,16 @@
 - Repository GitHub pour le versioning du projet.
 - Documentation incluant README.md, gestion des données personnelles, fichier SQLite de test, et code de l'application.
 
+
 ## Compétences Ciblées
 ---
 Listez les compétences techniques, méthodologiques et/ou théoriques que le projet vise à développer ou à démontrer.
 
+
 ## Schéma de la Base de Données
 ---
 Incluez ici le schéma de la base de données utilisée dans le projet, accompagné d'une brève explication de chaque table et de ses relations.
+
 
 ## Installation et Lancement
 Fournissez des instructions étape par étape pour installer et lancer le projet. Cela peut inclure :
