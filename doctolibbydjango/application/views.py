@@ -1,5 +1,5 @@
 # Importation des modules nécessaires de Django
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from authentification.models import Utilisateur, medecinPatient
@@ -85,11 +85,17 @@ def histo(request):
         # rapports = rapports.filter(medecin_patient__idMedecin__username__in=medecins_associes)
         rapports = rapports.filter(medecin_patient__idPatient__username=username)
 
-
     filtered = Rapport_PatientFilter(request.GET, queryset=rapports, username=username, user_role=user_role)
     table = Rapport_PatientTable(filtered.qs, username=username, user_role=user_role)
 
     return render(request, 'histo.html', {'table': table, 'filter': filtered})
+
+@login_required
+def rapport(request, rapport_id):
+
+    rapport = get_object_or_404(Rapport_Patient.objects.select_related('medecin_patient', 'rapport'), pk=rapport_id)
+    print(rapport)
+    return render(request, 'rapport.html', {'rapport': rapport})
 
 @login_required
 def associationMedecinPatient(request):

@@ -39,12 +39,13 @@ class RapportTable(tables.Table):
         )
 
 class Rapport_PatientTable(tables.Table):
+    id = tables.Column(accessor='pk', verbose_name='ID')
     medecin = tables.Column(accessor='medecin_patient.idMedecin.username', verbose_name='Nom du médecin')
     patient = tables.Column(accessor='medecin_patient.idPatient.username', verbose_name='Nom du patient')
     date_rapport = tables.Column(accessor='rapport.date_saisie', verbose_name='Date du rapport')
 
     action_medecin = tables.TemplateColumn(
-        template_code='<a href="{% url \'accueil\' %}" class="btn btn-primary btn-sm">Détails</a>',
+        template_code='<a href="{% url \'rapport\' record.pk %}" class="btn btn-primary btn-sm">Détails</a>',
         verbose_name='Action',
         orderable=False,
         empty_values=(),
@@ -55,7 +56,7 @@ class Rapport_PatientTable(tables.Table):
     class Meta:
         model = Rapport_Patient
         template_name = "django_tables2/bootstrap.html"
-        fields = ('medecin', 'patient', 'date_rapport')  # Ne pas inclure 'action_medecin' ici
+        fields = ('id', 'medecin', 'patient', 'date_rapport')  # Ne pas inclure 'action_medecin' ici
 
     def __init__(self, queryset, *args, username=None, user_role=None, **kwargs):
         super(Rapport_PatientTable, self).__init__(queryset, *args, **kwargs)

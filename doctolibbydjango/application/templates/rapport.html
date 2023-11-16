@@ -1,0 +1,164 @@
+{% extends 'base2.html' %}
+
+
+{% block content %}
+<p>Médecin: {{ rapport.medecin_patient.idMedecin.username }}</p>
+<p>Patient: {{ rapport.medecin_patient.idPatient.username }}</p>
+<p>Date du rapport: {{ rapport.rapport.date_saisie|date:"d/m/Y H:i"}}</p>
+
+<div class="container mt-3">
+    <!-- Onglets de navigation -->
+    <ul class="nav nav-tabs" id="rapportTabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#general">General</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" href="#symptomes">Symptômes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" href="#cardiaque">Info cardiaque</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" href="#medoc">Prise médoc</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" href="#Alimentation">Alimentation</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" href="#physique">Activite physique</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" href="#médicales">Informations medicales</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" href="#autres_symptomes">Autres symptomes</a>
+        </li>
+
+        <!-- Plus d'onglets si nécessaire -->
+    </ul>
+     <!-- Panneaux des onglets -->
+     <div class="tab-content">
+        <div id="symptomes" class="container tab-pane fade">
+            <p>Symptôme d'irritabilité: {{ rapport.rapport.symptome.get_irratibilite_display }}</p>
+            <p>Sentiment dépressif: {{ rapport.rapport.symptome.get_sentiment_depressif_display }}</p>
+            <p>Bouche ou gorge sèche: {{ rapport.rapport.symptome.get_bouche_gorge_seche_display }}</p>
+            <p>Actions ou gestes impulsifs: {{ rapport.rapport.symptome.get_actions_gestes_impulsif_display }}</p>
+            <p>Grincement des dents: {{ rapport.rapport.symptome.get_grincement_dents_display }}</p>
+            <p>Difficulté à rester assis: {{ rapport.rapport.symptome.get_difficulte_a_rester_assis_display }}</p>
+            <p>Cauchemars: {{ rapport.rapport.symptome.get_cauchemars_display }}</p>
+            <p>Diarrhée: {{ rapport.rapport.symptome.get_diarrhee_display }}</p>
+            <p>Attaques verbales envers quelqu'un: {{ rapport.rapport.symptome.get_attaques_verbales_envers_qq1_display }}</p>
+            <p>Hauts et bas émotionnels: {{ rapport.rapport.symptome.get_haut_bas_emotifs_display }}</p>
+            <p>Grande envie de pleurer: {{ rapport.rapport.symptome.get_grande_envie_pleurer_display }}</p>
+        </div>
+        <!-- Plus de panneaux de contenu si nécessaire -->
+    
+        <div id="general" class="container tab-pane active">
+            <p>Poids: {{ rapport.rapport.formulaire.general.poids }} kg</p>
+            <p>Tour de taille: {{ rapport.rapport.formulaire.general.tour_2_taille }} cm</p>
+
+            <!-- Plus de contenu... -->
+        </div>
+    </div>
+</div>
+
+
+<!--
+<p>Médecin: {{ rapport.medecin_patient.idMedecin.username }}</p>
+<p>Patient: {{ rapport.medecin_patient.idPatient.username }}</p>
+<p>Date du rapport: {{ rapport.rapport.date_saisie|date:"d/m/Y H:i"}}</p>
+
+<h2>Questionnaire symptomes :</h2>
+<p>Symptôme d'irritabilité: {{ rapport.rapport.symptome.get_irratibilite_display }}</p>
+<p>Sentiment dépressif: {{ rapport.rapport.symptome.get_sentiment_depressif_display }}</p>
+<p>Bouche ou gorge sèche: {{ rapport.rapport.symptome.get_bouche_gorge_seche_display }}</p>
+<p>Actions ou gestes impulsifs: {{ rapport.rapport.symptome.get_actions_gestes_impulsif_display }}</p>
+<p>Grincement des dents: {{ rapport.rapport.symptome.get_grincement_dents_display }}</p>
+<p>Difficulté à rester assis: {{ rapport.rapport.symptome.get_difficulte_a_rester_assis_display }}</p>
+<p>Cauchemars: {{ rapport.rapport.symptome.get_cauchemars_display }}</p>
+<p>Diarrhée: {{ rapport.rapport.symptome.get_diarrhee_display }}</p>
+<p>Attaques verbales envers quelqu'un: {{ rapport.rapport.symptome.get_attaques_verbales_envers_qq1_display }}</p>
+<p>Hauts et bas émotionnels: {{ rapport.rapport.symptome.get_haut_bas_emotifs_display }}</p>
+<p>Grande envie de pleurer: {{ rapport.rapport.symptome.get_grande_envie_pleurer_display }}</p>
+
+<h2>Généralités :</h2>
+<p>Poids: {{ rapport.rapport.formulaire.general.poids }} kg</p>
+<p>Tour de taille: {{ rapport.rapport.formulaire.general.tour_2_taille }} cm</p>
+
+<h2>Information cardiaque :</h2>
+<p>Fréquence cardiaque: {{ rapport.rapport.formulaire.info_cardiaque.frquence_cardiaque }} bpm</p>
+<p>Tension systolique le matin: {{ rapport.rapport.formulaire.info_cardiaque.tension_systolique_matin }} mmHg</p>
+<p>Tension systolique le soir: {{ rapport.rapport.formulaire.info_cardiaque.tension_systolique_soir }} mmHg</p>
+<p>Tension diastolique le matin: {{ rapport.rapport.formulaire.info_cardiaque.tension_diastolique_matin }} mmHg</p>
+<p>Tension diastolique le soir: {{ rapport.rapport.formulaire.info_cardiaque.tension_diastolique_soir }} mmHg</p>
+<p>Description cardiaque: {{ rapport.rapport.formulaire.info_cardiaque.description }}</p>
+
+<h2>Prise medoc</h2>
+<p>Nombre de médicaments pris par jour: {{ rapport.rapport.formulaire.prise_medoc.nombre_medoc_pris_jr }}</p>
+<p>Oubli de prise de médicament le matin: {{ rapport.rapport.formulaire.prise_medoc.oublie_prise_medoc_matin|yesno:"Oui,Non" }}</p>
+<p>Oubli de prise de médicament le soir: {{ rapport.rapport.formulaire.prise_medoc.oublie_prise_medoc_soir|yesno:"Oui,Non" }}</p>
+<p>Effets secondaires remarqués: {{ rapport.rapport.formulair.prise_medoc.effet_secondaires_remarques|yesno:"Oui,Non" }}</p>
+<p>Symptômes particuliers remarqués: {{ rapport.rapport.formulaire.prise_medoc.symptomes_particuliers_remarques|yesno:"Oui,Non" }}</p>
+<p>Description des médicaments: {{ rapport.rapport.formulaire.prise_medoc.description }}</p>
+
+<h2>Alimentation</h2>
+<p>Consommation d'alcool: {{ rapport.rapport.formulaire.alimentation.conso_alcool|yesno:"Oui,Non" }}</p>
+<p>Grignotage sucré: {{ rapport.rapport.formulaire.alimentation.grignotage_sucre|yesno:"Oui,Non" }}</p>
+<p>Grignotage salé: {{ rapport.rapport.formulaire.alimentation.grignotage_sale|yesno:"Oui,Non" }}</p>
+<p>Nombre de repas durant la journée: {{ rapport.rapport.formulaire.alimentation.nombre_repas_durant_jr }}</p>
+<p>Quantité d'eau bue: {{ rapport.rapport.formulaire.alimentation.quantite_eau_bu }} litres</p>
+<p>Quantité d'alcool bue: {{ rapport.rapport.formulaire.alimentation.quantite_alcool_bu }} unités</p>
+
+<h2>Activité physique</h2>
+<p>Activité physique effectuée: {{ rapport.rapport.formulaire.activite_phisique.a_eu_activite_physique|yesno:"Oui,Non" }}</p>
+<p>Durée de l'activité physique: {{ rapport.rapport.formulaire.activite_phisique.duree_activite_physique }} minutes</p>
+<p>Description de l'activité physique: {{ rapport.rapport.formulaire.activite_phisique.description }}</p>
+
+<h2>Autres symptomes</h2>
+<p>Présence de dyspnée: {{  rapport.rapport.formulaire.autres_symptomes.presence_dyspnee|yesno:"Oui,Non" }}</p>
+<p>Présence d'œdème: {{  rapport.rapport.formulaire_autres.symptomes.presence_oedeme|yesno:"Oui,Non" }}</p>
+<p>Présence d'épisode infectieux: {{  rapport.rapport.formulaire.autres_symptomes.presence_episode_intectieux|yesno:"Oui,Non" }}</p>
+<p>Présence de fièvre: {{  rapport.rapport.formulaire_autres.symptomes.presence_fievre|yesno:"Oui,Non" }}</p>
+<p>Présence de palpitations: {{  rapport.rapport.formulaire.autres_symptomes.presence_palpitation|yesno:"Oui,Non" }}</p>
+<p>Présence de douleur thoracique: {{  rapport.rapport.formulaire.autres_symptomes.presence_douleur_thoracique|yesno:"Oui,Non" }}</p>
+<p>Présence de malaise: {{  rapport.rapport.formulaire.autres_symptomes.presence_malaise|yesno:"Oui,Non" }}</p>
+
+<p>Heure de début des palpitations: {{  rapport.rapport.formulaire.autres_symptomes.heure_debut_palpitations }}</p>
+<p>Durée totale des palpitations: {{  rapport.rapport.formulaire.autres_symptomes.duree_total_palpitations }}</p>
+
+<p>Heure de début des douleurs thoraciques: {{  rapport.rapport.formulaire.autres_symptomes.heure_debut_douleurs_thoracique }}</p>
+<p>Durée totale des douleurs thoraciques: {{  rapport.rapport.formulaire.autres_symptomes.duree_total_douleurs_thoracique }}</p>
+
+<p>Heure de début des malaises: {{  rapport.rapport.formulaire.autres_symptomes.heure_debut_malaises }}</p>
+<p>Durée totale des malaises: {{  rapport.rapport.formulaire.autres_symptomes.duree_total_malaises }}</p>
+
+<h2>Informations médicales</h2>
+<p>Valeur de la natrémie: {{ rapport.rapport.formulaire.infos_medicales.valeur_natremie }} mmol/L</p>
+<p>Valeur du potassium: {{ rapport.rapport.formulaire.infos_medicales.valeur_potatium }} mmol/L</p>
+<p>Valeur de la créatinine: {{ rapport.rapport.formulaire.infos_medicales.valeur_creatinine }} µmol/L</p>
+<p>Valeur de la clairance de la créatinine: {{ rapport.rapport.formulaire.infos_medicales.valeur_clairance_creatinine }} mL/min</p>
+<p>Taux de NT-proBNP: {{ rapport.rapport.formulaire.infos_medicales.taux_nt_probnp }} pg/mL</p>
+<p>Taux de fer sérique: {{ rapport.rapport.formulaire.infos_medicales.taux_fer_serique }} µg/dL</p>
+<p>Taux d'hémoglobine: {{ rapport.rapport.formulaire.infos_medicales.taux_hemoglobine }} g/dL</p>
+<p>Vitesse de sédimentation: {{ rapport.rapport.formulaire.infos_medicales.valeur_vitesse_sedimentation }} mm/h</p>
+<p>Taux de protéine C réactive: {{ rapport.rapport.formulaire.infos_medicales.taux_proteine_c }} mg/L</p>
+<p>Taux de troponine: {{ rapport.rapport.formulaire.infos_medicales.taux_troponine }} ng/mL</p>
+<p>Taux de vitamine D: {{ rapport.rapport.formulaire.infos_medicales.taux_vitamine_d }} ng/mL</p>
+<p>Taux d'acide urique: {{ rapport.rapport.formulaire.infos_medicales.taux_acide_urique }} mg/dL</p>
+<p>Taux d'INR: {{ rapport.rapport.formulaire.infos_medicales.taux_inr }}</p>
+
+
+<script>
+    // Assurez-vous que jQuery est chargé avant d'utiliser ce script
+    $(document).ready(function(){
+        // Initialise les onglets
+        $('.nav-tabs a').click(function(){
+            $(this).tab('show');
+        });
+
+        // Active le premier onglet à chaque chargement de page
+        $('.nav-tabs a:first').tab('show');
+    });
+</script><--->
+<!-- Autres détails que vous souhaitez afficher -->
+{% endblock %}
