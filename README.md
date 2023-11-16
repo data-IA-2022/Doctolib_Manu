@@ -3,6 +3,7 @@
 ## Table des Matières
 - [Contexte et Objectifs](#Contexte)
 - [Compétences Ciblées](#compétences-ciblées)
+- [Analyse projet](#analyse_projet)
 - [Schéma de la Base de Données](#schéma-de-la-base-de-données)
 - [Prérequis](#Prérequis)
 - [Installation et Configuration](#installation-et-configuration)
@@ -34,6 +35,11 @@ Le projet pour **DoctoLib** vise à développer une **application web** qui conn
 4. **Développement d’un système ETL**: Mise en place d'un système ETL adapté aux contextes internationaux.
 5. **Analyse de Données et Machine Learning**: Intégration de fonctionnalités d'analyse de données et de modèles de machine learning.
 6. **Réalisation de Tests Unitaires**: Tests unitaires avec un taux de couverture d’au moins 70%.
+
+## Analyse projet
+
+![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/7f5d18c4-2f7e-46af-bc41-f820c965b90d)
+
 
 ## Schéma de la Base de Données
 ---
