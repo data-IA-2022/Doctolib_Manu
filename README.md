@@ -127,13 +127,13 @@ python manage.py test -v 2
 ## Versions Futures
 ---
 
-Accroitre la couverture des tests unitaires.
+- Accroitre la couverture des tests unitaires.
 
-Dans le formulaire historique, si on est connecté entant que médecin, il reste à implémenter un mécanisme de modification des données.
+- Dans le formulaire historique, si on est connecté entant que médecin, il reste à implémenter un mécanisme de modification des données.
 
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/9867f4b5-c07c-4c80-9aff-952c7576d213)
 
-Ce mécanisme peut prendre la forme de formulaires de saisie par le patient (Formulaire d'information).
+  Ce mécanisme peut prendre la forme de formulaires de saisie par le patient (Formulaire d'information).
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/012a6b9b-db08-49e2-9232-817a3f1d7e9a)
 
 
