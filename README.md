@@ -66,5 +66,9 @@ Gestion des logs :
 ---
 
 ### Étape 1: Clonage du Répertoire
+Clonez le dépôt depuis GitHub :
 
+```bash
+git clone [URL_DU_REPO_GITHUB]`
+cd [NOM_DU_REPO]```
 
