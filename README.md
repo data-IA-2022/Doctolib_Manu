@@ -57,7 +57,8 @@ Gestion des logs :
 
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/a217587d-9149-4bc3-92ff-e9f2f8b136a0)
 
-### Prérequis
+## Prérequis
+---
 - Python 3.11.2
 - git 2.9.0
 
