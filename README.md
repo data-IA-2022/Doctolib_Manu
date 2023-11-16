@@ -63,8 +63,8 @@ Fournissez des instructions étape par étape pour installer et lancer le projet
 
 ### Prérequis
 ---
-- Logiciels nécessaires
-- Versions
+- Python 3.11.2
+- Git
 
 ### Configuration de l'Environnement
 ---
