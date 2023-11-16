@@ -114,7 +114,7 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-## Lancement des tests unitaites :
+## Lancement des tests unitaites
 ---
 
 ```bash
