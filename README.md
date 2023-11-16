@@ -125,35 +125,46 @@ python manage.py test -v 2
 ---
 
 Formulaire de connection :
+
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/6c72cc22-3a0d-4c35-8bc1-c2218b13eed3)
 
 Formulaire d'inscription :
+
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/6480da6b-f9a4-4db5-b512-f8e60671222f)
 
 Formulaire d'acceuil médecin :
+
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/c49f12cd-8b34-428b-8459-e12a98b94d43)
 
 Formulaire d'historique médecin:
+
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/7bff2921-895b-4194-ba8f-9e07db3f1c17)
 
 Formulaire d'historique filtrage médecin:
+
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/749f2f4f-82d5-4398-8481-551ca57539eb)
 
 Formulaires d'exploration de l'historique médecin :
+
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/378a9838-0682-45d4-ba71-cd3ef72ddd1e)
+
 
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/0b336fe3-d834-4b48-9525-d947af2216c9)
 
 Formulaire d'acceuil patient:
+
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/d0cce3d6-d4fc-4547-bb62-f82e82b8f4bf)
 
 Formulaire d'historique pour la patient :
+
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/c5cc1ef2-63f1-4e54-9c90-127856a0be2f)
 
 Formulaires d'exploration de l'historique pour le patient :
+
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/6ffb447c-1104-484d-8f48-0097d8608971)
 
 Formulaires de renseignement de données patient :
+
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/6ec37105-7378-40cc-9f56-5e6f4949aefc)
 
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/4ff158f8-b1f5-4cbc-9dbd-5c659636ea05)
@@ -163,9 +174,11 @@ Formulaires de renseignement de données patient :
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/5bd62c47-2b27-46fe-9908-52c2d5d4a55e)
 
 Formulaire de mise à jour  de mot de passe :
+
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/4ab526cc-3504-4f06-bf80-e05dbdaa9ab8)
 
 Formulaire d'appairage patient vs médecin :
+
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/4113b9fd-29ea-440f-9859-4536db97cd1e)
 
 ## Versions Futures
