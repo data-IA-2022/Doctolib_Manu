@@ -92,7 +92,7 @@ pip install -r requirements.txt
 ```
 
 ### Étape 4: Configuration de la Base de Données SQLite
-Votre application est déjà configurée pour utiliser SQLite. Assurez-vous que les paramètres de la base de données dans settings.py sont corrects.
+L'application est déjà configurée pour utiliser SQLite. Assurez-vous que les paramètres de la base de données dans settings.py sont corrects.
 
 ### Étape 5: Application des Migrations
 Créez la structure de la base de données :
