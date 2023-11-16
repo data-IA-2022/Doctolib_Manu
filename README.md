@@ -69,6 +69,6 @@ Gestion des logs :
 Clonez le dépôt depuis GitHub :
 
 ```bash
-git clone [URL_DU_REPO_GITHUB]`
-cd [NOM_DU_REPO]```
+git clone URL_DU_REPO_GITHUB](https://github.com/data-IA-2022/Doctolib_Manu.git)https://github.com/data-IA-2022/Doctolib_Manu.git`
+cd Doctolib_Manu```
 
