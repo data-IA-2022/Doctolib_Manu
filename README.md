@@ -1,5 +1,5 @@
 # Doctolib_Manu
-<h3 style="text-decoration: underline; text-decoration-color: red;">Fonctionnalités pour les Utilisateurs</h3>
+<h2 style="text-decoration: underline; text-decoration-color: red;"></h2>
 
 ## Table des Matières
 - [Contexte et Objectifs](#Contexte)
