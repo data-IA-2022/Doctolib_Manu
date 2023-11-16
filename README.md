@@ -120,3 +120,9 @@ python manage.py runserver
 ```bash
 python manage.py test -v 2
 ```
+
+## Aperçu du Projet
+---
+
+## Versions Futures
+---
