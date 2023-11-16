@@ -15,6 +15,7 @@
 ## Objectifs Principaux
 
 ### Fonctionnalités pour les Utilisateurs
+---
 - **Administrateurs** : 
   - Gestion de comptes médecins et patients.
   - Attribution des patients aux médecins.
@@ -27,6 +28,7 @@
   - Accès à l'historique personnel.
 
 ### Authentification et Sécurité
+---
 - Authentification requise pour tous les utilisateurs.
 - Utilisation d'ID pour la confidentialité et la sécurité des données.
 
@@ -43,17 +45,21 @@
 - Intégration des données de formulaires de santé.
 
 ### Analyse de Données et ETL
+---
 - Système d'ETL pour adaptation des données à différents contextes internationaux.
 - Fonctionnalités d'alerte pour valeurs critiques ou incohérentes.
 
 ### Fonctionnalités Analytiques Avancées
+---
 - Outils d'analyse de données (corrélation, régression, classification, clustering, etc.).
 - Graphiques interactifs, analyse de séries temporelles et NLP.
 
 ### Tests et Qualité
+---
 - Exigence de tests unitaires avec un taux de couverture de 70% minimum.
 
 ### Versioning et Documentation
+---
 - Repository GitHub pour le versioning du projet.
 - Documentation incluant README.md, gestion des données personnelles, fichier SQLite de test, et code de l'application.
 
@@ -67,13 +73,16 @@ Incluez ici le schéma de la base de données utilisée dans le projet, accompag
 Fournissez des instructions étape par étape pour installer et lancer le projet. Cela peut inclure :
 
 ### Prérequis
+---
 - Logiciels nécessaires
 - Versions
 
 ### Configuration de l'Environnement
+---
 Instructions pour configurer l'environnement de développement.
 
 ### Installation des Dépendances
+---
 Commandes pour installer les bibliothèques nécessaires.
 
 ```bash
