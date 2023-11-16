@@ -75,3 +75,13 @@ cd Doctolib_Manu
 
 ### Étape 2: Configuration de l'Environnement Virtuel
 Créez et activez un environnement virtuel :
+
+```bash
+python -m venv env
+# Sur Windows
+env\Scripts\activate
+# Sur MacOS/Linux
+source env/bin/activate
+```
+
+
