@@ -39,6 +39,8 @@ Le projet pour **DoctoLib** vise à développer une **application web** qui conn
 Structure de la base d'enregistrement des rapports
 
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/90f1bb85-336b-4710-abff-8e82f1f33b22)
+![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/47b2cb33-21f3-45e1-8d8c-dbce6f841227)
+
 
 
 ## Installation et Lancement
