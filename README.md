@@ -38,6 +38,7 @@ Le projet pour **DoctoLib** vise à développer une **application web** qui conn
 
 ## Analyse projet
 
+### Ce diagramme représente une architecture de système informatique avec des acteurs et des composants techniques.
 
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/9d2183ad-0d1d-46e8-a750-52b775d6df7b)
 
