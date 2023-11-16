@@ -51,6 +51,10 @@ Associer à un groupe d'utilisateurs :
 Geston des droits : 
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/f0e86714-98da-4144-b821-165fc18b134d)
 
+Gestion des logs :
+![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/a217587d-9149-4bc3-92ff-e9f2f8b136a0)
+
+
 
 
 ## Installation et Lancement
