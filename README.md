@@ -62,7 +62,7 @@ Gestion des logs :
 ---
 - Python 3.11.2
 - git 2.9.0
-- StarUML
+- StarUML pour ouvrir les fichiers extension mjd.
 
 ## Installation et Configuration
 ---
