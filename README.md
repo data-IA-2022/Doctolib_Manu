@@ -57,25 +57,13 @@ Gestion des logs :
 
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/a217587d-9149-4bc3-92ff-e9f2f8b136a0)
 
-
-## Installation et Lancement
-Fournissez des instructions étape par étape pour installer et lancer le projet. Cela peut inclure :
-
 ### Prérequis
----
 - Python 3.11.2
-- Git
+- git 2.9.0
 
-### Configuration de l'Environnement
+## Installation et Configuration
 ---
-Instructions pour configurer l'environnement de développement.
 
-### Installation des Dépendances
----
-Commandes pour installer les bibliothèques nécessaires.
+### Étape 1: Clonage du Répertoire
 
-```bash
-git clone [URL_du_repository]
-cd [nom_du_projet]
-pip install -r requirements.txtV3, etc.). Cela peut inclure de nouvelles fonctionnalités, des améliorations de performance, des corrections de bugs, etc.
 
