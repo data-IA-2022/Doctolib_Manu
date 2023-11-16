@@ -46,15 +46,16 @@ Appairage patient médecin :
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/13ac6fc0-0c95-4aeb-9c97-65e9036f6ce8)
 
 Associer à un groupe d'utilisateurs :
+
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/362f2c13-efaf-4532-8cd3-b926c3c8b64f)
 
 Geston des droits : 
+
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/f0e86714-98da-4144-b821-165fc18b134d)
 
 Gestion des logs :
+
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/a217587d-9149-4bc3-92ff-e9f2f8b136a0)
-
-
 
 
 ## Installation et Lancement
