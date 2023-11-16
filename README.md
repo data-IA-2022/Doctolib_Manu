@@ -1,4 +1,6 @@
 # Doctolib_Manu
+<h3 style="text-decoration: underline; text-decoration-color: red;">Fonctionnalités pour les Utilisateurs</h3>
+
 ## Table des Matières
 - [Contexte et Objectifs](#Contexte)
 - [Compétences Ciblées](#compétences-ciblées)
