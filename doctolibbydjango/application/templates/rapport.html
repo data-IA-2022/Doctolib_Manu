@@ -41,10 +41,6 @@
         <div id="symptomes" class="container tab-pane fade">
             <table>
                 <tr>
-                  <th>Symptôme</th>
-                  <th>Statut</th>
-                </tr>
-                <tr>
                   <td>Symptôme d'irritabilité</td>
                   <td>{{ rapport.rapport.symptome.get_irratibilite_display }}</td>
                 </tr>
@@ -107,71 +103,226 @@
         </div>
 
         <div id="cardiaque" class="container tab-pane fade">
-            <p>Fréquence cardiaque: {{ rapport.rapport.formulaire.info_cardiaque.frquence_cardiaque }} bpm</p>
-            <p>Tension systolique le matin: {{ rapport.rapport.formulaire.info_cardiaque.tension_systolique_matin }} mmHg</p>
-            <p>Tension systolique le soir: {{ rapport.rapport.formulaire.info_cardiaque.tension_systolique_soir }} mmHg</p>
-            <p>Tension diastolique le matin: {{ rapport.rapport.formulaire.info_cardiaque.tension_diastolique_matin }} mmHg</p>
-            <p>Tension diastolique le soir: {{ rapport.rapport.formulaire.info_cardiaque.tension_diastolique_soir }} mmHg</p>
-            <p>Description cardiaque: {{ rapport.rapport.formulaire.info_cardiaque.description }}</p>
+            <table>
+                <tr>
+                  <td>Fréquence cardiaque</td>
+                  <td>{{ rapport.rapport.formulaire.info_cardiaque.frquence_cardiaque }} bpm</td>
+                </tr>
+                <tr>
+                  <td>Tension systolique le matin</td>
+                  <td>{{ rapport.rapport.formulaire.info_cardiaque.tension_systolique_matin }} mmHg</td>
+                </tr>
+                <tr>
+                  <td>Tension systolique le soir</td>
+                  <td>{{ rapport.rapport.formulaire.info_cardiaque.tension_systolique_soir }} mmHg</td>
+                </tr>
+                <tr>
+                  <td>Tension diastolique le matin</td>
+                  <td>{{ rapport.rapport.formulaire.info_cardiaque.tension_diastolique_matin }} mmHg</td>
+                </tr>
+                <tr>
+                  <td>Tension diastolique le soir</td>
+                  <td>{{ rapport.rapport.formulaire.info_cardiaque.tension_diastolique_soir }} mmHg</td>
+                </tr>
+                <tr>
+                  <td>Description cardiaque</td>
+                  <td>{{ rapport.rapport.formulaire.info_cardiaque.description }}</td>
+                </tr>
+              </table>         
         </div>
 
         <div id="medoc" class="container tab-pane fade">
-            <p>Nombre de médicaments pris par jour: {{ rapport.rapport.formulaire.prise_medoc.nombre_medoc_pris_jr }}</p>
-            <p>Oubli de prise de médicament le matin: {{ rapport.rapport.formulaire.prise_medoc.oublie_prise_medoc_matin|yesno:"Oui,Non" }}</p>
-            <p>Oubli de prise de médicament le soir: {{ rapport.rapport.formulaire.prise_medoc.oublie_prise_medoc_soir|yesno:"Oui,Non" }}</p>
-            <p>Effets secondaires remarqués: {{ rapport.rapport.formulair.prise_medoc.effet_secondaires_remarques|yesno:"Oui,Non" }}</p>
-            <p>Symptômes particuliers remarqués: {{ rapport.rapport.formulaire.prise_medoc.symptomes_particuliers_remarques|yesno:"Oui,Non" }}</p>
-            <p>Description des médicaments: {{ rapport.rapport.formulaire.prise_medoc.description }}</p>
+            <table>
+                <tr>
+                  <td>Nombre de médicaments pris par jour</td>
+                  <td>{{ rapport.rapport.formulaire.prise_medoc.nombre_medoc_pris_jr }}</td>
+                </tr>
+                <tr>
+                  <td>Oubli de prise de médicament le matin</td>
+                  <td>{{ rapport.rapport.formulaire.prise_medoc.oublie_prise_medoc_matin|yesno:"Oui,Non" }}</td>
+                </tr>
+                <tr>
+                  <td>Oubli de prise de médicament le soir</td>
+                  <td>{{ rapport.rapport.formulaire.prise_medoc.oublie_prise_medoc_soir|yesno:"Oui,Non" }}</td>
+                </tr>
+                <tr>
+                  <td>Effets secondaires remarqués</td>
+                  <td>{{ rapport.rapport.formulair.prise_medoc.effet_secondaires_remarques|yesno:"Oui,Non" }}</td>
+                </tr>
+                <tr>
+                  <td>Symptômes particuliers remarqués</td>
+                  <td>{{ rapport.rapport.formulaire.prise_medoc.symptomes_particuliers_remarques|yesno:"Oui,Non" }}</td>
+                </tr>
+                <tr>
+                  <td>Description des médicaments</td>
+                  <td>{{ rapport.rapport.formulaire.prise_medoc.description }}</td>
+                </tr>
+              </table>
+              
         </div>
 
         <div id="Alimentation" class="container tab-pane fade">
-            <p>Consommation d'alcool: {{ rapport.rapport.formulaire.alimentation.conso_alcool|yesno:"Oui,Non" }}</p>
-            <p>Grignotage sucré: {{ rapport.rapport.formulaire.alimentation.grignotage_sucre|yesno:"Oui,Non" }}</p>
-            <p>Grignotage salé: {{ rapport.rapport.formulaire.alimentation.grignotage_sale|yesno:"Oui,Non" }}</p>
-            <p>Nombre de repas durant la journée: {{ rapport.rapport.formulaire.alimentation.nombre_repas_durant_jr }}</p>
-            <p>Quantité d'eau bue: {{ rapport.rapport.formulaire.alimentation.quantite_eau_bu }} litres</p>
-            <p>Quantité d'alcool bue: {{ rapport.rapport.formulaire.alimentation.quantite_alcool_bu }} unités</p>
+            <table>
+                <tr>
+                  <td>Consommation d'alcool</td>
+                  <td>{{ rapport.rapport.formulaire.alimentation.conso_alcool|yesno:"Oui,Non" }}</td>
+                </tr>
+                <tr>
+                  <td>Grignotage sucré</td>
+                  <td>{{ rapport.rapport.formulaire.alimentation.grignotage_sucre|yesno:"Oui,Non" }}</td>
+                </tr>
+                <tr>
+                  <td>Grignotage salé</td>
+                  <td>{{ rapport.rapport.formulaire.alimentation.grignotage_sale|yesno:"Oui,Non" }}</td>
+                </tr>
+                <tr>
+                  <td>Nombre de repas durant la journée</td>
+                  <td>{{ rapport.rapport.formulaire.alimentation.nombre_repas_durant_jr }}</td>
+                </tr>
+                <tr>
+                  <td>Quantité d'eau bue</td>
+                  <td>{{ rapport.rapport.formulaire.alimentation.quantite_eau_bu }} litres</td>
+                </tr>
+                <tr>
+                  <td>Quantité d'alcool bue</td>
+                  <td>{{ rapport.rapport.formulaire.alimentation.quantite_alcool_bu }} unités</td>
+                </tr>
+              </table>
+              
         </div>
 
         <div id="physique" class="container tab-pane fade">
-            <p>Présence de dyspnée: {{  rapport.rapport.formulaire.autres_symptomes.presence_dyspnee|yesno:"Oui,Non" }}</p>
-            <p>Présence d'œdème: {{  rapport.rapport.formulaire_autres.symptomes.presence_oedeme|yesno:"Oui,Non" }}</p>
-            <p>Présence d'épisode infectieux: {{  rapport.rapport.formulaire.autres_symptomes.presence_episode_intectieux|yesno:"Oui,Non" }}</p>
-            <p>Présence de fièvre: {{  rapport.rapport.formulaire_autres.symptomes.presence_fievre|yesno:"Oui,Non" }}</p>
-            <p>Présence de palpitations: {{  rapport.rapport.formulaire.autres_symptomes.presence_palpitation|yesno:"Oui,Non" }}</p>
-            <p>Présence de douleur thoracique: {{  rapport.rapport.formulaire.autres_symptomes.presence_douleur_thoracique|yesno:"Oui,Non" }}</p>
-            <p>Présence de malaise: {{  rapport.rapport.formulaire.autres_symptomes.presence_malaise|yesno:"Oui,Non" }}</p>
-            <p>Heure de début des palpitations: {{  rapport.rapport.formulaire.autres_symptomes.heure_debut_palpitations }}</p>
-            <p>Durée totale des palpitations: {{  rapport.rapport.formulaire.autres_symptomes.duree_total_palpitations }}</p>
-            <p>Heure de début des douleurs thoraciques: {{  rapport.rapport.formulaire.autres_symptomes.heure_debut_douleurs_thoracique }}</p>
-            <p>Durée totale des douleurs thoraciques: {{  rapport.rapport.formulaire.autres_symptomes.duree_total_douleurs_thoracique }}</p>
-            <p>Heure de début des malaises: {{  rapport.rapport.formulaire.autres_symptomes.heure_debut_malaises }}</p>
-            <p>Durée totale des malaises: {{  rapport.rapport.formulaire.autres_symptomes.duree_total_malaises }}</p>
+            <table>
+                <tr>
+                  <td>Présence de dyspnée</td>
+                  <td>{{ rapport.rapport.formulaire.autres_symptomes.presence_dyspnee|yesno:"Oui,Non" }}</td>
+                </tr>
+                <tr>
+                  <td>Présence d'œdème</td>
+                  <td>{{ rapport.rapport.formulaire_autres.symptomes.presence_oedeme|yesno:"Oui,Non" }}</td>
+                </tr>
+                <tr>
+                  <td>Présence d'épisode infectieux</td>
+                  <td>{{ rapport.rapport.formulaire.autres_symptomes.presence_episode_intectieux|yesno:"Oui,Non" }}</td>
+                </tr>
+                <tr>
+                  <td>Présence de fièvre</td>
+                  <td>{{ rapport.rapport.formulaire_autres.symptomes.presence_fievre|yesno:"Oui,Non" }}</td>
+                </tr>
+                <tr>
+                  <td>Présence de palpitations</td>
+                  <td>{{ rapport.rapport.formulaire.autres_symptomes.presence_palpitation|yesno:"Oui,Non" }}</td>
+                </tr>
+                <tr>
+                  <td>Présence de douleur thoracique</td>
+                  <td>{{ rapport.rapport.formulaire.autres_symptomes.presence_douleur_thoracique|yesno:"Oui,Non" }}</td>
+                </tr>
+                <tr>
+                  <td>Présence de malaise</td>
+                  <td>{{ rapport.rapport.formulaire.autres_symptomes.presence_malaise|yesno:"Oui,Non" }}</td>
+                </tr>
+                <tr>
+                  <td>Heure de début des palpitations</td>
+                  <td>{{ rapport.rapport.formulaire.autres_symptomes.heure_debut_palpitations }}</td>
+                </tr>
+                <tr>
+                  <td>Durée totale des palpitations</td>
+                  <td>{{ rapport.rapport.formulaire.autres_symptomes.duree_total_palpitations }}</td>
+                </tr>
+                <tr>
+                  <td>Heure de début des douleurs thoraciques</td>
+                  <td>{{ rapport.rapport.formulaire.autres_symptomes.heure_debut_douleurs_thoracique }}</td>
+                </tr>
+                <tr>
+                  <td>Durée totale des douleurs thoraciques</td>
+                  <td>{{ rapport.rapport.formulaire.autres_symptomes.duree_total_douleurs_thoracique }}</td>
+                </tr>
+                <tr>
+                  <td>Heure de début des malaises</td>
+                  <td>{{ rapport.rapport.formulaire.autres_symptomes.heure_debut_malaises }}</td>
+                </tr>
+                <tr>
+                  <td>Durée totale des malaises</td>
+                  <td>{{ rapport.rapport.formulaire.autres_symptomes.duree_total_malaises }}</td>
+                </tr>
+              </table>
+              
         </div>
 
         <div id="médicales" class="container tab-pane fade">
-            <p>Activité physique effectuée: {{ rapport.rapport.formulaire.activite_phisique.a_eu_activite_physique|yesno:"Oui,Non" }}</p>
-            <p>Durée de l'activité physique: {{ rapport.rapport.formulaire.activite_phisique.duree_activite_physique }} minutes</p>
-            <p>Description de l'activité physique: {{ rapport.rapport.formulaire.activite_phisique.description }}</p>
+            <table>
+                <tr>
+                  <td>Activité physique effectuée</td>
+                  <td>{{ rapport.rapport.formulaire.activite_phisique.a_eu_activite_physique|yesno:"Oui,Non" }}</td>
+                </tr>
+                <tr>
+                  <td>Durée de l'activité physique</td>
+                  <td>{{ rapport.rapport.formulaire.activite_phisique.duree_activite_physique }} minutes</td>
+                </tr>
+                <tr>
+                  <td>Description de l'activité physique</td>
+                  <td>{{ rapport.rapport.formulaire.activite_phisique.description }}</td>
+                </tr>
+              </table>
+              
         </div>
 
         <div id="autres_symptomes" class="container tab-pane fade">
-            <p>Valeur de la natrémie: {{ rapport.rapport.formulaire.infos_medicales.valeur_natremie }} mmol/L</p>
-            <p>Valeur du potassium: {{ rapport.rapport.formulaire.infos_medicales.valeur_potatium }} mmol/L</p>
-            <p>Valeur de la créatinine: {{ rapport.rapport.formulaire.infos_medicales.valeur_creatinine }} µmol/L</p>
-            <p>Valeur de la clairance de la créatinine: {{ rapport.rapport.formulaire.infos_medicales.valeur_clairance_creatinine }} mL/min</p>
-            <p>Taux de NT-proBNP: {{ rapport.rapport.formulaire.infos_medicales.taux_nt_probnp }} pg/mL</p>
-            <p>Taux de fer sérique: {{ rapport.rapport.formulaire.infos_medicales.taux_fer_serique }} µg/dL</p>
-            <p>Taux d'hémoglobine: {{ rapport.rapport.formulaire.infos_medicales.taux_hemoglobine }} g/dL</p>
-            <p>Vitesse de sédimentation: {{ rapport.rapport.formulaire.infos_medicales.valeur_vitesse_sedimentation }} mm/h</p>
-            <p>Taux de protéine C réactive: {{ rapport.rapport.formulaire.infos_medicales.taux_proteine_c }} mg/L</p>
-            <p>Taux de troponine: {{ rapport.rapport.formulaire.infos_medicales.taux_troponine }} ng/mL</p>
-            <p>Taux de vitamine D: {{ rapport.rapport.formulaire.infos_medicales.taux_vitamine_d }} ng/mL</p>
-            <p>Taux d'acide urique: {{ rapport.rapport.formulaire.infos_medicales.taux_acide_urique }} mg/dL</p>
-            <p>Taux d'INR: {{ rapport.rapport.formulaire.infos_medicales.taux_inr }}</p>
+            <table>
+                <tr>
+                  <td>Valeur de la natrémie</td>
+                  <td>{{ rapport.rapport.formulaire.infos_medicales.valeur_natremie }} mmol/L</td>
+                </tr>
+                <tr>
+                  <td>Valeur du potassium</td>
+                  <td>{{ rapport.rapport.formulaire.infos_medicales.valeur_potatium }} mmol/L</td>
+                </tr>
+                <tr>
+                  <td>Valeur de la créatinine</td>
+                  <td>{{ rapport.rapport.formulaire.infos_medicales.valeur_creatinine }} µmol/L</td>
+                </tr>
+                <tr>
+                  <td>Valeur de la clairance de la créatinine</td>
+                  <td>{{ rapport.rapport.formulaire.infos_medicales.valeur_clairance_creatinine }} mL/min</td>
+                </tr>
+                <tr>
+                  <td>Taux de NT-proBNP</td>
+                  <td>{{ rapport.rapport.formulaire.infos_medicales.taux_nt_probnp }} pg/mL</td>
+                </tr>
+                <tr>
+                  <td>Taux de fer sérique</td>
+                  <td>{{ rapport.rapport.formulaire.infos_medicales.taux_fer_serique }} µg/dL</td>
+                </tr>
+                <tr>
+                  <td>Taux d'hémoglobine</td>
+                  <td>{{ rapport.rapport.formulaire.infos_medicales.taux_hemoglobine }} g/dL</td>
+                </tr>
+                <tr>
+                  <td>Vitesse de sédimentation</td>
+                  <td>{{ rapport.rapport.formulaire.infos_medicales.valeur_vitesse_sedimentation }} mm/h</td>
+                </tr>
+                <tr>
+                  <td>Taux de protéine C réactive</td>
+                  <td>{{ rapport.rapport.formulaire.infos_medicales.taux_proteine_c }} mg/L</td>
+                </tr>
+                <tr>
+                  <td>Taux de troponine</td>
+                  <td>{{ rapport.rapport.formulaire.infos_medicales.taux_troponine }} ng/mL</td>
+                </tr>
+                <tr>
+                  <td>Taux de vitamine D</td>
+                  <td>{{ rapport.rapport.formulaire.infos_medicales.taux_vitamine_d }} ng/mL</td>
+                </tr>
+                <tr>
+                  <td>Taux d'acide urique</td>
+                  <td>{{ rapport.rapport.formulaire.infos_medicales.taux_acide_urique }} mg/dL</td>
+                </tr>
+                <tr>
+                  <td>Taux d'INR</td>
+                  <td>{{ rapport.rapport.formulaire.infos_medicales.taux_inr }}</td>
+                </tr>
+              </table>
         </div>
-
-
     </div>
 </div>
 
@@ -186,6 +337,7 @@
         // Active le premier onglet à chaque chargement de page
         $('.nav-tabs a:first').tab('show');
     });
-</script><--->
+</script>
+
 <!-- Autres détails que vous souhaitez afficher -->
 {% endblock %}
