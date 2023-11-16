@@ -108,8 +108,12 @@ Créez un superutilisateur pour accéder à l'interface d'administration :
 ```bash
 python manage.py createsuperuser
 ```
-### Étape 7: Lancement du Serveur de Développement
-Démarrez le serveur de développement :
+## Lancement du Serveur de Développement
+---
+```bash
+python manage.py test -v 2
+```
+
 
 ```bash
 python manage.py runserver
