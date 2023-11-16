@@ -70,7 +70,8 @@ Clonez le dépôt depuis GitHub :
 
 ```bash
 git clone URL_DU_REPO_GITHUB](https://github.com/data-IA-2022/Doctolib_Manu.git)https://github.com/data-IA-2022/Doctolib_Manu.git`
-cd Doctolib_Manu```
+cd Doctolib_Manu
+```
 
 ### Étape 2: Configuration de l'Environnement Virtuel
 Créez et activez un environnement virtuel :
