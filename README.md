@@ -1,7 +1,7 @@
 # Doctolib_Manu
 
 ## Table des Matières
--------
+---
 - [Contexte et Objectifs](#Contexte)
 - [Compétences Ciblées](#compétences-ciblées)
 - [Schéma de la Base de Données](#schéma-de-la-base-de-données)
@@ -10,14 +10,13 @@
 - [Versions Futures](#versions-futures)
 
 ## Contexte
-
+---
 - **Projet en Développement** : Intégration à l'équipe Doctolib pour un nouveau projet ambitieux.
 - **Objectif de l'Application** : Expansion de la portée des professionnels de santé et facilitation de la publication d'enquêtes sur la santé des patients consentants.
 
 ## Objectifs Principaux
-
-### Fonctionnalités pour les Utilisateurs
 ---
+### Fonctionnalités pour les Utilisateurs
 - **Administrateurs** : 
   - Gestion de comptes médecins et patients.
   - Attribution des patients aux médecins.
@@ -30,7 +29,6 @@
   - Accès à l'historique personnel.
 
 ### Authentification et Sécurité
----
 - Authentification requise pour tous les utilisateurs.
 - Utilisation d'ID pour la confidentialité et la sécurité des données.
 
@@ -47,28 +45,26 @@
 - Intégration des données de formulaires de santé.
 
 ### Analyse de Données et ETL
----
 - Système d'ETL pour adaptation des données à différents contextes internationaux.
 - Fonctionnalités d'alerte pour valeurs critiques ou incohérentes.
 
 ### Fonctionnalités Analytiques Avancées
----
 - Outils d'analyse de données (corrélation, régression, classification, clustering, etc.).
 - Graphiques interactifs, analyse de séries temporelles et NLP.
 
 ### Tests et Qualité
----
 - Exigence de tests unitaires avec un taux de couverture de 70% minimum.
 
 ### Versioning et Documentation
----
 - Repository GitHub pour le versioning du projet.
 - Documentation incluant README.md, gestion des données personnelles, fichier SQLite de test, et code de l'application.
 
 ## Compétences Ciblées
+---
 Listez les compétences techniques, méthodologiques et/ou théoriques que le projet vise à développer ou à démontrer.
 
 ## Schéma de la Base de Données
+---
 Incluez ici le schéma de la base de données utilisée dans le projet, accompagné d'une brève explication de chaque table et de ses relations.
 
 ## Installation et Lancement
