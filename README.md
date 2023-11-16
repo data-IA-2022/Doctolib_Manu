@@ -126,3 +126,14 @@ python manage.py test -v 2
 
 ## Versions Futures
 ---
+
+Accroitre la couverture des tests unitaires.
+
+![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/9867f4b5-c07c-4c80-9aff-952c7576d213)
+
+![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/012a6b9b-db08-49e2-9232-817a3f1d7e9a)
+
+
+
+
+
