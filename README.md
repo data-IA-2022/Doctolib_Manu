@@ -5,7 +5,8 @@
 - [Contexte et Objectifs](#Contexte)
 - [Compétences Ciblées](#compétences-ciblées)
 - [Schéma de la Base de Données](#schéma-de-la-base-de-données)
-- [Installation et Lancement](#installation-et-lancement)
+- [Prérequis](#Prérequis)
+- [Installation et Configuration](#Installation et Configuration)
 - [Aperçu du Projet](#aperçu-du-projet)
 - [Versions Futures](#versions-futures)
 
@@ -83,5 +84,18 @@ env\Scripts\activate
 # Sur MacOS/Linux
 source env/bin/activate
 ```
+### Étape 3: Installation des Dépendances
+Installez les dépendances à partir du fichier requirements.txt :
 
+### Étape 4: Configuration de la Base de Données SQLite
+Votre application est déjà configurée pour utiliser SQLite. Assurez-vous que les paramètres de la base de données dans settings.py sont corrects.
+
+### Étape 5: Application des Migrations
+Créez la structure de la base de données :
+
+### Étape 6: Création d'un Superutilisateur (Optionnel)
+Créez un superutilisateur pour accéder à l'interface d'administration :
+
+### Étape 7: Lancement du Serveur de Développement
+Démarrez le serveur de développement :
 
