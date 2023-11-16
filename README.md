@@ -7,7 +7,7 @@
 - [Schéma de la Base de Données](#schéma-de-la-base-de-données)
 - [Installation et Lancement](#installation-et-lancement)
 - [Aperçu du Projet](#aperçu-du-projet)
-- [Versions Futures](#versions-futures)<br>
+- [Versions Futures](#versions-futures)<br><br><br>
 
 
 ## Contexte
