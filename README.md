@@ -6,7 +6,7 @@
 - [Schéma de la Base de Données](#schéma-de-la-base-de-données)
 - [Prérequis](#Prérequis)
 - [Installation et Configuration](#installation-et-configuration)
-- [Lancement des tests unitaite](#lancement-des-tests-unitaite)
+- [Lancement des tests unitaite](#lancement-des-tests-unitaites)
 - [Aperçu du Projet](#aperçu-du-projet)
 - [Versions Futures](#versions-futures)
 
