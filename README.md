@@ -1,7 +1,6 @@
 # Doctolib_Manu
 
 ## Table des Matières
----
 - [Contexte et Objectifs](#Contexte)
 - [Compétences Ciblées](#compétences-ciblées)
 - [Schéma de la Base de Données](#schéma-de-la-base-de-données)
