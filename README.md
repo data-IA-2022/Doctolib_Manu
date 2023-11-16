@@ -2,6 +2,7 @@
 <h2 style="text-decoration: underline; text-decoration-color: red;"></h2>
 
 ## Table des Matières
+-------
 - [Contexte et Objectifs](#Contexte)
 - [Compétences Ciblées](#compétences-ciblées)
 - [Schéma de la Base de Données](#schéma-de-la-base-de-données)
