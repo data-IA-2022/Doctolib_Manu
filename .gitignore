@@ -11,3 +11,4 @@ doctolibbydjango/authentification/migrations
 env
 doctolibbydjango/db.sqlite3__
 .vscode
+doctolibbydjango/db.sqlite3ç_
