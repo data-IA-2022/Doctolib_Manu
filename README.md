@@ -6,6 +6,7 @@
 - [Schéma de la Base de Données](#schéma-de-la-base-de-données)
 - [Prérequis](#Prérequis)
 - [Installation et Configuration](#installation-et-configuration)
+- [Lancement des tests unitaite](#lancement-des-tests-unitaite)
 - [Aperçu du Projet](#aperçu-du-projet)
 - [Versions Futures](#versions-futures)
 
@@ -113,4 +114,4 @@ Démarrez le serveur de développement :
 ```bash
 python manage.py runserver
 ```
-
+## Lancement des tests unitaites :
