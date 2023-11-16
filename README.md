@@ -62,6 +62,7 @@ Gestion des logs :
 ---
 - Python 3.11.2
 - git 2.9.0
+- StarUML
 
 ## Installation et Configuration
 ---
