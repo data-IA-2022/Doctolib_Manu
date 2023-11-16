@@ -12,3 +12,7 @@ env
 doctolibbydjango/db.sqlite3__
 .vscode
 doctolibbydjango/db.sqlite3ç_
+doctolibbydjango/apps/__pycache__
+doctolibbydjango/apps/migrations/__pycache__
+doctolibbydjango/app/__pycache__
+doctolibbydjango/app/migrations/__pycache__
