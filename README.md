@@ -48,6 +48,10 @@ Appairage patient médecin :
 Associer à un groupe d'utilisateurs :
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/362f2c13-efaf-4532-8cd3-b926c3c8b64f)
 
+Geston des droits : 
+![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/f0e86714-98da-4144-b821-165fc18b134d)
+
+
 
 ## Installation et Lancement
 Fournissez des instructions étape par étape pour installer et lancer le projet. Cela peut inclure :
