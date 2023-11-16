@@ -64,8 +64,12 @@
 
 ## Compétences Ciblées
 ---
-Listez les compétences techniques, méthodologiques et/ou théoriques que le projet vise à développer ou à démontrer.
-
+1. **Développement en Python et Django**: Utilisation de Python et Django pour le développement de l'application.
+2. **Conception de Wireframe**: Création de wireframes pour les pages, conformément aux normes d'accessibilité WCAG.
+3. **Gestion de Base de Données**: Emploi de SQLite pour la gestion des données.
+4. **Développement d’un système ETL**: Mise en place d'un système ETL adapté aux contextes internationaux.
+5. **Analyse de Données et Machine Learning**: Intégration de fonctionnalités d'analyse de données et de modèles de machine learning.
+6. **Réalisation de Tests Unitaires**: Tests unitaires avec un taux de couverture d’au moins 70%.
 
 ## Schéma de la Base de Données
 ---
