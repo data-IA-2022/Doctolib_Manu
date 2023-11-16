@@ -124,7 +124,7 @@ python manage.py test -v 2
 ## Aperçu du Projet
 ---
 
-### - Formulaire de connection :
+### * Formulaire de connection :
 
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/6c72cc22-3a0d-4c35-8bc1-c2218b13eed3)
 
