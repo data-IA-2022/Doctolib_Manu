@@ -1,5 +1,4 @@
 # Doctolib_Manu
-<h2 style="text-decoration: underline; text-decoration-color: red;"></h2>
 
 ## Table des Matières
 -------
