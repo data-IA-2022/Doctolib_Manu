@@ -5,7 +5,7 @@
 - [Compétences Ciblées](#compétences-ciblées)
 - [Schéma de la Base de Données](#schéma-de-la-base-de-données)
 - [Prérequis](#Prérequis)
-- [Installation et Configuration].(#Installation et Configuration).
+- [Installation et Configuration](#Installation et Configuration)
 - [Aperçu du Projet](#aperçu-du-projet)
 - [Versions Futures](#versions-futures)
 
