@@ -36,7 +36,8 @@ Le projet pour **DoctoLib** vise à développer une **application web** qui conn
 
 ## Schéma de la Base de Données
 ---
-Incluez ici le schéma de la base de données utilisée dans le projet, accompagné d'une brève explication de chaque table et de ses relations.
+Structure de la base d'enregistrement des rapports
+![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/90f1bb85-336b-4710-abff-8e82f1f33b22)
 
 
 ## Installation et Lancement
