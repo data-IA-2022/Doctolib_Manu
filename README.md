@@ -42,6 +42,7 @@ Structure de la base d'enregistrement des rapports :
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/47b2cb33-21f3-45e1-8d8c-dbce6f841227)
 
 Aperage patient médecin :
+
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/13ac6fc0-0c95-4aeb-9c97-65e9036f6ce8)
 
 ## Installation et Lancement
