@@ -85,6 +85,12 @@
                   <td>{{ rapport.rapport.symptome.get_grande_envie_pleurer_display }}</td>
                 </tr>
             </table>  
+
+            {% if is_medecin %}
+                <!-- Code HTML pour le commutateur de modification -->
+                <button>Modifier le rapport</button>
+            {% endif %}
+
         </div>
         <!-- Plus de panneaux de contenu si nécessaire -->
     
@@ -100,6 +106,10 @@
                 </tr>
             </table>
             <!-- Plus de contenu... --> 
+            {% if is_medecin %}
+                <!-- Code HTML pour le commutateur de modification -->
+                <button>Modifier le rapport</button>
+            {% endif %}
         </div>
 
         <div id="cardiaque" class="container tab-pane fade">
@@ -128,7 +138,11 @@
                   <td>Description cardiaque</td>
                   <td>{{ rapport.rapport.formulaire.info_cardiaque.description }}</td>
                 </tr>
-              </table>         
+            </table>   
+            {% if is_medecin %}
+                <!-- Code HTML pour le commutateur de modification -->
+                <button>Modifier le rapport</button>
+            {% endif %}      
         </div>
 
         <div id="medoc" class="container tab-pane fade">
@@ -157,7 +171,11 @@
                   <td>Description des médicaments</td>
                   <td>{{ rapport.rapport.formulaire.prise_medoc.description }}</td>
                 </tr>
-              </table>
+            </table>
+            {% if is_medecin %}
+                <!-- Code HTML pour le commutateur de modification -->
+                <button>Modifier le rapport</button>
+            {% endif %}
               
         </div>
 
@@ -187,8 +205,11 @@
                   <td>Quantité d'alcool bue</td>
                   <td>{{ rapport.rapport.formulaire.alimentation.quantite_alcool_bu }} unités</td>
                 </tr>
-              </table>
-              
+            </table>
+            {% if is_medecin %}
+                <!-- Code HTML pour le commutateur de modification -->
+                <button>Modifier le rapport</button>
+            {% endif %}  
         </div>
 
         <div id="physique" class="container tab-pane fade">
@@ -245,8 +266,11 @@
                   <td>Durée totale des malaises</td>
                   <td>{{ rapport.rapport.formulaire.autres_symptomes.duree_total_malaises }}</td>
                 </tr>
-              </table>
-              
+            </table>
+            {% if is_medecin %}
+                <!-- Code HTML pour le commutateur de modification -->
+                <button>Modifier le rapport</button>
+            {% endif %}  
         </div>
 
         <div id="médicales" class="container tab-pane fade">
@@ -263,8 +287,11 @@
                   <td>Description de l'activité physique</td>
                   <td>{{ rapport.rapport.formulaire.activite_phisique.description }}</td>
                 </tr>
-              </table>
-              
+            </table>
+            {% if is_medecin %}
+                <!-- Code HTML pour le commutateur de modification -->
+                <button>Modifier le rapport</button>
+            {% endif %}  
         </div>
 
         <div id="autres_symptomes" class="container tab-pane fade">
@@ -321,7 +348,11 @@
                   <td>Taux d'INR</td>
                   <td>{{ rapport.rapport.formulaire.infos_medicales.taux_inr }}</td>
                 </tr>
-              </table>
+            </table>
+            {% if is_medecin %}
+                <!-- Code HTML pour le commutateur de modification -->
+                <button>Modifier le rapport</button>
+            {% endif %}
         </div>
     </div>
 </div>

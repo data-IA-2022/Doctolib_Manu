@@ -94,8 +94,9 @@ def histo(request):
 def rapport(request, rapport_id):
 
     rapport = get_object_or_404(Rapport_Patient.objects.select_related('medecin_patient', 'rapport'), pk=rapport_id)
+    is_medecin = request.user.role == 'medecin' 
     print(rapport)
-    return render(request, 'rapport.html', {'rapport': rapport})
+    return render(request, 'rapport.html', {'rapport': rapport, 'is_medecin': is_medecin})
 
 @login_required
 def associationMedecinPatient(request):
