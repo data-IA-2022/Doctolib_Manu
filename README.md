@@ -83,8 +83,13 @@ env\Scripts\activate
 # Sur MacOS/Linux
 source env/bin/activate
 ```
+
 ### Étape 3: Installation des Dépendances
 Installez les dépendances à partir du fichier requirements.txt :
+
+```bash
+pip install -r requirements.txt
+```
 
 ### Étape 4: Configuration de la Base de Données SQLite
 Votre application est déjà configurée pour utiliser SQLite. Assurez-vous que les paramètres de la base de données dans settings.py sont corrects.
@@ -92,9 +97,20 @@ Votre application est déjà configurée pour utiliser SQLite. Assurez-vous que 
 ### Étape 5: Application des Migrations
 Créez la structure de la base de données :
 
+```bash
+python manage.py migrate
+```
+
 ### Étape 6: Création d'un Superutilisateur (Optionnel)
 Créez un superutilisateur pour accéder à l'interface d'administration :
 
+```bash
+python manage.py createsuperuser
+```
 ### Étape 7: Lancement du Serveur de Développement
 Démarrez le serveur de développement :
+
+```bash
+python manage.py runserver
+```
 
