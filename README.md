@@ -12,6 +12,7 @@ Une brève description du contexte et des objectifs du projet. Expliquez pourquo
 
 ## Compétences Ciblées
 Listez les compétences techniques, méthodologiques et/ou théoriques que le projet vise à développer ou à démontrer.
+![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/ae12d03e-55c0-4656-bcf1-55754ed2d443)
 
 ## Schéma de la Base de Données
 Incluez ici le schéma de la base de données utilisée dans le projet, accompagné d'une brève explication de chaque table et de ses relations.
