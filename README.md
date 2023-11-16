@@ -41,6 +41,8 @@ Le projet pour **DoctoLib** vise à développer une **application web** qui conn
 
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/9d2183ad-0d1d-46e8-a750-52b775d6df7b)
 
+### Diagramme de cas d'usages. 
+
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/bb46deab-ae70-47c4-a81f-1d98cfe14b82)
 
 ## Schéma de la Base de Données
