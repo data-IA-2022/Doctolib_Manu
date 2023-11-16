@@ -130,16 +130,16 @@ Formulaire de connection :
 Formulaire d'inscription :
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/6480da6b-f9a4-4db5-b512-f8e60671222f)
 
-Formulaire d'acceuil :
+Formulaire d'acceuil médecin :
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/c49f12cd-8b34-428b-8459-e12a98b94d43)
 
-Formulaire d'historique :
+Formulaire d'historique médecin:
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/7bff2921-895b-4194-ba8f-9e07db3f1c17)
 
-Formulaire d'historique filtrage :
+Formulaire d'historique filtrage médecin:
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/749f2f4f-82d5-4398-8481-551ca57539eb)
 
-Formulaires d'exploration de l'historique :
+Formulaires d'exploration de l'historique médecin :
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/378a9838-0682-45d4-ba71-cd3ef72ddd1e)
 
 ![image](https://github.com/data-IA-2022/Doctolib_Manu/assets/120089092/0b336fe3-d834-4b48-9525-d947af2216c9)
